@@ -2,7 +2,7 @@
 
 This project is the home of the OpenHack experience for the Well-Architected Framework. All training material which includes, but is not limited to, challenges, diagrams, coaching assistance, and environment materials (e.g. ARM templates, source code, etc.) will be kept in this repository. The exception to this rule will be the tools that participants will be trained upon and can use in customer engagements for conducting assessments. Those tools will be stored in the _public_ repo [Azure/WellArchitected-Tools](https://github.com/Azure/WellArchitected-Tools).
 
-## Repo Artifacts
+## Documentation
 1. [Build of Materials](docs/bom.md)
 2. [OpenHack Overview](docs/overview.md)
 3. [Challenge Outline](docs/outline.md)
@@ -11,6 +11,20 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 6. Coach's Deck
 7. Coach's Guide
 8. Tech Lead's Deck
+
+## Directory Structure
+```
+.
+├── assets                      (any assets that are "global" to the OpenHack, e.g. Visio diagrams)
+├── challenges                  (openhack challenge content)
+│   └── X
+│       ├── assets              (folder for any additional assets...if necessary)
+│       ├── images              (image folder for specific challenge)
+│       └── README.md           (content for specific challenge)
+├── docs                        (project documentation)
+├── guides                      (guides and PPT decks for coaches and tech leads)
+└── scripts                     (scripts for building out the openhack tenant)
+```
 
 ## Contributing
 
