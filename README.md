@@ -4,7 +4,7 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 
 ## Repo Artifacts
 1. [Build of Materials](docs/bom.md)
-2. [Challenge Overview](docs/overview.md)
+2. [OpenHack Overview](docs/overview.md)
 3. [Challenge Outline](docs/outline.md)
 4. Content
 5. Automation/Build Scripts

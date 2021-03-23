@@ -1,4 +1,4 @@
-# Challenge Overview
+# OpenHack Overview
 ## Abstract
 
 
