@@ -9,7 +9,8 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 4. Content
 5. Automation/Build Scripts
 6. Coach's Deck
-7. Tech Lead's Deck
+7. Coach's Guide
+8. Tech Lead's Deck
 
 ## Contributing
 

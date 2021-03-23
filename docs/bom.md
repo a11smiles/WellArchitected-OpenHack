@@ -8,5 +8,5 @@
 - [ ] Automation/Build Scripts
 - [ ] Tooling
 - [ ] Coach's Deck
-- [ ] Coaching Guide
+- [ ] Coach's Guide
 - [ ] Tech Lead Deck
