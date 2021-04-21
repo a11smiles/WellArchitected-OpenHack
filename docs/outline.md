@@ -1,7 +1,9 @@
 # Challenge Outline
+
 The below defines the individual challenges, along with their abstract (goal), any requirements, and their expected outcomes.
 
 ## 1. Title for Challenge 1
+
 **Required**
 Yes
 

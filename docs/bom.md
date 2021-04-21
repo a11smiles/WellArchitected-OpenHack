@@ -1,7 +1,7 @@
 # Build of Materials
 
-- [ ] Overall Abstract
-- [ ] Overall Outcome(s)
+- [x] Overall Abstract
+- [x] Overall Outcome(s)
 - [ ] Challenge Outline
 - [ ] Architecture Diagram
 - [ ] Challenge Content (TBD)
