@@ -17,7 +17,7 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 .
 ├── assets                      (any assets that are "global" to the OpenHack, e.g. Visio diagrams)
 ├── challenges                  (openhack challenge content)
-│   └── X
+│   └── chX
 │       ├── assets              (folder for any additional assets...if necessary)
 │       ├── images              (image folder for specific challenge)
 │       └── README.md           (content for specific challenge)
