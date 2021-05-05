@@ -1,5 +1,4 @@
 # Challenge Outline
-
 The below defines the individual challenges, along with their abstract (goal), any requirements, and their expected outcomes.
 
 ## Overview
@@ -67,21 +66,173 @@ _TBD_
 _TBD_
 
 ## Challenges
-## 1. Assess the Environment
+### Challenge 1: Assess the environment
+In this challenge, you will assess a customer's production environment that has been deployed to Azure and currently hosting a live workload. You will gain an understanding of the customer's current process for deployment and management of the applications and supporting cloud resources. Part of this understanding will include performing a cost analysis of the Azure environment and establishing some baseline performance metrics. Based upon the assessment, you will need to craft a plan to assist the customer in adoption and implementation of the Microsoft Well-Architected Framework. You will use this plan to govern how you proceed in future challenges.
 
 **Required**  
 Yes
 
-**Abstract**  
-In this challenge, you will assess the customer's environment that has already been deployed to Azure.
+**Learning Objectives**
+* Inventory current components
+* Identify potential areas of improvement
+* Perform a cost analysis of the environment
+* Conduct an initial performance test
+* Conduct a load test against current business SLAs
+* Conduct a stress test
+* Establish and document performance baselines
+* Understand the difference between the three types of performance tests
+* Demonstrate a basic understanding of WAF
+* Document any initial concerns for business meeting SLAs
 
-**Requirements**
-* Logged into portal and identified _X_, _Y_, and _Z_.
+
+### Challenge 2: Operationalize automated deployments
+In this challenge, you will assist the customer in adopting automated deployments of both the application and infrastructure. You will explore the Azure Bicep scripts included in the Azure DevOps project and learn how to convert them to ARM templates for environment configuration and deployments. When helping the customer automate infrastructure and application changes, you will configure build and release pipelines. You will also attach deployment gates to release pipelines for security and governance of cloud resources. Deployments should ensure that only the correct resources should be removed by reporting changes _prior to_ being executed. It is important that you have a firm understanding of Azure Bicep and that your pipelines are configured correctly as **all future changes to the Azure environment must be conducted through the pipelines**.
+
+**Required**  
+Yes
 
 **Learning Objectives**
-* Outcome 1
-* Outcome 2
-* Outcome 3
+* Create build/release pipelines in Azure DevOps
+* Determine best strategy for deployments (conditions, types, etc.)
+* Demonstrate "what-if" scenarios with deployments
+* Configure gated deployments
 
 
-## 2. Operationalize Automated Deployments
+### Challenge 3: Planning for failure
+It is not a matter of _if_ an environment will fail, but _when_. Therefore, prior to any changes being introduced into the application or its supporting infrastructure, it is important that proper monitoring and alerting be configured. In this challenge, you will determine what types of monitoring, along with the necessary data points, should be conducted. You will also determine and configure any necessary alerting of activities within your environment. These activities could include, but are not limited to, resource availability (or lack thereof), security threats, etc. You will also determine a BCDR strategy in which you will implement in a future challenge.
+
+**Required**  
+Yes
+
+**Learning Objectives**
+* Discuss potential alerting options and processes
+* Compose a list of metrics that should be monitored
+* Compose a list of conditions that should generate an alert
+* Configure alerting for determined conditions
+* Demonstrate a successful alert
+* Configure Azure Monitor and Security Center
+* Create demo Grafana account
+* Link Azure Monitor to Grafana
+* Create operational dashboard in Grafana
+* Discuss BCDR strategy, including the varying costs of potential solutions relative to RPO/RTO/SLAs/KPIs
+* Document BCDR strategy
+* Identify points (roles) of contact for failures in the environment and construct a RACI chart
+
+
+### Challenge 4: Visualizing operations
+Now that significant planning and documentation has been completed, it is time to begin executing those plans. However, one last thing to consider is _visualizing_ changes across your environment. In this short challenge, you will take the composed list of metrics and conditions from the last challenge and build some operational dashboards. You will create a free Grafana account and link your Azure Monitor instance to it. You will then build some time-series reports and create an operational dashboard.
+
+**Required**  
+Yes
+
+**Learning Objectives**
+* Creating demo Grafana account
+* Linking Azure Monitor to Grafana
+* Creating operational dashboard in Grafana
+* Reporting on IaaS resources
+* Discuss the benefits and use cases of a real-time operational dashboard
+
+
+### Challenge 5: Hardening of the environment
+Before any changes are introduced into the current application architecture, the customer is interested in hardening what is currently deployed in terms of security, redundancy, and overall optimization. In this challenge, you will leave the application structure as-is&mdash;leaving it running on VMs&mdash;but you will implement some changes to the deployments and configurations of the environment. You will need to address secrets, potential areas of attack, and resiliency within the application. You will also need to make sure the telemetry is captured from the application and the virtual machine.
+
+**Required**  
+Yes
+
+**Learning Objectives**
+* Right-sizing VMs
+* Redundancy of VMs using Availability Zones and proper storage configurations
+* Securing network resources using NSGs
+* Implementing JIT on VMs
+* Discuss and properly configure RBAC based on RACI matrix
+* Discuss options for securing database connection strings and implement a solution  
+* Adding Application Insights to an application
+* Configuring VM to send telemetry via Application Insights or Log Analytics agent
+* Replacing ELB with WAF (Web App Firewall) and configuring OWASP
+* Comparing performance to baselines and ensuring that business SLAs are met with changes in architecture
+* Discuss potential cost improvements (Azure Reserved Instances)
+
+
+### Challenge 6: Leveraging PaaS services
+Often, customers choose to build their own environments for services already managed by Microsoft or its partners. This customer is no different. In this challenge, you will begin migrating the components of the web application to Azure's various PaaS offerings. As you migrate the application and configure its services, you must consider all pillars of the Microsoft Well-Architected Framework. With your implementation, you will need to ensure that all of the customer's SLAs are able to be met _at all times_ while maintaining adherence to the Well-Architected Framework. You will also need to make sure that your Grafana dashboards are updated to report desired metrics from the new resources. Finally, all alerts should be updated based on the new resources.
+
+**Required**  
+Yes
+
+**Learning Objectives**
+* Correctly choosing paired regions
+* Configuring Azure App Service for autoscale
+* Securing Azure App Service
+* Configuring Azure SQL for failover
+* Using Key Vault in Azure App Service
+* Leveraging private endpoints
+* Using Azure Batch
+* Continuing to compare performance to baselines and ensuring that business SLAs are met with changes in architecture
+* Failing a region while maintaining performance SLAs
+* Reporting on PaaS services
+
+
+### Challenge 7: Optimizing the API
+In the previous challenge, you may have elected to move the API to Azure Functions. If so, great! If not, here is your chance. In this challenge, you will separate the web front-end (WFE) from its services layer (API). Upon doing so, you will move the service layer to Azure Functions. In light of the Well-Architected Framework, you will also need to configure Azure Functions accordingly.
+
+**Required**  
+No
+
+**Learning Objectives**
+* Separating an application's front-end from its API
+* Securing of Azure Functions
+* Configuring autoscaling of Azure Functions
+* Instrumenting Azure Functions with Application Insights
+* Discuss the various billing models of Azure Functions and the reasoning behind which one was chosen in the case of this challenge
+* Discuss the benefits of separating the two layers of the application
+* Continuing to compare performance to baselines and ensuring that business SLAs are met with introduction of Azure Functions
+
+### Challenge 8: Improving database security
+The application, unfortunately, is still using legacy database connection strings. This means that there are still identities (SQL or Azure AD) that are used to connect the application to the database. In this challenge, you will refactor your application to leverage managed identities for database connectivity and remove application-specific named users from the database.
+
+**Required**  
+No
+
+**Learning Objectives**
+* Using managed identities for database connectivity
+* Understand and discuss the benefits of managed identities in terms of WAF
+
+### Challenge 9: Capturing correlation data
+You have already introduced Application Insights into your application. However, the customer is finding it difficult to correlate errors between the web front-end and the backend. In this challenge, you will _discuss_ approaches to implementing the capturing of correlation data when an error occurs in the application. Remember, solutions should consider all pillars of the Well-Architected Framework.
+
+**Required**  
+No
+
+**Learning Objectives**
+* Discuss techniques for capturing correlation data
+* Understand costs and security when storing correlation data
+* Understand how processing correlation data can impact application performance
+* Understand what data to capture in a distributed architecture
+
+
+## Value Proposition
+* Understand and clearly articulate the Microsoft Well-Architected Framework and each of its pillars, along with the respective benefits
+* Systematically analyze a given workload under the individual lenses of the Well-Architected Framework pillars
+* Deliver appropriate recommendations based on standard proven practices in accordance with the Well-Architected Framework
+* Successfully implement and migrate existing workloads to optimize and strengthen said workloads in all pillars of the Well-Architected Framework
+* Increase the overall technical intensity of technical team members
+
+## Technical Scenarios
+
+## Audience
+* Target Audience:
+  * Microsoft&mdash;CE, CSE, CSA, GBB, ATT, CE, SE, TPM
+  * Customer&mdash;Developers, Architects, SREs, DevOps Engineers, Systems Administrators
+* Target Verticals: All
+* Customer Profiles:
+  * Customers who are looking to deploy new cloud-native applications and/or infrastructure into Azure and wish to have an assessment conducted on the workload prior to it going live.
+  * Customers who currently have cloud-native applications running in production and are seeking visibility into optimization in terms of cost, security, reliability, and/or performance.
+  * Customers who have migrated traditional, on-premises workloads to Azure and are seeking additional assistance in optimization for cloud operations.
+
+## Registration Questions
+| Required | Field | Response Options |
+| -------- | ----- | ---------------- |
+| **Yes**         | Sample required question    | Options (line separated)            |
+| No              | Optional question           | Options                             |
+
+## FAQs
