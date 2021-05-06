@@ -6,7 +6,17 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 1. [Build of Materials](docs/bom.md)
 2. [OpenHack Overview](docs/overview.md)
 3. [Challenge Outline](docs/outline.md)
-4. Content
+4. Challenges  
+   - [Overview](challenges/ch0)  
+   - [Challenge 1: Assess the environment](challenges/ch1)  
+   - [Challenge 2: Operationalize automated deployments](challenges/ch2)  
+   - [Challenge 3: Planning for failure](challenges/ch3)  
+   - [Challenge 4: Visualizing operations](challenges/ch4)  
+   - [Challenge 5: Hardening of the environment](challenges/ch5)  
+   - [Challenge 6: Leveraging PaaS Services](challenges/ch6)
+   - [Challenge 7: Optimizing the API](challenges/ch7)
+   - [Challenge 8: Improving database security](challenges/ch8)
+   - [Challenge 9: Capturing correlation data](challenges/ch9)
 5. Automation/Build Scripts
 6. Coach's Deck
 7. Coach's Guide
