@@ -218,11 +218,14 @@ No
 * Increase the overall technical intensity of technical team members
 
 ## Technical Scenarios
-
+* _Performance_ - test and maintain, if not improve, performance of the application and its supporting infrastructure in order to meet specified SLAs
+* _Resiliency_ - develop a BCDR strategy and architect an environment to which to migrate a customer's workload that will maximize uptime
+* _Security_ - ensure that all connections to and from the application, including the database and its data, are secure, and verify access to cloud resources are restricted to necessary teams via appropriate RBAC policies
+* _Modernization_ - transition a traditional, monolithic web application to modern PaaS services
 ## Audience
 * Target Audience:
-  * Microsoft&mdash;CE, CSE, CSA, GBB, ATT, CE, SE, TPM
-  * Customer&mdash;Developers, Architects, SREs, DevOps Engineers, Systems Administrators
+  * Microsoft - CE, CSE, CSA, GBB, ATT, CE, SE, TPM
+  * Customer - Developers, Architects, SREs, DevOps Engineers, Systems Integrators, Systems Administrators
 * Target Verticals: All
 * Customer Profiles:
   * Customers who are looking to deploy new cloud-native applications and/or infrastructure into Azure and wish to have an assessment conducted on the workload prior to it going live.
