@@ -16,14 +16,14 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 ```
 .
 ├── assets                      (any assets that are "global" to the OpenHack, e.g. Visio diagrams)
-├── challenges                  (openhack challenge content)
+├── challenges                  (OpenHack challenge content)
 │   └── chX
 │       ├── assets              (folder for any additional assets...if necessary)
 │       ├── images              (image folder for specific challenge)
 │       └── README.md           (content for specific challenge)
 ├── docs                        (project documentation)
 ├── guides                      (guides and PPT decks for coaches and tech leads)
-└── scripts                     (scripts for building out the openhack tenant)
+└── scripts                     (scripts for building out the OpenHack tenant)
 ```
 
 ## Contributing
@@ -44,6 +44,6 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
 trademarks or logos is subject to and must follow 
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
+[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.
