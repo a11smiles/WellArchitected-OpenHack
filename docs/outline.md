@@ -235,7 +235,17 @@ No
 ## Registration Questions
 | Required | Field | Response Options |
 | -------- | ----- | ---------------- |
-| **Yes**         | Sample required question    | Options (line separated)            |
-| No              | Optional question           | Options                             |
+| **Yes**  | What is your level of understanding using Azure today?    | None<br />Some understanding<br />I have some pilot work on Azure<br />I rely on Azure today for cloud|
+| **Yes**  | What is your level of understanding of the Azure Architecture Center? | None<br />Some understanding<br />I use it occasionally<br />I use it frequently |
+| **Yes**  | What is your level of understanding of Cloud Design Patterns? | None<br />Some understanding<br />I reference them occasionally<br />I reference them frequently |
+| **Yes**  | What is your level of understanding of the Microsoft Well-Architected Framework? | None<br />Some understanding<br />Intermediate knowledge<br />Expert
 
 ## FAQs
+Q: Are there any pre-requisites to attending this OpenHack?  
+   A: Yes. Attendees should have completed all MS Learn modules for WAF and the Hands-On Labs for the individual pillars.
+
+Q: I have been working in Azure for years. Is this OpenHack really necessary?  
+   A: Yes. There are elements of the Well-Architected Framework with which you may be unfamiliar. This OpenHack will help solidify your knowledge of all five pillars.
+
+Q: I'm not a developer, so should I attend this OpenHack?  
+   A. Yes. The Microsoft-Well Architected Framework is not just for developers, but for other technology professionals as well. This OpenHack is relevant to all IT professionals who work in the cloud, but it also gives insights into proven practices for on-prem environments.
