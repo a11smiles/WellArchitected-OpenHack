@@ -11,7 +11,7 @@ During the "hacking," attendees will focus on:
 2) Strengthening the customer's operational landscape
 3) Ensuring that the customer's experience with the Microsoft cloud is of the utmost quality, value, and excellence
 
-By the end of the OpenHack, it is expected that attendees will be familiar with the Well-Architected Framework and able to conduct an assessment against a customer's workload in the Azure cloud.
+By the end of the OpenHack, it is expected that attendees will be familiar with the Microsoft Well-Architected Framework and able to conduct an assessment against a customer's workload in the Azure cloud.
 
 ## Business Outcomes
 When conducting a Well-Architected Assessment, Cloud Solution Architects (CSAs) will follow the  standardized process outlined below. This standard process is designed to drive an expected, high-level business value to the customer and to Microsoft. By participating in this OpenHack, CSAs will:
