@@ -2,7 +2,7 @@
 The below defines the individual challenges, along with their abstract (goal), any requirements, and their expected outcomes.
 
 ## Overview
-The **Well-Architected Framework OpenHack** attempts to test the participants' understanding of the Microsoft Well-Architected pillars. During the OpenHack, participants will demonstrate and practice a standardized process of delivering a Well-Architected Assessment across all five of its pillars.
+The **Well-Architected Framework OpenHack** attempts to test the participants' understanding of the Microsoft Well-Architected pillars. During the OpenHack, participants will demonstrate and practice a standardized process of conducting a Well-Architected assessment across all five of its pillars against a customer's workload.
 
 The **Well-Architected Framework OpenHack** simulates a real-world scenario of a bank who has attempted to deploy a production workload to Azure.  Unfortunately, the bank was unaware of the Well-Architected pillars and proven design patterns, therefore, the production workload fails in many areas.
 
@@ -25,15 +25,22 @@ When conducting a Well-Architected Assessment, Cloud Solution Architects (CSAs) 
 - [ ] Accelerate and build their own technical intensity.  
 
 ## Technologies
-* [Azure Traffic Manager](https://docs.microsoft.com/azure/traffic-manager/traffic-manager-overview)
+* [Azure DevOps](https://docs.microsoft.com/azure/devops/)
+* [Azure Traffic Manager](https://docs.microsoft.com/azure/traffic-manager)
 * [Azure Storage](https://docs.microsoft.com/azure/storage/common/storage-introduction)
 * [Virtual Machines](https://docs.microsoft.com/azure/virtual-machines/windows/overview)
 * [Azure App Service](https://docs.microsoft.com/azure/app-service/)
-* [Azure Load Balancer](https://docs.microsoft.com/azure/load-balancer/load-balancer-overview)
-* [Azure Front Door](https://docs.microsoft.com/azure/frontdoor/front-door-overview)
-* [Azure Cost Management](https://docs.microsoft.com/azure/cost-management-billing/cost-management-billing-overview)
-* [Azure vNets](https://docs.microsoft.com/azure/virtual-network/virtual-networks-overview)
+* [Azure SQL](https://docs.microsoft.com/azure/azure-sql/)
+* [Azure Load Balancer](https://docs.microsoft.com/azure/load-balancer/)
+* [Application Gateway - WAF v2](https://docs.microsoft.com/azure/application-gateway/)
+* [Azure Front Door](https://docs.microsoft.com/azure/frontdoor/)
+* [Azure Cost Management](https://docs.microsoft.com/azure/cost-management-billing/)
+* [Azure vNets](https://docs.microsoft.com/azure/virtual-network)
 * [Azure Service Endpoints](https://docs.microsoft.com/azure/virtual-network/virtual-network-service-endpoints-overview)
+* [Azure Monitor](https://docs.microsoft.com/azure/azure-monitor/)
+* [Azure Defender](https://docs.microsoft.com/azure/security-center/azure-defender)
+* [Azure Sentinel](https://docs.microsoft.com/azure/sentinel/)
+* [Grafana](https://grafana.com/docs/)
 
 ## Prerequisites
 ### Knowledge Prerequisites
@@ -99,7 +106,7 @@ Yes
 
 
 ### Challenge 3: Planning for failure
-It is not a matter of _if_ an environment will fail, but _when_. Therefore, prior to any changes being introduced into the application or its supporting infrastructure, it is important that proper monitoring and alerting be configured. In this challenge, you will determine what types of monitoring, along with the necessary data points, should be conducted. You will also determine and configure any necessary alerting of activities within your environment. These activities could include, but are not limited to, resource availability (or lack thereof), security threats, etc. You will also determine a BCDR strategy in which you will implement in a future challenge.
+It is not a matter of _if_ an environment will fail, but _when_. Therefore, prior to any changes being introduced into the application or its supporting infrastructure, it is important that proper monitoring and alerting be configured. In this challenge, you will determine what types of monitoring, along with the necessary data points, should be conducted. You will also determine and configure any necessary alerting of activities within your environment. These activities could include, but are not limited to, resource availability (or lack thereof), security threats, etc. Finally, you will determine a BCDR strategy in which you will implement in a future challenge.
 
 **Required**  
 Yes
@@ -111,9 +118,7 @@ Yes
 * Configure alerting for determined conditions
 * Demonstrate a successful alert
 * Configure Azure Monitor and Security Center
-* Create demo Grafana account
-* Link Azure Monitor to Grafana
-* Create operational dashboard in Grafana
+* Enable Azure Sentinel
 * Discuss BCDR strategy, including the varying costs of potential solutions relative to RPO/RTO/SLAs/KPIs
 * Document BCDR strategy
 * Identify points (roles) of contact for failures in the environment and construct a RACI chart
@@ -148,7 +153,7 @@ Yes
 * Discuss options for securing database connection strings and implement a solution  
 * Adding Application Insights to an application
 * Configuring VM to send telemetry via Application Insights or Log Analytics agent
-* Replacing ELB with WAF (Web App Firewall) and configuring OWASP
+* Replacing ELB with Application Gateway and configuring OWASP
 * Comparing performance to baselines and ensuring that business SLAs are met with changes in architecture
 * Discuss potential cost improvements (Azure Reserved Instances)
 
