@@ -170,6 +170,7 @@ Yes
 * Securing Azure App Service
 * Configuring Azure SQL for failover
 * Using Key Vault in Azure App Service
+* Enabling SQL Always Encrypted
 * Leveraging private endpoints
 * Using Azure Batch
 * Continuing to compare performance to baselines and ensuring that business SLAs are met with changes in architecture
