@@ -1,5 +1,5 @@
 # Challenge Outline
-The below defines the individual challenges, along with their abstract (goal), any requirements, and their expected outcomes.
+The below defines the individual challenges, along with their abstract, any requirements, and their expected objectives.
 
 ## Overview
 The **Well-Architected Framework OpenHack** attempts to test the participants' understanding of the Microsoft Well-Architected pillars. During the OpenHack, participants will demonstrate and practice a standardized process of conducting a Well-Architected assessment across all five of its pillars against a customer's workload.
