@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "BCDR",
+        "KPIs",
         "NSGs",
         "OWASP",
         "Operationalize",
@@ -8,6 +9,9 @@
         "RBAC",
         "SSMS",
         "Visio",
-        "autoscale"
+        "Woodgrove",
+        "autoscale",
+        "eastus",
+        "performant"
     ]
 }
