@@ -42,12 +42,30 @@ Using automated deployments for building their infrastructure (IaaS) creates a g
 
 ## Cheat sheet
 ### DevOps
-* All repositories use the same naming convention for their build scripts. In each repository, you will find the respective `azure-pipelines.yml` script.
-* Azure DevOps has the following three repositories:
+* All repositories use the same naming convention for their build scripts. In the root folder of each repository, you will find its respective `azure-pipelines.yml` script.
+* Azure DevOps has the following two projects:
   * _Bicep_: the Azure Bicep files to build the infrastructure
-  * _Portal_: the source control for the customer portal web application
-  * _Processor_: the source control for the transactions processor timer job
-
+  * _Portal_: the customer portal web application
+* Under the _Portal_ project, you will find two repositories:
+  * _web_: the source code for the web application
+  * _processor_: the source code for the transactions processor timer job
+* The _Bicep_ project has a single repository (e.g. _bicep_)
 ## Success criteria
-
+The succeed in this challenge, you must have the following implemented under the conditions specified in the customer requirements.
+* All deployments must be non-destructive. Only environment components not in the current configuration should be destroyed.
+* Build and release pipelines must be built in Azure DevOps to automatically:
+  * Build and deploy the infrastructure to Woodgrove Bank's Azure subscription
+  * Build and deploy the web application on both web virtual machines
+  * Build and deploy the background timer job on the worker virtual machine
+* Release pipelines must contain gates in order to deploy to the production environments.
+* The infrastructure release pipeline must contain a step for displaying the potential changes in the environment _before_ the changes are applied. This step much come before the actual deployment step to allow the IT team to view the effects of the deployment prior to it being executed.
+* Create and demonstrate restrictions for specific SKUs in Azure Bicep scripts to limit which SKUs are allowed to be used for deploying resources.
+* Plan a strategy for future deployments&mdash;whether in this current environment configuration or a planned, future environment configuration from _Challenge 1_&mdash;that will allow Woodgrove Bank to conduct deployments _without_ requiring any downtime. Discuss this strategy with your coach.
 ## References
+* <a href="https://docs.microsoft.com/azure/devops/pipelines/" target="_blank">Azure Pipelines overview</a>
+* <a href="https://docs.microsoft.com/azure/devops/pipelines/process/stages" target="_blank">Stages for Azure pipelines</a>
+* <a href="https://docs.microsoft.com/azure/devops/pipelines/release/approvals/gates" target="_blank">Approval gates for release pipelines</a>
+* <a href="https://docs.microsoft.com/azure/azure-resource-manager/templates/bicep-install">Installing Azure Bicep</a>
+* <a href="https://docs.microsoft.com/azure/azure-resource-manager/templates/bicep-overview" target="_blank">Azure templating with Bicep</a>
+* <a href="https://azure.microsoft.com/blog/deployment-strategies-defined/" target="_blank">Deployment strategies defined</a>
+* <a href="https://thenewstack.io/deployment-strategies/" target="_blank">Strategies for application deployment</a>

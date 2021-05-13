@@ -4,6 +4,8 @@ During this OpenHack you will be tested on your understanding of the Microsoft W
 
 Any resemblance to actual scenarios, issues, or pain points that you are currently facing with customers is _not_ coincidental. The definitions of the challenges that will be presented to you during this event are inspired by real cases.
 
+> **IMPORTANT:** This OpenHack is intended to be difficult and will require an extremely large amount of energy from _all_ team members if you expect to succeed. It is encouraged that an assessment of each team member's strengths and weaknesses is made at the commencement of your event and that the requirements of each challenge is delegated based upon that assessment. It it highly encouraged that the members of the team work as efficiently as possible to complete each challenge in a timely manner. This OpenHack will require _every_ team member to give their full, undivided commitment.
+
 ## Context
 Though it was once a very small community bank, Woodgrove Bank has experienced rapid growth throughout the past few decades. Their growth has resulted in launching market centers across multiple regions in the United States. Woodgrove Bank, because of its increased revenues and market reach, is now exploring expansion into other countries. In order to accomplish this goal, Woodgrove Bank realizes that some of the ways they conduct business today must change.
 
