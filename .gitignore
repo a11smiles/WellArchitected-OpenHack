@@ -2,3 +2,6 @@
 
 # Temporary Office files
 ~$*.*
+
+# generated ARM templates
+scripts/bicep/**/*.json

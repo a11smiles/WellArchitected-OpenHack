@@ -6,7 +6,17 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 1. [Build of Materials](docs/bom.md)
 2. [OpenHack Overview](docs/overview.md)
 3. [Challenge Outline](docs/outline.md)
-4. Content
+4. Challenges  
+   - [Overview](challenges/ch0)  
+   - [Challenge 1: Assess the environment](challenges/ch1)  
+   - [Challenge 2: Operationalize automated deployments](challenges/ch2)  
+   - [Challenge 3: Planning for failure](challenges/ch3)  
+   - [Challenge 4: Visualizing operations](challenges/ch4)  
+   - [Challenge 5: Hardening of the environment](challenges/ch5)  
+   - [Challenge 6: Leveraging PaaS Services](challenges/ch6)
+   - [Challenge 7: Optimizing the API](challenges/ch7)
+   - [Challenge 8: Improving database security](challenges/ch8)
+   - [Challenge 9: Capturing correlation data](challenges/ch9)
 5. Automation/Build Scripts
 6. Coach's Deck
 7. Coach's Guide
@@ -16,14 +26,14 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 ```
 .
 ├── assets                      (any assets that are "global" to the OpenHack, e.g. Visio diagrams)
-├── challenges                  (openhack challenge content)
-│   └── X
+├── challenges                  (OpenHack challenge content)
+│   └── chX
 │       ├── assets              (folder for any additional assets...if necessary)
 │       ├── images              (image folder for specific challenge)
 │       └── README.md           (content for specific challenge)
 ├── docs                        (project documentation)
 ├── guides                      (guides and PPT decks for coaches and tech leads)
-└── scripts                     (scripts for building out the openhack tenant)
+└── scripts                     (scripts for building out the OpenHack tenant)
 ```
 
 ## Contributing
@@ -44,6 +54,6 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
 trademarks or logos is subject to and must follow 
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
+[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.
