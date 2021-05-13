@@ -194,7 +194,7 @@ No
 * Discuss the benefits of separating the two layers of the application
 * Continuing to compare performance to baselines and ensuring that business SLAs are met with introduction of Azure Functions
 
-### Challenge 8: Improving database security
+### Challenge 8: Tightening database security
 The application, unfortunately, is still using legacy database connection strings. This means that there are still identities (SQL or Azure AD) that are used to connect the application to the database. In this challenge, you will refactor your application to leverage managed identities for database connectivity and remove application-specific named users from the database.
 
 **Required**  
