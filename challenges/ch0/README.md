@@ -11,11 +11,11 @@ Some of these new approaches rely on Woodgrove Bank transitioning their operatio
 
 Woodgrove Bank is also looking a refreshing their internally-built applications. Most of these applications were built when the bank first launch and have only experienced ad-hoc, piecemeal upgrades. Architecturally, the bank recognizes that these updates have had detrimental impacts to their applications over time. The applications seem to have degraded in performance, are more vulnerable to security threats, and they are less reliable and require much more time and effort from the SRE team.
 
-The first application undergoing a rebuild is their primary customer portal. The customer portal traditionally has allowed customers to login and view balances, transfer money, pay bills, etc. The current redevelopment, however, is considered an MVP and only provides balance and transaction history. While some services may currently be unavailable in this release, Woodgrove Bank considers this acceptable as they wish to build correctly with a cloud-native approach against cloud services. They do not wish to build an on-premises architecture in a cloud environment. For the services that are lacking, customers may contact the bank directly. It is Woodgrove Bank's desire to quickly implement these features in their new application, but, again, they first want to ensure that they are adopting sound development practices.
+The first application undergoing a rebuild is their primary customer portal and is owned by the _Customer Experience_ sector of the business. The customer portal traditionally has allowed customers to login and view balances, transfer money, pay bills, etc. The current redevelopment, however, is considered an MVP and only provides balance and transaction history. While some services may currently be unavailable in this release, Woodgrove Bank considers this acceptable as they wish to build correctly with a cloud-native approach against cloud services. They do not wish to build an on-premises architecture in a cloud environment. For the services that are lacking, customers may contact the bank directly. It is Woodgrove Bank's desire to quickly implement these features in their new application, but, again, they first want to ensure that they are adopting sound development practices.
 
 Woodgrove Bank has a longstanding relationship with Microsoft and is a current enterprise customer with an established Enterprise Agreement. Your team is currently assigned to assist Woodgrove Bank with their cloud adoption efforts. You have been tasked to assess Woodgrove Bank's efforts in overall cloud adoption, and to specifically evaluate their primary web application.
 
-Members of Woodgrove Bank's IT team are very capable of running advanced workloads on-premises&mdash;they done so successfully for years. However, cloud concepts and cloud-native development are very new to them. The team members recognize their lack of maturity in these areas and are looking to Microsoft to provide guidance in proven practices and solid cloud design patterns. They also know very little regarding DevOps and deploying environments in a secure, repeatable fashion as, currently, all infrastructure is commissioned manually from a Hyper-V host.
+Members of Woodgrove Bank's IT team are very capable of running advanced workloads on-premises&mdash;they've done so successfully for years. However, cloud concepts and cloud-native development are very new to them. The team members recognize their lack of maturity in these areas and are looking to Microsoft to provide guidance in proven practices and solid cloud design patterns. They also know very little regarding DevOps and deploying environments in a secure, repeatable fashion as, currently, all infrastructure is commissioned manually from a Hyper-V host.
 
 Currently, on-premises, access to all resources are governed by a _least-privilege_ policy. Access to any resource must be manually granted to the appropriate users. Unfortunately, when Woodgrove Bank initiated this policy, access was granted by individual account at the resource level. This was manageable when Woodgrove Bank was a community bank who only employed a small number of IT administrators and software developers. Now, due to their explosive growth, including these teams, this practice is no longer feasible. Woodgrove Bank is asking your team to provide guidance in executing and maintaining security in the cloud. Given that they are a bank, Woodgrove Bank will need to be able to proactively monitor and report on its security posture.
 
@@ -24,24 +24,19 @@ Finally, not only is security a major concern, Woodgrove Bank wants to ensure th
 Business drivers for this effort include:
 
 * Expansion while reducing overhead. While Woodgrove Bank is currently in a data center, they are looking to the cloud for expanding their IT while attempting to reduce operating costs.
-
 * Innovation. Woodgrove Bank is taking this migration opportunity to update many of its legacy applications. The new applications will be built cloud-native to support current company growth and future technology innovations.
 
 
 IT leadership's goals for Azure adoption include:
 
 * Reduce costs of hosting and operating current workloads. All VMs on-premises are based on predefined images. IT needs greater flexibility in VM sizing that better accommodates the hosted workload. 
-
 * Current on-premises implementation is a hot-cold configuration. When the primary site goes down, there is some latency and necessary reconfiguration to bring the second data center online. IT wishes to streamline this process and implement a full-distributed hot-hot environment across multiple regions, if possible.
-
 * Security of resources is currently managed by individual Active Directory identities. IT needs to maintain the same least-privilege policy in the cloud, but needs a simpler way of managing access to services.
-
 * Current deployments of on-premises VMs, while generally a simple process, are manual, time-consuming, and error-prone due to the heavy demands of IT resources. IT team members are typically balancing multiple support tickets at any given time. IT wishes to automate deployments as much as possible to alleviate any potential bottlenecks or misconfigurations.
 
 Goals for developers, DevOps engineers, and SREs in the adoption include:
 
 * Due to VMs sharing the same images for all applications, some applications are more performant that others. Development teams are seeking greater flexibility in the cloud in order to ensure that their end-users receive the best experience while using their applications.
-
 * Development teams have been constrained to using only technologies that are available on-premises. This means development teams have traditionally been innovation-adverse due to the overhead that would be required for installing, configuring, and maintaining 3rd-party technologies. With cloud adoption, developers are interested in technologies that can simplify their workflow and empower them to innovate.
 
 While each application and system being migrated into the cloud will undeniably be different due to different technologies and dependencies, this exercise will lay the foundation and help to instill a set of practices for moving the remainder of Woodgrove Bank's on-premises estate into Microsoft Azure.
@@ -56,6 +51,11 @@ As workloads are being transitioned to Azure, Woodgrove Bank has expressed the i
   * 2-3 secs - Good
   * 3-5 secs - Acceptable
   * \> 5 secs - Unacceptable
+* Application uptime should meet or exceed 99.99%
+* Business Continuity/Disaster Recovery (BCDR):
+  * Implement a hot-hot, multi-region deployment
+  * RTO - 10 minutes
+  * RPO - 1 hour
 
 Woodgrove Bank is concerned that their current cloud architecture may not support this, which is one reason they have reached out to Microsoft for its help. Any architectural decisions going forward should revolve around the above KPIs and their SLAs.
 
