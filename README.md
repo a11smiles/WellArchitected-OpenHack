@@ -9,8 +9,8 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 4. Challenges  
    - [Overview](challenges/ch0)  
    - [Challenge 1: Assess the environment](challenges/ch1)  
-<!--     - [Challenge 2: Operationalize automated deployments](challenges/ch2)  
-   - [Challenge 3: Planning for failure](challenges/ch3)  
+   - [Challenge 2: Operationalize automated deployments](challenges/ch2)  
+<!--    - [Challenge 3: Planning for failure](challenges/ch3)  
    - [Challenge 4: Visualizing operations](challenges/ch4)  
    - [Challenge 5: Improve the environment](challenges/ch5)  
    - [Challenge 6: Leveraging PaaS services](challenges/ch6)
@@ -21,8 +21,8 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 6. Coach's Deck
 7. Coach's Guide
    - [Challenge 1: Assess the environment](guides/challenges/ch1)  
-<!--  - [Challenge 2: Operationalize automated deployments](guides/challenges/ch2)
-   - [Challenge 3: Planning for failure](guides/challenges/ch3)  
+   - [Challenge 2: Operationalize automated deployments](guides/challenges/ch2)
+<!--   - [Challenge 3: Planning for failure](guides/challenges/ch3)  
    - [Challenge 4: Visualizing operations](guides/challenges/ch4)  
    - [Challenge 5: Improve the environment](guides/challenges/ch5)  
    - [Challenge 6: Leveraging PaaS services](guides/challenges/ch6)
