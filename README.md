@@ -10,8 +10,8 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
    - [Overview](challenges/ch0)  
    - [Challenge 1: Assess the environment](challenges/ch1)  
    - [Challenge 2: Operationalize automated deployments](challenges/ch2)  
-<!--    - [Challenge 3: Planning for failure](challenges/ch3)  
-   - [Challenge 4: Visualizing operations](challenges/ch4)  
+   - [Challenge 3: Planning for failure](challenges/ch3)  
+<!--   - [Challenge 4: Visualizing operations](challenges/ch4)  
    - [Challenge 5: Improve the environment](challenges/ch5)  
    - [Challenge 6: Leveraging PaaS services](challenges/ch6)
    - [Challenge 7: Optimizing the API](challenges/ch7)
@@ -19,11 +19,11 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
    - [Challenge 9: Capturing correlation data](challenges/ch9) -->
 5. Automation/Build Scripts
 6. Coach's Deck
-7. Coach's Guide
+7. Coach's Guides
    - [Challenge 1: Assess the environment](guides/challenges/ch1)  
    - [Challenge 2: Operationalize automated deployments](guides/challenges/ch2)
-<!--   - [Challenge 3: Planning for failure](guides/challenges/ch3)  
-   - [Challenge 4: Visualizing operations](guides/challenges/ch4)  
+   - [Challenge 3: Planning for failure](guides/challenges/ch3)  
+<!--   - [Challenge 4: Visualizing operations](guides/challenges/ch4)  
    - [Challenge 5: Improve the environment](guides/challenges/ch5)  
    - [Challenge 6: Leveraging PaaS services](guides/challenges/ch6)
    - [Challenge 7: Optimizing the API](guides/challenges/ch7)
@@ -36,7 +36,7 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 ```
 .
 ├── assets                      (any assets that are "global" to the OpenHack, e.g. Visio diagrams)
-├── challenges                  (OpenHack challenge content; this folder structure is the same for //guide content)
+├── challenges                  (OpenHack challenge content; this folder structure is the same for //guides content)
 │   └── chX
 │       ├── assets              (folder for any additional assets...if necessary)
 │       ├── images              (image folder for specific challenge)

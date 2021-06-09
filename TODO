@@ -6,5 +6,9 @@ outline.md:
 challenge 1: 
   ✔ Discuss blue-green deployments @done(21-05-12 13:17)
 
+challenge 3 (coach's guide):
+  ☐ create chaos script (SC #2)
+  ☐ create a sample of queries for Sentinel (HS #2)
+
 challenge 6: 
   ☐ configure blue-green deployments
