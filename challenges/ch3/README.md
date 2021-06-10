@@ -40,7 +40,7 @@ Before Woodgrove Bank continues to adopt the cloud and scale its operations in A
 
 * A Log Analytics workspace is deployed and it must be capturing logs for all resources in the tenant. 
 
-* In order to gain intelligent insights into operations, the Operations Team, along with other various teams, require that all logs in Log Analytics be kept for a minimum of 90 days.
+* In order to gain intelligent insights into operations, the operations team, along with other various teams, require that all logs in Log Analytics be kept for a minimum of 90 days.
 
 * Given that Woodgrove Bank is subject to regulatory compliance, all logs be stored for no less than seven years.
 
@@ -62,7 +62,7 @@ Before Woodgrove Bank continues to adopt the cloud and scale its operations in A
 * Pay attention to the suggested questions above when creating your RACI chart.  A strong RACI chart should answer those and other questions.
 
 ## Success criteria
-In order to success in this challenge, you will need to accomplish the following:
+In order to succeed in this challenge, you will need to accomplish the following:
 
 * A solid process for alerting and notifications should be well-documented and effectively communicated to your coach.
 

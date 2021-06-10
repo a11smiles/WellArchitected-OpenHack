@@ -51,7 +51,7 @@ Using automated deployments for building their infrastructure (IaaS) creates a g
   * _processor_: the source code for the transactions processor timer job
 * The _Bicep_ project has a single repository (e.g. _bicep_)
 ## Success criteria
-The succeed in this challenge, you must have the following implemented under the conditions specified in the customer requirements.
+To succeed in this challenge, you must have the following implemented under the conditions specified in the customer requirements.
 * All deployments must be non-destructive. Only environment components not in the current configuration should be destroyed.
 * Build and release pipelines must be built in Azure DevOps to automatically:
   * Build and deploy the infrastructure to Woodgrove Bank's Azure subscription
