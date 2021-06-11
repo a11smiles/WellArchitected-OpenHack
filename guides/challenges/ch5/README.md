@@ -33,6 +33,8 @@ There are many ways the team can improve Woodgrove Bank's environment. The below
 
 * Only specific users should have access to Key Vault. Key Vault should be configured via RBAC or Access Policies.
 
+* Azure DevOps is currently configured to connect at the subscription level. This is acceptable for the infrastructure deployment, but not for the application deployment. The application deployments should be configured to connect the the Azure environment via a service principal. That principal should only have access to the appropriate virtual machines and/or resource groups.
+
 * A potential cost improvement is Woodgrove Bank purchasing reserved instances. The team will not actually be able to implement this in the OpenHack, but you should question them on this.
 
 * Application Insights should be added to the application and metrics should be collected from the application and the virtual machines. Additionally, dashboards should added to Grafana that report the collected metrics and performance counters.
