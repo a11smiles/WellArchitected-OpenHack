@@ -31,6 +31,8 @@ There are many ways the team can improve Woodgrove Bank's environment. The below
 
 * Currently, the database connection string is stored in an Azure DevOps variable library. The connection string should be moved to an Azure Key Vault and referenced by the Azure DevOps library for releases.
 
+* Only specific users should have access to Key Vault. Key Vault should be configured via RBAC or Access Policies.
+
 * A potential cost improvement is Woodgrove Bank purchasing reserved instances. The team will not actually be able to implement this in the OpenHack, but you should question them on this.
 
 * Application Insights should be added to the application and metrics should be collected from the application and the virtual machines. Additionally, dashboards should added to Grafana that report the collected metrics and performance counters.
