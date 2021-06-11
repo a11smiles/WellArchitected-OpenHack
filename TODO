@@ -10,5 +10,8 @@ challenge 3 (coach's guide):
   ☐ create chaos script (SC #2)
   ☐ create a sample of queries for Sentinel (HS #2)
 
+challenge 5 (coach's guide):
+  ☐ update the IIS App Pool name (HS #3)
+
 challenge 6: 
   ☐ configure blue-green deployments
