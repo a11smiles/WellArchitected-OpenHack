@@ -5,6 +5,7 @@ outline.md:
 
 challenge 1: 
   ✔ Discuss blue-green deployments @done(21-05-12 13:17)
+  ☐ batch/services vm should be stated that these services do not run continously
 
 challenge 3 (coach's guide):
   ☐ create chaos script (SC #2)

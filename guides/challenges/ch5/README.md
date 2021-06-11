@@ -21,6 +21,8 @@ There are many ways the team can improve Woodgrove Bank's environment. The below
 
 * The virtual machines should leverage Availability Zones for their storage.
 
+* The virtual machine that hosts the background services should have an on/off schedule configured via Azure Automation in order to reduce costs.
+
 * JIT should be enabled for remote access to the virtual machines.
 
 * Instead of direct RDP access from any network to the virtual machines, the team should consider a single jump box that allows RDP access from a restricted set of IP addresses and allows users to access other machines on the network. Another option is for the team to implement Azure Bastion service for accessing the virtual machines.
