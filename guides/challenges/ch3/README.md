@@ -9,6 +9,7 @@
 * Log Analytics and Security Center should be enabled in the subscription for all resources.
 * Logs should be retained for no less than 7 years.
 * Azure Sentinel should be enabled and the team should demonstrate querying for specific results.
+* The team may also consider enabling Network Monitor to monitor and better understand traffic on the network.
 * A BCDR strategy must be documented by the team and each team member should be aware of the selected strategy. They must communicate this strategy to you and demonstrate their technical knowledge. The team should be able to communicate areas of traffic distribution and data backup and replication. The strategy must meet or exceed Woodgrove Bank's RPO and RTO goals.
 * A second region (US West) should be deployed with the same resources as currently in US East. The two regions should be configured with load balancing to ensure maximum uptime and to meet Woodgrove Bank's SLA of 99.99%.
 * A RACI chart should be created to identify the components in the architecture, their impact to the success of the application, and who/which teams at Woodgrove Bank is/are responsible should they become unavailable. 
