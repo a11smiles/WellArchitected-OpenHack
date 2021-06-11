@@ -1,6 +1,7 @@
 # Guide: Planning for failure
 ## Success Criteria
 * A process for alerting and notifications should be documented. There is not necessarily a specific format that the team should use. However, it is imperative that the team has a documented approach that identifies events, their criticality and business impact, responsibilities, and remediation actions, including who should be notified and the pertinent information that should be provided to them.
+* Alerts should also include monitoring for system thresholds (e.g. memory, CPU, disk IOPS, etc.).
 * You will need to run the enclosed script against the workload to ensure that an appropriate alert is successfully generated.
   
     **NOTE:** The included chaos script is not truly _random_. Instead, it will demote a specified resource. Given that the environment shouldn't have changed too much and only another region has been added, the script should work as expected. As a coach, you will need to be aware of the names of the resources in your team's subscription. A name will need to be supplied to the script so that it can be referenced successfully.
