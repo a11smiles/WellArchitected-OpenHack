@@ -5,3 +5,4 @@
 
 # generated ARM templates
 scripts/bicep/**/*.json
+!scripts/bicep/**/deploymentParameters.json
