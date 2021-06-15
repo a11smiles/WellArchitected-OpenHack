@@ -5,10 +5,22 @@
       "resource_group_name": {
         "value": null
       },
+      "region": {
+        "value": null
+      },
+      "region_long": {
+        "value": null
+      },
       "vnet_name": {
         "value": null
       },
       "nsg_name": {
+        "value": null
+      },
+      "storage_web": {
+        "value": null
+      },
+      "storage_sql": {
         "value": null
       },
       "web1vm_dnslabel": {

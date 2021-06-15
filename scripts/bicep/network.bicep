@@ -1,3 +1,5 @@
+param region string
+param regionLong string
 param vnetName string
 param nsgName string
 param web1vmDnslabel string
@@ -8,7 +10,7 @@ param trafficManagerDnsLabel string
 
 resource vnet 'Microsoft.Network/virtualNetworks@2020-05-01' = {
   name: vnetName
-  location: 'eastus'
+  location: region
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -40,7 +42,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2020-05-01' = {
 
 resource nsg 'Microsoft.Network/networkSecurityGroups@2020-11-01' = {
   name: nsgName
-  location: 'eastus'
+  location: region
   properties: {
     securityRules: [
       {
@@ -62,7 +64,7 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2020-11-01' = {
 
 resource web1vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   name: 'web1ip'
-  location: 'eastus'
+  location: region
   sku: {
     name: 'Standard'
     tier: 'Regional'
@@ -78,7 +80,7 @@ resource web1vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
 
 resource web2vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   name: 'web2ip'
-  location: 'eastus'
+  location: region
   sku: {
     name: 'Standard'
     tier: 'Regional'
@@ -94,7 +96,7 @@ resource web2vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
 
 resource worker1vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   name: 'worker1ip'
-  location: 'eastus'
+  location: region
   sku: {
     name: 'Standard'
     tier: 'Regional'
@@ -110,7 +112,7 @@ resource worker1vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
 
 resource sqlsvr1vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   name: 'sqlsvr1ip'
-  location: 'eastus'
+  location: region
   sku: {
     name: 'Standard'
     tier: 'Regional'
@@ -152,7 +154,7 @@ resource tmwebapp 'Microsoft.Network/trafficmanagerprofiles@2018-08-01' = {
           targetResourceId: web1vmPIP.id
           target: web1vmPIP.properties.dnsSettings.fqdn
           priority: 1
-          endpointLocation: 'East US'
+          endpointLocation: regionLong
         }
       }
       {
@@ -164,7 +166,7 @@ resource tmwebapp 'Microsoft.Network/trafficmanagerprofiles@2018-08-01' = {
           targetResourceId: web2vmPIP.id
           target: web2vmPIP.properties.dnsSettings.fqdn
           priority: 2
-          endpointLocation: 'East US'
+          endpointLocation: regionLong
         }
       }
     ]

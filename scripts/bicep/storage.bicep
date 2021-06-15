@@ -1,6 +1,10 @@
+param region string
+param storageWeb string
+param storageSql string
+
 resource webStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: 'storwoodgroveweb'
-  location: 'eastus'
+  location: region
   sku: {
     name: 'Standard_LRS'
     tier: 'Standard'
@@ -13,7 +17,7 @@ resource webStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
 
 resource sqlStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: 'storwoodgrovesql'
-  location: 'eastus'
+  location: region
   sku: {
     name: 'Standard_LRS'
     tier: 'Standard'

@@ -1,6 +1,10 @@
 param resource_group_name string
+param region string
+param region_long string
 param vnet_name string
 param nsg_name string
+param storage_web string
+param storage_sql string
 param web1vm_dnslabel string
 param web2vm_dnslabel string
 param worker1vm_dnslabel string
@@ -17,6 +21,8 @@ module network './network.bicep' = {
   name: 'network'
   scope: resourceGroup(resource_group_name)
   params: {
+    region: region
+    regionLong: region_long
     vnetName: vnet_name
     nsgName: nsg_name
     web1vmDnslabel: web1vm_dnslabel
@@ -30,12 +36,18 @@ module network './network.bicep' = {
 module storage './storage.bicep' = {
   name: 'storage'
   scope: resourceGroup(resource_group_name)
+  params: {
+    region: region
+    storageWeb: storage_web
+    storageSql: storage_sql
+  }
 }
 
 module vms './vms.bicep' = {
   name: 'vms'
   scope: resourceGroup(resource_group_name)
   params: {
+    region: region
     vnetSubnetId: network.outputs.vnetSubnetId
     nsgId: network.outputs.nsgId
     web1vmPIPid: network.outputs.web1vmPIPid

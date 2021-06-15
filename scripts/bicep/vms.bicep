@@ -1,3 +1,4 @@
+param region string
 param vnetSubnetId string
 param nsgId string
 param web1vmPIPid string
@@ -18,7 +19,7 @@ param sqlAdminPassword string
  */
 resource web1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
   name: 'web1nic'
-  location: 'eastus'
+  location: region
   properties: {
     networkSecurityGroup: {
       id: nsgId
@@ -42,7 +43,7 @@ resource web1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
 
 resource web1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
   name: 'web1'
-  location: 'eastus'
+  location: region
   properties: {
     osProfile: {
       computerName: 'web1'
@@ -87,7 +88,7 @@ resource web1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
 
 resource web1vmIIS 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
   name: 'web1/InstallWebServer'
-  location: 'eastus'
+  location: region
   dependsOn: [
     web1vm
   ]
@@ -109,7 +110,7 @@ resource web1vmIIS 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
  */
 resource web2vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
   name: 'web2nic'
-  location: 'eastus'
+  location: region
   properties: {
     networkSecurityGroup: {
       id: nsgId
@@ -133,7 +134,7 @@ resource web2vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
 
 resource web2vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
   name: 'web2'
-  location: 'eastus'
+  location: region
   properties: {
     osProfile: {
       computerName: 'web2'
@@ -178,7 +179,7 @@ resource web2vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
 
 resource web2vmIIS 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
   name: 'web2/InstallWebServer'
-  location: 'eastus'
+  location: region
   dependsOn: [
     web2vm
   ]
@@ -200,7 +201,7 @@ resource web2vmIIS 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
  */
 resource worker1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
   name: 'worker1nic'
-  location: 'eastus'
+  location: region
   properties: {
     networkSecurityGroup: {
       id: nsgId
@@ -224,7 +225,7 @@ resource worker1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
 
 resource worker1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
   name: 'worker1'
-  location: 'eastus'
+  location: region
   properties: {
     osProfile: {
       computerName: 'worker1'
@@ -274,7 +275,7 @@ resource worker1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
  */
  resource sqlsvr1vmDataDisk0 'Microsoft.Compute/disks@2020-12-01' = {
   name: 'sqlsvr1_DataDisk_0'
-  location: 'eastus'
+  location: region
   sku: {
     name: 'Premium_LRS'
   }
@@ -288,7 +289,7 @@ resource worker1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
 
 resource sqlsvr1vmDataDisk1 'Microsoft.Compute/disks@2020-12-01' = {
   name: 'sqlsvr1_DataDisk_1'
-  location: 'eastus'
+  location: region
   sku: {
     name: 'Premium_LRS'
   }
@@ -302,7 +303,7 @@ resource sqlsvr1vmDataDisk1 'Microsoft.Compute/disks@2020-12-01' = {
 
 resource sqlsvr1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
   name: 'sqlsvr1nic'
-  location: 'eastus'
+  location: region
   properties: {
     networkSecurityGroup: {
       id: nsgId
@@ -326,7 +327,7 @@ resource sqlsvr1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
 
 resource sqlsvr1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
   name: 'sqlsvr1'
-  location: 'eastus'
+  location: region
   properties: {
     osProfile: {
       computerName: 'sqlsvr1'
@@ -404,7 +405,7 @@ resource sqlsvr1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
 
 resource sqlsvr1sql 'Microsoft.SqlVirtualMachine/sqlVirtualMachines@2017-03-01-preview' = {
   name: 'sqlsvr1'
-  location: 'eastus'
+  location: region
   dependsOn: [
     sqlsvr1vm
   ]
