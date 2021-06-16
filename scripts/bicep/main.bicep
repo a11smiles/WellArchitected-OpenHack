@@ -1,6 +1,5 @@
 param resource_group_name string
 param region string
-param region_long string
 param vnet_name string
 param elb_name string
 param nsg_name string
@@ -23,7 +22,6 @@ module network './network.bicep' = {
   scope: resourceGroup(resource_group_name)
   params: {
     region: region
-    regionLong: region_long
     vnetName: vnet_name
     elbName: elb_name
     nsgName: nsg_name

@@ -1,5 +1,4 @@
 param region string
-param regionLong string
 param vnetName string
 param elbName string
 param nsgName string
