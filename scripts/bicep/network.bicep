@@ -1,12 +1,13 @@
 param region string
 param regionLong string
 param vnetName string
+param elbName string
 param nsgName string
 param web1vmDnslabel string
 param web2vmDnslabel string
 param worker1vmDnslabel string
 param sqlsvr1vmDnslabel string
-param trafficManagerDnsLabel string
+param elbDnsLabel string
 
 resource vnet 'Microsoft.Network/virtualNetworks@2020-05-01' = {
   name: vnetName
@@ -78,6 +79,31 @@ resource web1vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   }
 }
 
+resource web1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
+  name: 'web1nic'
+  location: region
+  properties: {
+    networkSecurityGroup: {
+      id: nsg.id
+    }
+    ipConfigurations: [
+      {
+        name: 'ipconfig1'
+        properties: {
+          subnet: {
+            id: '${vnet.id}/subnets/dmz'
+          }
+          privateIPAddress: '10.10.0.4'
+          privateIPAllocationMethod: 'Static'
+          publicIPAddress: {
+            id: web1vmPIP.id
+          }
+        }
+      }
+    ]
+  }
+}
+
 resource web2vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   name: 'web2ip'
   location: region
@@ -91,6 +117,31 @@ resource web2vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
     dnsSettings: {
       domainNameLabel: web2vmDnslabel
     }     
+  }
+}
+
+resource web2vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
+  name: 'web2nic'
+  location: region
+  properties: {
+    networkSecurityGroup: {
+      id: nsg.id
+    }
+    ipConfigurations: [
+      {
+        name: 'ipconfig1'
+        properties: {
+          subnet: {
+            id: '${vnet.id}/subnets/dmz'
+          }
+          privateIPAddress: '10.10.0.5'
+          privateIPAllocationMethod: 'Static'
+          publicIPAddress: {
+            id: web2vmPIP.id
+          }
+        }
+      }
+    ]
   }
 }
 
@@ -110,6 +161,30 @@ resource worker1vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   }
 }
 
+resource worker1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
+  name: 'worker1nic'
+  location: region
+  properties: {
+    networkSecurityGroup: {
+      id: nsg.id
+    }
+    ipConfigurations: [
+      {
+        name: 'ipconfig1'
+        properties: {
+          subnet: {
+            id: '${vnet.id}/subnets/jobs'
+          }
+          privateIPAddress: '10.10.0.20'
+          publicIPAddress: {
+            id: worker1vmPIP.id
+          }
+        }
+      }
+    ]
+  }
+}
+
 resource sqlsvr1vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   name: 'sqlsvr1ip'
   location: region
@@ -126,58 +201,139 @@ resource sqlsvr1vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   }
 }
 
-resource tmwebapp 'Microsoft.Network/trafficmanagerprofiles@2018-08-01' = {
-  name: trafficManagerDnsLabel
-  location: 'global'
+resource sqlsvr1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
+  name: 'sqlsvr1nic'
+  location: region
   properties: {
-    profileStatus: 'Enabled'
-    trafficRoutingMethod: 'Weighted'
-    dnsConfig: {
-      relativeName: trafficManagerDnsLabel
-      ttl: 60
+    networkSecurityGroup: {
+      id: nsg.id
     }
-    monitorConfig: {
-      protocol: 'HTTP'
-      port: 80
-      path: '/'
-      intervalInSeconds: 30
-      toleratedNumberOfFailures: 3
-      timeoutInSeconds: 10
-    }
-    endpoints: [
+    ipConfigurations: [
+      {
+        name: 'ipconfig1'
+        properties: {
+          subnet: {
+            id: '${vnet.id}/subnets/sql'
+          }
+          privateIPAddress: '10.10.0.36'
+          publicIPAddress: {
+            id: sqlsvr1vmPIP.id
+          }
+        }
+      }
+    ]
+  }
+}
+
+resource elbPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
+  name: 'elbip'
+  location: region
+  sku: {
+    name: 'Standard'
+    tier: 'Regional'
+  }
+  properties: {
+    publicIPAllocationMethod: 'Static'
+    publicIPAddressVersion: 'IPv4'
+    dnsSettings: {
+      domainNameLabel: elbDnsLabel
+    }  
+  }
+}
+
+resource elb 'Microsoft.Network/loadBalancers@2020-11-01' = {
+  name: elbName
+  location: region
+  sku: {
+    name: 'Standard'
+    tier: 'Regional'
+  }
+  properties: {
+    frontendIPConfigurations: [
+      {
+        name: 'webapp'
+        properties: {
+          privateIPAllocationMethod: 'Dynamic'
+          publicIPAddress: {
+            id: elbPIP.id
+          }
+        }
+      }
+    ]
+    backendAddressPools: [
+      {
+        name: 'webapp'
+      }
+    ]
+    loadBalancingRules: [
+      {
+        name: 'webapp'
+        properties: {
+          frontendIPConfiguration: {
+            id: resourceId('Microsoft.Network/loadbalancers/frontendIPConfigurations', elbName, 'webapp')
+          }
+          frontendPort: 80
+          backendPort: 80
+          enableFloatingIP: false
+          idleTimeoutInMinutes: 4
+          protocol: 'Tcp'
+          enableTcpReset: false
+          loadDistribution: 'SourceIP'
+          disableOutboundSnat: true
+          backendAddressPool: {
+            id: resourceId('Microsoft.Network/loadbalancers/backendAddressPools', elbName, 'webapp')
+          }
+          probe: {
+            id: resourceId('Microsoft.Network/loadbalancers/probes', elbName, 'webappprobe')
+          }
+        }
+      }    
+    ]
+    probes: [
+      {
+        name: 'webappprobe'
+        properties: {
+          protocol: 'Http'
+          port: 80
+          requestPath: '/'
+          intervalInSeconds: 5
+          numberOfProbes: 2
+        }
+      }
+    ]
+  }
+}
+
+resource elbBackendPool 'Microsoft.Network/loadBalancers/backendAddressPools@2020-11-01' = {
+  name: concat(elbName, '/webapp')
+  dependsOn: [
+    elb
+  ]
+  properties: {
+    loadBalancerBackendAddresses: [
       {
         name: 'web1'
-        type: 'Microsoft.Network/trafficManagerProfiles/azureEndpoints'
         properties: {
-          endpointStatus: 'Enabled'
-          weight: 50
-          targetResourceId: web1vmPIP.id
-          target: web1vmPIP.properties.dnsSettings.fqdn
-          priority: 1
-          endpointLocation: regionLong
+          virtualNetwork: {
+            id: vnet.id
+          }
+          ipAddress: web1vmNic.properties.ipConfigurations[0].properties.privateIPAddress
         }
       }
       {
         name: 'web2'
-        type: 'Microsoft.Network/trafficManagerProfiles/azureEndpoints'
         properties: {
-          endpointStatus: 'Enabled'
-          weight: 50
-          targetResourceId: web2vmPIP.id
-          target: web2vmPIP.properties.dnsSettings.fqdn
-          priority: 2
-          endpointLocation: regionLong
+          virtualNetwork: {
+            id: vnet.id
+          }
+          ipAddress: web2vmNic.properties.ipConfigurations[0].properties.privateIPAddress
         }
       }
     ]
-    trafficViewEnrollmentStatus: 'Disabled'
-    maxReturn: 0
   }
 }
 
-output vnetSubnetId string = vnet.id
-output nsgId string = nsg.id
-output web1vmPIPid string = web1vmPIP.id
-output web2vmPIPid string = web2vmPIP.id
-output worker1vmPIPid string = worker1vmPIP.id
-output sqlsvr1vmPIPid string = sqlsvr1vmPIP.id
+output web1vmNicId string = web1vmNic.id
+output web2vmNicId string = web2vmNic.id
+output worker1vmNicId string = worker1vmNic.id
+output sqlsvr1vmNicId string = sqlsvr1vmNic.id

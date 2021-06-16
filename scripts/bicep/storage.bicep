@@ -3,7 +3,7 @@ param storageWeb string
 param storageSql string
 
 resource webStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: 'storwoodgroveweb'
+  name: storageWeb
   location: region
   sku: {
     name: 'Standard_LRS'
@@ -16,7 +16,7 @@ resource webStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
 }
 
 resource sqlStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: 'storwoodgrovesql'
+  name: storageSql
   location: region
   sku: {
     name: 'Standard_LRS'

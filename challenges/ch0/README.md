@@ -81,14 +81,38 @@ The following diagram shows the application server architecture:
 
 When moving their workload to the cloud, Woodgrove Bank chose virtual machine sizes that seemed appropriate and comparable to the virtual machines that were being used on-premises. Furthermore, Woodgrove has attempted to replicate their on-premises network configuration in their Azure tenant.
 
-As you can see from the diagram above, all virtual machines have been attached to the same virtual network, and the machines are all members of the same subnet. The IP addresses have been statically assigned to the virtual machines. The machine configurations and their IPs are listed in the table below.
+As you can see from the diagram above, all virtual machines have been attached to the same virtual network, which has three subnets. The IP addresses have been statically assigned to the virtual machines. The subnet and machine configurations are listed in the tables below.
 
-| Server Name | OS | vCPUs | Memory (GiB) | IP Address | Purpose |
-| ----------- | -- | :---: | :----------: | ---------- | --------|
-| **vm-eastus-web1-******* | Windows Server 2019 Datacenter | 4 | 8 | 10.10.0.2 | First load-balanced web server hosting front-end and backend of the site |
-| **vm-eastus-web2-******* | Windows Server 2019 Datacenter | 4 | 8 | 10.10.0.3 | Second load-balanced web server hosting front-end and backend of the site |
-| **vm-eastus-worker-******* | Windows Server 2019 Datacenter | 4 | 8 | 10.10.0.4 | Server that hosts timer jobs |
-| **vm-eastus-sql-******* | Windows Server 2019 Datacenter | 4 | 14 | 10.10.0.5 | SQL Server 2014 SP3 for the web site |
+#### Subnets
+| Subnet     | Address Space | Total Available IPs | Purpose |
+| :--------: | ------------- | ------------------- | ------- |
+| **dmz**    | 10.10.0.0/28  | 11                  | Resources that are considered publicly accessible. |
+| **jobs**   | 10.10.0.16/28 | 11                  | Background/utility resources.           | 
+| **sql**    | 10.10.0.32/27 | 27                  | SQL and data resources.                 |
+
+> NOTE: Total available IPs _do not_ include those IPs used by Azure internally.
+
+
+#### Virtual Machines
+| Server Name | OS | vCPUs | Memory (GiB) | Subnet | IP Address | Purpose |
+| ----------- | -- | :---: | :----------: | :----: | ---------- | --------|
+| **web1**    | Windows Server 2019 Datacenter | 8 | 16 | dmz | 10.10.0.4 | First load-balanced web server hosting front-end and backend of the site |
+| **web2**    | Windows Server 2019 Datacenter | 8 | 16 | dmz | 10.10.0.5 | Second load-balanced web server hosting front-end and backend of the site |
+| **worker1** | Windows Server 2019 Datacenter | 8 | 16 | jobs | 10.10.0.20 | Server that hosts timer jobs |
+| **sqlsvr1** | Windows Server 2012 R2 Datacenter | 2 | 8 | sql |10.10.0.36 | SQL Server 2014 SP3 for the web site |
+
+
+#### DNS Mappings
+External FQDNs must be globally unique. Therefore, all public DNS host names have a six-character alphanumeric code appended in the format below.
+| DNS                     | Mapping |
+| ----------------------- | ------- |
+| woodgroveelb######      | External load balancer |
+| woodgroveweb1######     | Web server 1    |
+| woodgroveweb2######     | Web server 2    |
+| woodgroveworker1######  | Worker server 1 |
+| woodgrovesqlsvr1######  | SQL server 1    |
+| storwoodgroveweb######  | Storage used by web servers |
+| storwoodgrovesql######  | Storage used by SQL server  |
 
 ### Active Directory
 
@@ -122,11 +146,11 @@ You can login to a fictitious customer's bank account using the following creden
 
 1. Open the [Azure portal](https://portal.azure.com).
 2. Use a username/password combination found in your **OPEN HACK ENVIRONMENT** tab to login.
-3. Search for the VMs using the term **vm-eastus**. The VMs will be named using the format listed above. 
+3. Search for the VM by its name listed in the table above. 
 4. Use a Remote Desktop Connection (RDP) to connect to the server you choose by using its Public IP address.
 
 The _administrator_ credentials for the virtual machines are:
-* Username: **cloudvmadmin**
+* Username: **cloudadmin**
 * Password: **(Pass@word)1234!**
 
 ### Logging in to the database
@@ -137,7 +161,7 @@ The database credentials are the following:
 
 | Username | Password | Description |
 | -------- | -------- | ----------- |
-| sa       | (Pass@word)1234! | System Administrator |
+| cloudsqladmin | (Pass@word)1234! | SQL Administrator |
 | webapp   | S0m3R@ndomW0rd$  | Account used by web application |
 
 

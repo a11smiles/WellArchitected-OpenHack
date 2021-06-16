@@ -1,45 +1,14 @@
 param region string
-param vnetSubnetId string
-param nsgId string
-param web1vmPIPid string
-param web2vmPIPid string 
-param worker1vmPIPid string 
-param sqlsvr1vmPIPid string 
+param web1vmNicId string
+param web2vmNicId string 
+param worker1vmNicId string 
+param sqlsvr1vmNicId string 
 param adminUsername string
 @secure()
 param adminPassword string
 param sqlAdminUsername string
 @secure()
 param sqlAdminPassword string
-
-/*
- *
- * Virtual Machine - Web 1
- *
- */
-resource web1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
-  name: 'web1nic'
-  location: region
-  properties: {
-    networkSecurityGroup: {
-      id: nsgId
-    }
-    ipConfigurations: [
-      {
-        name: 'ipconfig1'
-        properties: {
-          subnet: {
-            id: '${vnetSubnetId}/subnets/dmz'
-          }
-          privateIPAddress: '10.10.0.4'
-          publicIPAddress: {
-            id: web1vmPIPid
-          }
-        }
-      }
-    ]
-  }
-}
 
 resource web1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
   name: 'web1'
@@ -74,7 +43,7 @@ resource web1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
           properties: {
             primary: true
           }
-          id: web1vmNic.id
+          id: web1vmNicId
         }
       ]
     }
@@ -100,35 +69,6 @@ resource web1vmIIS 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
     settings: {
       commandToExecute: 'powershell.exe Install-WindowsFeature -name Web-Server -IncludeManagementTools && powershell.exe remove-item \'C:\\inetpub\\wwwroot\\iisstart.htm\' && powershell.exe Add-Content -Path \'C:\\inetpub\\wwwroot\\iisstart.htm\' -Value $(\'Hello World from \' + $env:computername)'
     }
-  }
-}
-
-/*
- *
- * Virtual Machine - Web 2
- *
- */
-resource web2vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
-  name: 'web2nic'
-  location: region
-  properties: {
-    networkSecurityGroup: {
-      id: nsgId
-    }
-    ipConfigurations: [
-      {
-        name: 'ipconfig1'
-        properties: {
-          subnet: {
-            id: '${vnetSubnetId}/subnets/dmz'
-          }
-          privateIPAddress: '10.10.0.5'
-          publicIPAddress: {
-            id: web2vmPIPid
-          }
-        }
-      }
-    ]
   }
 }
 
@@ -165,7 +105,7 @@ resource web2vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
           properties: {
             primary: true
           }
-          id: web2vmNic.id
+          id: web2vmNicId
         }
       ]
     }
@@ -191,35 +131,6 @@ resource web2vmIIS 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
     settings: {
       commandToExecute: 'powershell.exe Install-WindowsFeature -name Web-Server -IncludeManagementTools && powershell.exe remove-item \'C:\\inetpub\\wwwroot\\iisstart.htm\' && powershell.exe Add-Content -Path \'C:\\inetpub\\wwwroot\\iisstart.htm\' -Value $(\'Hello World from \' + $env:computername)'
     }
-  }
-}
-
-/*
- *
- * Virtual Machine - Worker 1
- *
- */
-resource worker1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
-  name: 'worker1nic'
-  location: region
-  properties: {
-    networkSecurityGroup: {
-      id: nsgId
-    }
-    ipConfigurations: [
-      {
-        name: 'ipconfig1'
-        properties: {
-          subnet: {
-            id: '${vnetSubnetId}/subnets/jobs'
-          }
-          privateIPAddress: '10.10.0.20'
-          publicIPAddress: {
-            id: worker1vmPIPid
-          }
-        }
-      }
-    ]
   }
 }
 
@@ -256,7 +167,7 @@ resource worker1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
           properties: {
             primary: true
           }
-          id: worker1vmNic.id
+          id: worker1vmNicId
         }
       ]
     }
@@ -268,11 +179,6 @@ resource worker1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
   }
 }
 
-/*
- *
- * Virtual Machine - SqlSvr 1
- *
- */
  resource sqlsvr1vmDataDisk0 'Microsoft.Compute/disks@2020-12-01' = {
   name: 'sqlsvr1_DataDisk_0'
   location: region
@@ -298,30 +204,6 @@ resource sqlsvr1vmDataDisk1 'Microsoft.Compute/disks@2020-12-01' = {
     creationData: {
       createOption:'Empty'
     }
-  }
-}
-
-resource sqlsvr1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
-  name: 'sqlsvr1nic'
-  location: region
-  properties: {
-    networkSecurityGroup: {
-      id: nsgId
-    }
-    ipConfigurations: [
-      {
-        name: 'ipconfig1'
-        properties: {
-          subnet: {
-            id: '${vnetSubnetId}/subnets/sql'
-          }
-          privateIPAddress: '10.10.0.36'
-          publicIPAddress: {
-            id: sqlsvr1vmPIPid
-          }
-        }
-      }
-    ]
   }
 }
 
@@ -391,7 +273,7 @@ resource sqlsvr1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
           properties: {
             primary: true
           }
-          id: sqlsvr1vmNic.id
+          id: sqlsvr1vmNicId
         }
       ]
     }
@@ -430,16 +312,16 @@ resource sqlsvr1sql 'Microsoft.SqlVirtualMachine/sqlVirtualMachines@2017-03-01-p
         luns: [
           0
         ]
-        defaultFilePath: 'f:\\data'
+        defaultFilePath: 'f:\\Data'
       }
       sqlLogSettings: {
         luns: [
           1
         ]
-        defaultFilePath: 'g:\\logs'
+        defaultFilePath: 'g:\\Logs'
       }
       sqlTempDbSettings: {
-        defaultFilePath: 'd:\\tempDb'
+        defaultFilePath: 'd:\\TempDb'
       }
     }
     serverConfigurationsManagementSettings: {

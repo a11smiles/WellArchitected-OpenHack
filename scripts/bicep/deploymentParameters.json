@@ -14,6 +14,9 @@
       "vnet_name": {
         "value": null
       },
+      "elb_name": {
+        "value": null
+      },
       "nsg_name": {
         "value": null
       },
@@ -35,7 +38,7 @@
       "sqlsvr1vm_dnslabel": {
         "value": null
       },
-      "traffic_manager_dnslabel": {
+      "external_load_balancer_dnslabel": {
         "value": null
       },
       "admin_username": {
