@@ -22,6 +22,8 @@ As stated above, Woodgrove Bank is very anxious about moving to PaaS services. T
 
 * Within a network, database and information access during transit could be contained. However, the IT and security teams are now concerned that moving to PaaS would expose their data as it passes through the public Internet.
 
+* The security teams want to ensure that all PaaS services are leveraging the latest security standards. Any communication with the applications should follow the most recent security practices. Additionally, if App Services are used for hosting the application's components, access to the application files should be limited to SCM only.
+
 * The IT team only wishes to be involved in the change management where necessary. Therefore, automation should be leveraged for configuration of the infrastructure _and_ the application as much as possible.
 
 * Woodgrove Bank's IT team needs Microsoft to ensure that the delivered solution maintains RPO/RTO requirements and that it is highly-available at all times.
