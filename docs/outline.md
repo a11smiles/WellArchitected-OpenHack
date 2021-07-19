@@ -166,7 +166,6 @@ Often, customers choose to build their own environments for services already man
 Yes
 
 **Learning Objectives**
-* Correctly choosing paired regions
 * Configuring Azure App Service for autoscale
 * Securing Azure App Service
 * Configuring Azure SQL for failover

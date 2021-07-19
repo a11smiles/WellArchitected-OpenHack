@@ -17,6 +17,7 @@
         "bgcolor",
         "chargebacks",
         "eastus",
+        "parallelization",
         "performant",
         "templating",
         "vnet"

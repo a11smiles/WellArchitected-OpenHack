@@ -75,6 +75,8 @@ The web application is a standard, 3-tier implementation that is comprised of a 
 
 There is an additional server that hosts some background jobs. These jobs are fired upon a given schedule. The jobs are designed to process batches of transactions. When these jobs are executed, any outstanding/pending bank transactions are updated in their respective accounts.
 
+> The current background job runs on a nightly schedule to process posted transactions. Normally, posted transactions would be gathered from a pending queue. For this OpenHack, the current background job simply creates between 1 and 15 random transactions (i.e. debit and/or credit) for each account, adds the transactions to the account's register, then updates the account's available balance.
+
 The following diagram shows the application server architecture:
 
 ![Application architecture](images/initialArch.png)

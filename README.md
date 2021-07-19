@@ -13,8 +13,8 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
    - [Challenge 3: Planning for failure](challenges/ch3)  
    - [Challenge 4: Visualizing operations](challenges/ch4)  
    - [Challenge 5: Improve the environment](challenges/ch5)  
-<!--   - [Challenge 6: Leveraging PaaS services](challenges/ch6)
-   - [Challenge 7: Optimizing the API](challenges/ch7)
+   - [Challenge 6: Leveraging PaaS services](challenges/ch6)
+<!--   - [Challenge 7: Optimizing the API](challenges/ch7)
    - [Challenge 8: Tightening database security](challenges/ch8)
    - [Challenge 9: Capturing correlation data](challenges/ch9) -->
 5. Automation/Build Scripts
@@ -25,8 +25,8 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
    - [Challenge 3: Planning for failure](guides/challenges/ch3)  
    - [Challenge 4: Visualizing operations](guides/challenges/ch4)  
    - [Challenge 5: Improve the environment](guides/challenges/ch5)  
-<!--   - [Challenge 6: Leveraging PaaS services](guides/challenges/ch6)
-   - [Challenge 7: Optimizing the API](guides/challenges/ch7)
+   - [Challenge 6: Leveraging PaaS services](guides/challenges/ch6)
+<!--   - [Challenge 7: Optimizing the API](guides/challenges/ch7)
    - [Challenge 8: Tightening database security](guides/challenges/ch8)
    - [Challenge 9: Capturing correlation data](guides/challenges/ch9) -->
 8. [Success Matrix](guides/successMatrix.xlsx) (Excel)
