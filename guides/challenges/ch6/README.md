@@ -7,11 +7,21 @@ There is quite a bit that the team can accomplish when updating Woodgrove Bank's
 
 * The ACHIEVE method should be adequately practiced by the team so that all components of Woodgrove Bank's infrastructure are identified.
 
+* The team should be prepared to discuss budgeting for Azure PaaS services.
+
+* The team should configure and demonstrate Blue-Green deployments using Azure Traffic Manager.
+
 * The Azure App Services should be configured to scale up **AND** down and with minimum instances. The team should be able to effectively communicate their reasoning for their configuration choices.
 
 * The Azure App Service configurations are not updated manually, but through via Azure DevOps pipelines.
 
 * The Azure App Service configurations are storing secure secrets (e.g. SQL connection string) in the Azure Key Vault.
+
+* The Azure App Services should leverage TLS 1.2.
+
+* The Azure App Services should have FTP/FTPS access disabled.
+
+* The Azure App Services for the API should only allow CORS requests from the public DNS of the web application.
 
 * The Azure App Services are configured for BCDR and high-availability.
 
@@ -42,6 +52,7 @@ There is quite a bit that the team can accomplish when updating Woodgrove Bank's
 * The team may wish to use the `az batch application` CLI commands for deploying application packages.
 
 ## References
+* <a href="https://azure.microsoft.com/blog/blue-green-deployments-using-azure-traffic-manager/" target="_blank">Blue-Green deployments using Azure Traffic Manager</a>
 * <a href="https://docs.microsoft.com/azure/architecture/example-scenario/private-web-app/private-web-app" target="_blank">Web app private connectivity to Azure SQL
 * <a href="https://docs.microsoft.com/azure/azure-sql/database/auto-failover-group-overview" target="_blank">Azure SQL auto-failover groups</a>
 * <a href="https://docs.microsoft.com/cli/azure/batch/application?view=azure-cli-latest" target="_blank">az batch application</a>  

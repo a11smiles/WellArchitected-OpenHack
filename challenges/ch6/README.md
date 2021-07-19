@@ -14,7 +14,7 @@ It is important you remember that Woodgrove Bank's current workload is _producti
 ## Customer requirements
 As stated above, Woodgrove Bank is very anxious about moving to PaaS services. Their teams have identified some of the following concerns and requirements.
 
-* The business requires that, during the transition, the current web application remains completely operational and accessible by their customers.
+* The business requires that, during the transition, the current web application remains completely operational and accessible by their customers. The IT team would like to see the web site operational on _both_ VMs and PaaS at the same time, and they desire the ability to gradually transition incoming requests from IaaS to PaaS over time.
 
 * The business stakeholders and the IT team want to ensure that costs are managed efficiently. With VMs, including reserved instances, budgets were slightly more predictable, but they do not know how to prepare budgets for PaaS. Woodgrove Bank cannot allow costs to grow without restraint and need instruction on how to adequately calculate PaaS costs.
 
