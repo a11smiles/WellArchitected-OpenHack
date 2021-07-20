@@ -15,7 +15,7 @@ There is quite a bit that the team can accomplish when updating Woodgrove Bank's
 
 * The Azure App Service configurations are not updated manually, but through via Azure DevOps pipelines.
 
-* The Azure App Service configurations are storing secure secrets (e.g. SQL connection string) in the Azure Key Vault.
+* The Azure App Service configurations are referencing secure secrets (e.g. SQL connection string) from the Azure Key Vault. Azure DevOps should no longer be _injecting_ connection strings during the Release Pipelines.
 
 * The Azure App Services should leverage TLS 1.2.
 
@@ -53,7 +53,8 @@ There is quite a bit that the team can accomplish when updating Woodgrove Bank's
 
 ## References
 * <a href="https://azure.microsoft.com/blog/blue-green-deployments-using-azure-traffic-manager/" target="_blank">Blue-Green deployments using Azure Traffic Manager</a>
-* <a href="https://docs.microsoft.com/azure/architecture/example-scenario/private-web-app/private-web-app" target="_blank">Web app private connectivity to Azure SQL
+* <a href="https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references#reference-syntax" target="_blank">Referencing Azure Key Vault from Azure App Service configuration</a>
+* <a href="https://docs.microsoft.com/azure/architecture/example-scenario/private-web-app/private-web-app" target="_blank">Web app private connectivity to Azure SQL</a>
 * <a href="https://docs.microsoft.com/azure/azure-sql/database/auto-failover-group-overview" target="_blank">Azure SQL auto-failover groups</a>
 * <a href="https://docs.microsoft.com/cli/azure/batch/application?view=azure-cli-latest" target="_blank">az batch application</a>  
 * <a href="https://docs.microsoft.com/azure/batch/batch-ci-cd" target="_blank">Azure DevOps for deploying HPC solutions</a>  
