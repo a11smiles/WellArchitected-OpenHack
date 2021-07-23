@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Portal.Data;
-using Portal.Data.Entities;
+using Portal.Data.Dtos;
 
 namespace Portal.Api.Controllers
 {
@@ -23,11 +24,20 @@ namespace Portal.Api.Controllers
         }
 
         [HttpGet]
-        public Profile Get()
+        public IActionResult Get([FromQuery] string id)
         {
-            var profile = _context.Profiles.SingleOrDefault(u => u.UserId == Guid.NewGuid());
+            var user = _context.Users.Include("Profile").SingleOrDefault(u => u.Id == new Guid(id));
+            if (user is null)
+                return new NotFoundResult();
 
-            return profile;
+            var profile = new Profile() {
+                Id = user.Id,
+                FirstName = user.Profile.FirstName,
+                LastName = user.Profile.LastName,
+                LastLoginDate = user.LastLoginDate
+            };
+
+            return new OkObjectResult(profile);
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Portal.Data;
-using Portal.Data.Entities;
+using Portal.Data.Dtos;
 
 namespace Portal.Api.Controllers
 {
@@ -23,9 +23,17 @@ namespace Portal.Api.Controllers
         }
 
         [HttpGet]
-        public IQueryable<Transaction> Get(string acct)
+        public List<Transaction> Get([FromQuery] string id, [FromQuery] string acct)
         {
-            var xtns = _context.Transactions.Where(t => t.AccountId == Guid.Parse(acct));
+            var xtns = _context.Transactions.Where(t => t.Account.UserId == new Guid(id) && t.AccountId == new Guid(acct)).Select(x => 
+                            new Transaction {
+                                Id = x.Id,
+                                XtnDate = x.XtnDate,
+                                Description = x.Description,
+                                XtnType = x.XtnType,
+                                Amount = x.Amount,
+                                PostedBalance = x.PostedBalance
+                            }).ToList();
 
             return xtns;
         }

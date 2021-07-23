@@ -9,7 +9,7 @@ namespace Portal.Data.Entities
         public string Login { get; set; }
         public string Password { get; set; }
         public DateTimeOffset LastLoginDate { get; set; }
-
+        public DateTimeOffset CurrentLoginDate { get; set; }
         public virtual Profile Profile { get; set; }
         public virtual ICollection<Account> Accounts { get; set; }
     }

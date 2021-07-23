@@ -39,6 +39,7 @@ namespace Portal.Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Portal.Api", Version = "v1" });
+                c.CustomSchemaIds(type => type.ToString());
             });
         }
 

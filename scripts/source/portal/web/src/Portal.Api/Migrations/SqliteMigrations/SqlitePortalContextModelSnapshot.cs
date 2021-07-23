@@ -38,12 +38,6 @@ namespace Portal.Api.Migrations.SqliteMigrations
                         .HasColumnType("INTEGER")
                         .HasDefaultValue(true);
 
-                    b.Property<decimal>("PrevMonthClosingBalance")
-                        .ValueGeneratedOnAdd()
-                        .HasPrecision(12, 2)
-                        .HasColumnType("TEXT")
-                        .HasDefaultValueSql("0.00");
-
                     b.Property<Guid>("UserId")
                         .HasColumnType("TEXT");
 
@@ -56,21 +50,19 @@ namespace Portal.Api.Migrations.SqliteMigrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5daf5fd9-2db7-4043-a967-6c5bd111288d"),
+                            Id = new Guid("d025d833-9669-4112-818e-d30cc9ea2f90"),
                             AccountNo = "686847363244",
                             CurrentBalance = 0m,
                             IsActive = true,
-                            PrevMonthClosingBalance = 0m,
-                            UserId = new Guid("b88ebde1-9650-4468-a930-689b116fb5e3")
+                            UserId = new Guid("215d6524-19d2-4ed1-b38c-53813905a110")
                         },
                         new
                         {
-                            Id = new Guid("f14f3aa3-6e84-47e9-88f7-0ffb99539b2c"),
+                            Id = new Guid("76405848-2c80-4a43-bb7d-a0dce7bbb38b"),
                             AccountNo = "815571025629",
                             CurrentBalance = 0m,
                             IsActive = true,
-                            PrevMonthClosingBalance = 0m,
-                            UserId = new Guid("4a7beb92-d4a9-4db1-83f8-eb0facb780e0")
+                            UserId = new Guid("3ae1dab6-8675-4b8a-9aa3-cb55d1cd5901")
                         });
                 });
 
@@ -96,13 +88,13 @@ namespace Portal.Api.Migrations.SqliteMigrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("b88ebde1-9650-4468-a930-689b116fb5e3"),
+                            UserId = new Guid("215d6524-19d2-4ed1-b38c-53813905a110"),
                             FirstName = "Daniel",
                             LastName = "Melamed"
                         },
                         new
                         {
-                            UserId = new Guid("4a7beb92-d4a9-4db1-83f8-eb0facb780e0"),
+                            UserId = new Guid("3ae1dab6-8675-4b8a-9aa3-cb55d1cd5901"),
                             FirstName = "Ting",
                             LastName = "Niu"
                         });
@@ -116,6 +108,17 @@ namespace Portal.Api.Migrations.SqliteMigrations
                         .HasDefaultValueSql("NEWID()");
 
                     b.Property<Guid>("AccountId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Amount")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(12, 2)
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("0.00");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("PostedBalance")
@@ -144,6 +147,9 @@ namespace Portal.Api.Migrations.SqliteMigrations
                         .HasColumnType("TEXT")
                         .HasDefaultValueSql("NEWID()");
 
+                    b.Property<DateTimeOffset>("CurrentLoginDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTimeOffset>("LastLoginDate")
                         .HasColumnType("TEXT");
 
@@ -154,7 +160,7 @@ namespace Portal.Api.Migrations.SqliteMigrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(25)
+                        .HasMaxLength(255)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -164,17 +170,19 @@ namespace Portal.Api.Migrations.SqliteMigrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b88ebde1-9650-4468-a930-689b116fb5e3"),
+                            Id = new Guid("215d6524-19d2-4ed1-b38c-53813905a110"),
+                            CurrentLoginDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             LastLoginDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Login = "dmelamed3244",
-                            Password = "(Pass@word)1234!"
+                            Password = "AQAAAAEAACcQAAAAEDIqmsf247/x1et+A3X8EuUmi28a5qv3y+5zap7qLx1wKggXy4pYAqb4IdbYbXF7GA=="
                         },
                         new
                         {
-                            Id = new Guid("4a7beb92-d4a9-4db1-83f8-eb0facb780e0"),
+                            Id = new Guid("3ae1dab6-8675-4b8a-9aa3-cb55d1cd5901"),
+                            CurrentLoginDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             LastLoginDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Login = "tniu5629",
-                            Password = "(Pass@word)5678!"
+                            Password = "AQAAAAEAACcQAAAAEBpBdRt4iTKKnJGc1m9LPXHpSIeUb0McYEjeGg2v5bHUQlJGJROTMTj2V7Is45M8xQ=="
                         });
                 });
 

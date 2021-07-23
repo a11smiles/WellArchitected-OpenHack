@@ -33,7 +33,7 @@ namespace Portal.Data
                 new User() {
                     Id = Guid.NewGuid(),
                     Login = "dmelamed3244", 
-                    Password = "(Pass@word)1234!", 
+                    Password = "AQAAAAEAACcQAAAAEDIqmsf247/x1et+A3X8EuUmi28a5qv3y+5zap7qLx1wKggXy4pYAqb4IdbYbXF7GA==", 
                     LastLoginDate = DateTimeOffset.MinValue,
                     Profile = new Profile() {
                         
@@ -45,7 +45,6 @@ namespace Portal.Data
                             Id = Guid.NewGuid(),
                             AccountNo = "686847363244",
                             IsActive = true,
-                            PrevMonthClosingBalance = 0M,
                             CurrentBalance = 0M
                         }
                     }
@@ -53,7 +52,7 @@ namespace Portal.Data
                 new User() {
                     Id = Guid.NewGuid(),
                     Login = "tniu5629", 
-                    Password = "(Pass@word)5678!", 
+                    Password = "AQAAAAEAACcQAAAAEBpBdRt4iTKKnJGc1m9LPXHpSIeUb0McYEjeGg2v5bHUQlJGJROTMTj2V7Is45M8xQ==", 
                     LastLoginDate = DateTimeOffset.MinValue,
                     Profile = new Profile() {
                         FirstName = "Ting",
@@ -64,7 +63,6 @@ namespace Portal.Data
                             Id = Guid.NewGuid(),
                             AccountNo = "815571025629",
                             IsActive = true,
-                            PrevMonthClosingBalance = 0M,
                             CurrentBalance = 0M
                         }
                     }
@@ -82,7 +80,7 @@ namespace Portal.Data
                     .HasMaxLength(25);
                 user.Property(u => u.Password)
                     .IsRequired()
-                    .HasMaxLength(25);
+                    .HasMaxLength(255);
 
                 user.HasOne(u => u.Profile)
                     .WithOne(p => p.User);
@@ -120,10 +118,6 @@ namespace Portal.Data
                     .IsRequired();
                 account.Property(a => a.IsActive)
                     .HasDefaultValue(true);
-                account.Property(a => a.PrevMonthClosingBalance)
-                    .IsRequired()
-                    .HasPrecision(12, 2)
-                    .HasDefaultValueSql("0.00");
                 account.Property(a => a.CurrentBalance)
                     .IsRequired()
                     .HasPrecision(12, 2)
@@ -133,8 +127,8 @@ namespace Portal.Data
                     .WithMany(u => u.Accounts)
                     .HasForeignKey(a => a.UserId);
 
-                account.HasData(new Account() { UserId = users[0].Id, Id = users[0].Accounts.First().Id, AccountNo = users[0].Accounts.First().AccountNo, IsActive = users[0].Accounts.First().IsActive, PrevMonthClosingBalance = users[0].Accounts.First().PrevMonthClosingBalance, CurrentBalance = users[0].Accounts.First().CurrentBalance });
-                account.HasData(new Account() { UserId = users[1].Id, Id = users[1].Accounts.First().Id, AccountNo = users[1].Accounts.First().AccountNo, IsActive = users[1].Accounts.First().IsActive, PrevMonthClosingBalance = users[1].Accounts.First().PrevMonthClosingBalance, CurrentBalance = users[1].Accounts.First().CurrentBalance });
+                account.HasData(new Account() { UserId = users[0].Id, Id = users[0].Accounts.First().Id, AccountNo = users[0].Accounts.First().AccountNo, IsActive = users[0].Accounts.First().IsActive, CurrentBalance = users[0].Accounts.First().CurrentBalance });
+                account.HasData(new Account() { UserId = users[1].Id, Id = users[1].Accounts.First().Id, AccountNo = users[1].Accounts.First().AccountNo, IsActive = users[1].Accounts.First().IsActive, CurrentBalance = users[1].Accounts.First().CurrentBalance });
             });
 
             modelBuilder.Entity<Transaction>(xtn =>
@@ -145,8 +139,14 @@ namespace Portal.Data
                     .HasDefaultValueSql("NEWID()");
                 xtn.Property(x => x.XtnDate)
                     .IsRequired();
+                xtn.Property(x => x.Description)
+                    .IsRequired()
+                    .HasMaxLength(50);
                 xtn.Property(x => x.XtnType)
                     .IsRequired();
+                xtn.Property(x => x.Amount)
+                    .HasPrecision(12, 2)
+                    .HasDefaultValueSql("0.00");                    
                 xtn.Property(x => x.PostedBalance)
                     .HasPrecision(12, 2)
                     .HasDefaultValueSql("0.00");

@@ -13,8 +13,9 @@ namespace Portal.Api.Migrations.SqliteMigrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false, defaultValueSql: "NEWID()"),
                     Login = table.Column<string>(type: "TEXT", maxLength: 25, nullable: false),
-                    Password = table.Column<string>(type: "TEXT", maxLength: 25, nullable: false),
-                    LastLoginDate = table.Column<DateTimeOffset>(type: "TEXT", nullable: false)
+                    Password = table.Column<string>(type: "TEXT", maxLength: 255, nullable: false),
+                    LastLoginDate = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
+                    CurrentLoginDate = table.Column<DateTimeOffset>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,7 +30,6 @@ namespace Portal.Api.Migrations.SqliteMigrations
                     UserId = table.Column<Guid>(type: "TEXT", nullable: false),
                     AccountNo = table.Column<string>(type: "TEXT", nullable: false),
                     IsActive = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: true),
-                    PrevMonthClosingBalance = table.Column<decimal>(type: "TEXT", precision: 12, scale: 2, nullable: false, defaultValueSql: "0.00"),
                     CurrentBalance = table.Column<decimal>(type: "TEXT", precision: 12, scale: 2, nullable: false, defaultValueSql: "0.00")
                 },
                 constraints: table =>
@@ -69,7 +69,9 @@ namespace Portal.Api.Migrations.SqliteMigrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false, defaultValueSql: "NEWID()"),
                     AccountId = table.Column<Guid>(type: "TEXT", nullable: false),
                     XtnDate = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
                     XtnType = table.Column<int>(type: "INTEGER", nullable: false),
+                    Amount = table.Column<decimal>(type: "TEXT", precision: 12, scale: 2, nullable: false, defaultValueSql: "0.00"),
                     PostedBalance = table.Column<decimal>(type: "TEXT", precision: 12, scale: 2, nullable: false, defaultValueSql: "0.00")
                 },
                 constraints: table =>
@@ -85,33 +87,33 @@ namespace Portal.Api.Migrations.SqliteMigrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "LastLoginDate", "Login", "Password" },
-                values: new object[] { new Guid("b88ebde1-9650-4468-a930-689b116fb5e3"), new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "dmelamed3244", "(Pass@word)1234!" });
+                columns: new[] { "Id", "CurrentLoginDate", "LastLoginDate", "Login", "Password" },
+                values: new object[] { new Guid("215d6524-19d2-4ed1-b38c-53813905a110"), new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "dmelamed3244", "AQAAAAEAACcQAAAAEDIqmsf247/x1et+A3X8EuUmi28a5qv3y+5zap7qLx1wKggXy4pYAqb4IdbYbXF7GA==" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "LastLoginDate", "Login", "Password" },
-                values: new object[] { new Guid("4a7beb92-d4a9-4db1-83f8-eb0facb780e0"), new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "tniu5629", "(Pass@word)5678!" });
+                columns: new[] { "Id", "CurrentLoginDate", "LastLoginDate", "Login", "Password" },
+                values: new object[] { new Guid("3ae1dab6-8675-4b8a-9aa3-cb55d1cd5901"), new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "tniu5629", "AQAAAAEAACcQAAAAEBpBdRt4iTKKnJGc1m9LPXHpSIeUb0McYEjeGg2v5bHUQlJGJROTMTj2V7Is45M8xQ==" });
 
             migrationBuilder.InsertData(
                 table: "Accounts",
                 columns: new[] { "Id", "AccountNo", "IsActive", "UserId" },
-                values: new object[] { new Guid("5daf5fd9-2db7-4043-a967-6c5bd111288d"), "686847363244", true, new Guid("b88ebde1-9650-4468-a930-689b116fb5e3") });
+                values: new object[] { new Guid("d025d833-9669-4112-818e-d30cc9ea2f90"), "686847363244", true, new Guid("215d6524-19d2-4ed1-b38c-53813905a110") });
 
             migrationBuilder.InsertData(
                 table: "Accounts",
                 columns: new[] { "Id", "AccountNo", "IsActive", "UserId" },
-                values: new object[] { new Guid("f14f3aa3-6e84-47e9-88f7-0ffb99539b2c"), "815571025629", true, new Guid("4a7beb92-d4a9-4db1-83f8-eb0facb780e0") });
+                values: new object[] { new Guid("76405848-2c80-4a43-bb7d-a0dce7bbb38b"), "815571025629", true, new Guid("3ae1dab6-8675-4b8a-9aa3-cb55d1cd5901") });
 
             migrationBuilder.InsertData(
                 table: "Profiles",
                 columns: new[] { "UserId", "FirstName", "LastName" },
-                values: new object[] { new Guid("b88ebde1-9650-4468-a930-689b116fb5e3"), "Daniel", "Melamed" });
+                values: new object[] { new Guid("215d6524-19d2-4ed1-b38c-53813905a110"), "Daniel", "Melamed" });
 
             migrationBuilder.InsertData(
                 table: "Profiles",
                 columns: new[] { "UserId", "FirstName", "LastName" },
-                values: new object[] { new Guid("4a7beb92-d4a9-4db1-83f8-eb0facb780e0"), "Ting", "Niu" });
+                values: new object[] { new Guid("3ae1dab6-8675-4b8a-9aa3-cb55d1cd5901"), "Ting", "Niu" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Accounts_UserId",

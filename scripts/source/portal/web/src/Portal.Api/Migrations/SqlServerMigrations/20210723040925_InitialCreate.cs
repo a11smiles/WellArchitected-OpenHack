@@ -13,8 +13,9 @@ namespace Portal.Api.Migrations.SqlServerMigrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
                     Login = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    LastLoginDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                    Password = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    LastLoginDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    CurrentLoginDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,7 +30,6 @@ namespace Portal.Api.Migrations.SqlServerMigrations
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AccountNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
-                    PrevMonthClosingBalance = table.Column<decimal>(type: "decimal(12,2)", precision: 12, scale: 2, nullable: false, defaultValueSql: "0.00"),
                     CurrentBalance = table.Column<decimal>(type: "decimal(12,2)", precision: 12, scale: 2, nullable: false, defaultValueSql: "0.00")
                 },
                 constraints: table =>
@@ -69,7 +69,9 @@ namespace Portal.Api.Migrations.SqlServerMigrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
                     AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     XtnDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     XtnType = table.Column<int>(type: "int", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(12,2)", precision: 12, scale: 2, nullable: false, defaultValueSql: "0.00"),
                     PostedBalance = table.Column<decimal>(type: "decimal(12,2)", precision: 12, scale: 2, nullable: false, defaultValueSql: "0.00")
                 },
                 constraints: table =>
@@ -85,21 +87,21 @@ namespace Portal.Api.Migrations.SqlServerMigrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "LastLoginDate", "Login", "Password" },
-                values: new object[] { new Guid("3cde76ae-7f26-4710-885c-ae0a113d5d05"), new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "dmelamed3244", "(Pass@word)1234!" });
+                columns: new[] { "Id", "CurrentLoginDate", "LastLoginDate", "Login", "Password" },
+                values: new object[] { new Guid("a4cf2558-c4c2-45fc-90fb-a9b869a97cac"), new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "dmelamed3244", "AQAAAAEAACcQAAAAEDIqmsf247/x1et+A3X8EuUmi28a5qv3y+5zap7qLx1wKggXy4pYAqb4IdbYbXF7GA==" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "LastLoginDate", "Login", "Password" },
-                values: new object[] { new Guid("0a20db55-1b1b-4ee9-87bc-cae2e9ed0d2a"), new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "tniu5629", "(Pass@word)5678!" });
+                columns: new[] { "Id", "CurrentLoginDate", "LastLoginDate", "Login", "Password" },
+                values: new object[] { new Guid("f8a65bad-7097-4516-848f-6a290752e4df"), new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "tniu5629", "AQAAAAEAACcQAAAAEBpBdRt4iTKKnJGc1m9LPXHpSIeUb0McYEjeGg2v5bHUQlJGJROTMTj2V7Is45M8xQ==" });
 
             migrationBuilder.InsertData(
                 table: "Accounts",
                 columns: new[] { "Id", "AccountNo", "IsActive", "UserId" },
                 values: new object[,]
                 {
-                    { new Guid("31ff642d-abcd-469d-8793-0dc05785fecb"), "686847363244", true, new Guid("3cde76ae-7f26-4710-885c-ae0a113d5d05") },
-                    { new Guid("52defbe7-c4be-4176-9d8f-ccc6c829121a"), "815571025629", true, new Guid("0a20db55-1b1b-4ee9-87bc-cae2e9ed0d2a") }
+                    { new Guid("107dc19b-0a82-457f-a00c-db505626760e"), "686847363244", true, new Guid("a4cf2558-c4c2-45fc-90fb-a9b869a97cac") },
+                    { new Guid("7547d22a-53c3-46dd-85b9-cc193bb5f87a"), "815571025629", true, new Guid("f8a65bad-7097-4516-848f-6a290752e4df") }
                 });
 
             migrationBuilder.InsertData(
@@ -107,8 +109,8 @@ namespace Portal.Api.Migrations.SqlServerMigrations
                 columns: new[] { "UserId", "FirstName", "LastName" },
                 values: new object[,]
                 {
-                    { new Guid("3cde76ae-7f26-4710-885c-ae0a113d5d05"), "Daniel", "Melamed" },
-                    { new Guid("0a20db55-1b1b-4ee9-87bc-cae2e9ed0d2a"), "Ting", "Niu" }
+                    { new Guid("a4cf2558-c4c2-45fc-90fb-a9b869a97cac"), "Daniel", "Melamed" },
+                    { new Guid("f8a65bad-7097-4516-848f-6a290752e4df"), "Ting", "Niu" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -9,7 +9,6 @@ namespace Portal.Data.Entities
         public Guid UserId { get; set; }
         public string AccountNo { get; set; }
         public bool IsActive { get; set; }
-        public decimal PrevMonthClosingBalance { get; set; }
         public decimal CurrentBalance { get; set; }
 
         public virtual User User { get; set; }

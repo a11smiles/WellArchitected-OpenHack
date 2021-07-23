@@ -1,0 +1,69 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/joshua/projects/microsoft/waf-oh/scripts/tools/PasswordHasher/pwdhash.csproj": {}
+  },
+  "projects": {
+    "/Users/joshua/projects/microsoft/waf-oh/scripts/tools/PasswordHasher/pwdhash.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/joshua/projects/microsoft/waf-oh/scripts/tools/PasswordHasher/pwdhash.csproj",
+        "projectName": "pwdhash",
+        "projectPath": "/Users/joshua/projects/microsoft/waf-oh/scripts/tools/PasswordHasher/pwdhash.csproj",
+        "packagesPath": "/Users/joshua/.nuget/packages/",
+        "outputPath": "/Users/joshua/projects/microsoft/waf-oh/scripts/tools/PasswordHasher/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/joshua/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.Extensions.Identity.Core": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.202/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -21,6 +21,9 @@ namespace Portal.Web
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                })
+                .ConfigureAppConfiguration((context, config) => {
+                    config.AddJsonFile("appsettings.Local.json", optional:true, reloadOnChange: true);
                 });
     }
 }

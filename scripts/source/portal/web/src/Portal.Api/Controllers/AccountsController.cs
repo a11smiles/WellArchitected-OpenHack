@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Portal.Data;
-using Portal.Data.Entities;
-
+using Portal.Data.Dtos;
 namespace Portal.Api.Controllers
 {
     [ApiController]
@@ -23,11 +22,17 @@ namespace Portal.Api.Controllers
         }
 
         [HttpGet]
-        public Account Get()
+        public List<Account> Get([FromQuery] string id)
         {
-            var account = _context.Accounts.SingleOrDefault(u => u.UserId == Guid.NewGuid());
+            var accounts = _context.Accounts.Where(u => u.UserId == new Guid(id) && u.IsActive).Select(a => 
+                                new Account {
+                                    Id = a.Id,
+                                    UserId = a.UserId,
+                                    AccountNo = a.AccountNo,
+                                    CurrentBalance = a.CurrentBalance
+                                }).ToList();
 
-            return account;
+            return accounts;
         }
     }
 }
