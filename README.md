@@ -12,21 +12,31 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
    - [Challenge 2: Operationalize automated deployments](challenges/ch2)  
    - [Challenge 3: Planning for failure](challenges/ch3)  
    - [Challenge 4: Visualizing operations](challenges/ch4)  
-   - [Challenge 5: Hardening of the environment](challenges/ch5)  
-   - [Challenge 6: Leveraging PaaS Services](challenges/ch6)
-   - [Challenge 7: Optimizing the API](challenges/ch7)
-   - [Challenge 8: Improving database security](challenges/ch8)
-   - [Challenge 9: Capturing correlation data](challenges/ch9)
+   - [Challenge 5: Improve the environment](challenges/ch5)  
+   - [Challenge 6: Leveraging PaaS services](challenges/ch6)
+<!--   - [Challenge 7: Optimizing the API](challenges/ch7)
+   - [Challenge 8: Tightening database security](challenges/ch8)
+   - [Challenge 9: Capturing correlation data](challenges/ch9) -->
 5. Automation/Build Scripts
 6. Coach's Deck
-7. Coach's Guide
-8. Tech Lead's Deck
+7. Coach's Guides
+   - [Challenge 1: Assess the environment](guides/challenges/ch1)  
+   - [Challenge 2: Operationalize automated deployments](guides/challenges/ch2)
+   - [Challenge 3: Planning for failure](guides/challenges/ch3)  
+   - [Challenge 4: Visualizing operations](guides/challenges/ch4)  
+   - [Challenge 5: Improve the environment](guides/challenges/ch5)  
+   - [Challenge 6: Leveraging PaaS services](guides/challenges/ch6)
+<!--   - [Challenge 7: Optimizing the API](guides/challenges/ch7)
+   - [Challenge 8: Tightening database security](guides/challenges/ch8)
+   - [Challenge 9: Capturing correlation data](guides/challenges/ch9) -->
+8. [Success Matrix](guides/successMatrix.xlsx) (Excel)
+9. Tech Lead's Deck
 
 ## Directory Structure
 ```
 .
 ├── assets                      (any assets that are "global" to the OpenHack, e.g. Visio diagrams)
-├── challenges                  (OpenHack challenge content)
+├── challenges                  (OpenHack challenge content; this folder structure is the same for //guides content)
 │   └── chX
 │       ├── assets              (folder for any additional assets...if necessary)
 │       ├── images              (image folder for specific challenge)
@@ -34,6 +44,8 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 ├── docs                        (project documentation)
 ├── guides                      (guides and PPT decks for coaches and tech leads)
 └── scripts                     (scripts for building out the OpenHack tenant)
+    ├── source                  (projects for Azure DevOps source control)
+    └── tools                   (miscellaneous build tools)    
 ```
 
 ## Contributing

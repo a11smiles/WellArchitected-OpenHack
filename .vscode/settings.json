@@ -1,17 +1,25 @@
 {
     "cSpell.words": [
         "BCDR",
+        "CNAME",
         "KPIs",
         "NSGs",
         "OWASP",
         "Operationalize",
+        "Quickstart",
         "RACI",
         "RBAC",
         "SSMS",
         "Visio",
         "Woodgrove",
+        "antipatterns",
         "autoscale",
+        "bgcolor",
+        "chargebacks",
         "eastus",
-        "performant"
+        "parallelization",
+        "performant",
+        "templating",
+        "vnet"
     ]
 }

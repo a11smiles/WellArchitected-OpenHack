@@ -103,6 +103,7 @@ Yes
 * Determine best strategy for deployments (conditions, types, etc.)
 * Demonstrate "what-if" scenarios with deployments
 * Configure gated deployments
+* Discuss deployment models to maximize uptime
 
 
 ### Challenge 3: Planning for failure
@@ -138,7 +139,7 @@ Yes
 * Discuss the benefits and use cases of a real-time operational dashboard
 
 
-### Challenge 5: Hardening of the environment
+### Challenge 5: Improve the environment
 Before any changes are introduced into the current application architecture, the customer is interested in hardening what is currently deployed in terms of security, redundancy, and overall optimization. In this challenge, you will leave the application structure as-is&mdash;leaving it running on VMs&mdash;but you will implement some changes to the deployments and configurations of the environment. You will need to address secrets, potential areas of attack, and resiliency within the application. You will also need to make sure the telemetry is captured from the application and the virtual machine.
 
 **Required**  
@@ -165,7 +166,6 @@ Often, customers choose to build their own environments for services already man
 Yes
 
 **Learning Objectives**
-* Correctly choosing paired regions
 * Configuring Azure App Service for autoscale
 * Securing Azure App Service
 * Configuring Azure SQL for failover
@@ -193,7 +193,7 @@ No
 * Discuss the benefits of separating the two layers of the application
 * Continuing to compare performance to baselines and ensuring that business SLAs are met with introduction of Azure Functions
 
-### Challenge 8: Improving database security
+### Challenge 8: Tightening database security
 The application, unfortunately, is still using legacy database connection strings. This means that there are still identities (SQL or Azure AD) that are used to connect the application to the database. In this challenge, you will refactor your application to leverage managed identities for database connectivity and remove application-specific named users from the database.
 
 **Required**  
@@ -201,7 +201,7 @@ No
 
 **Learning Objectives**
 * Using managed identities for database connectivity
-* Understand and discuss the benefits of managed identities in terms of WAF
+* Understand and discuss the benefits of managed identities in terms of the Microsoft Well-Architected Framework
 
 ### Challenge 9: Capturing correlation data
 You have already introduced Application Insights into your application. However, the customer is finding it difficult to correlate errors between the web front-end and the backend. In this challenge, you will _discuss_ approaches to implementing the capturing of correlation data when an error occurs in the application. Remember, solutions should consider all pillars of the Well-Architected Framework.

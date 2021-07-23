@@ -1,0 +1,15 @@
+outline.md:
+  ☐ Update "Training Prerequisites" with links to MSLearn and MOOC content
+  ☐ Update *Links & Resources*
+  ☐ Update *Post-Learning Recommendations*
+
+challenge 1: 
+  ✔ Discuss blue-green deployments @done(21-05-12 13:17)
+  ☐ batch/services vm should be stated that these services do not run continously
+
+challenge 3 (coach's guide):
+  ☐ create chaos script (SC #2)
+  ☐ create a sample of queries for Sentinel (HS #2)
+
+challenge 5 (coach's guide):
+  ☐ update the IIS App Pool name (HS #3)

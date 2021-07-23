@@ -4,5 +4,5 @@
 ~$*.*
 
 # generated ARM templates
-scripts/bicep/**/*.json
-!scripts/bicep/**/deploymentParameters.json
+scripts/source/bicep/**/*.json
+!scripts/source/bicep/**/deploymentParameters.json
