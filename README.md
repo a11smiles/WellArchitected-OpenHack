@@ -44,7 +44,8 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 ├── docs                        (project documentation)
 ├── guides                      (guides and PPT decks for coaches and tech leads)
 └── scripts                     (scripts for building out the OpenHack tenant)
-    └── source                  (projects for Azure DevOps source control)
+    ├── source                  (projects for Azure DevOps source control)
+    └── tools                   (miscellaneous build tools)    
 ```
 
 ## Contributing
