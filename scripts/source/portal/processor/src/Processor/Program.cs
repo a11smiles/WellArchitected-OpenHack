@@ -123,7 +123,7 @@ namespace Portal.Processor
         {
             bool initialDeposit = lastXtn is null;
             decimal lastBalance = initialDeposit ? 0.0M : lastXtn.PostedBalance;
-            DateTimeOffset lastDateTimeOffset = initialDeposit ? DateTimeOffset.Now.AddDays(-60) : lastXtn.XtnDate;
+            DateTimeOffset lastDateTimeOffset = initialDeposit ? DateTimeOffset.Now.AddDays(-3500) : lastXtn.XtnDate;
             DateTime endDate = DateTime.Now;
 
             using (var conn = connection)
