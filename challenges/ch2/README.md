@@ -50,6 +50,13 @@ Using automated deployments for building their infrastructure (IaaS) creates a g
   * _web_: the source code for the web application
   * _processor_: the source code for the transactions processor timer job
 * The _Bicep_ project has a single repository (e.g. _bicep_)
+### Azure DevOps Release Agents
+When instantiating VMs that will host applications deployed from Azure DevOps build/release pipelines, you will need to deploy release agents on them. There are a few ways to automate this (e.g. imaging, DSC, PowerShell Remoting, etc.), but, unfortunately, none of them are very simple and all are time-consuming as there can be a lot of variation.
+
+The simplest way is, once a new VM is instantiated, a DevOps engineer can RDP and deploy the agent manually. This process gives the DevOps engineer the best chance for success and greatest configurability. Because IaC, if done correctly, should only deploy a VM once, the engineer should only be required to deploy and configure the agent once.
+
+A middle-ground approach is using Bicep/ARM templates to deploy the _Azure Pipelines Agent_. By using Bicep/ARM templates, the DevOps and systems engineers are able to work together in an IaC-approach to provisioning target VMs. The current Bicep scripts have been configured for this. The <a href="#references">References</a> section below provides some additional help, if needed.
+
 ## Success criteria
 To succeed in this challenge, you must have the following implemented under the conditions specified in the customer requirements.
 * All deployments must be non-destructive. Only environment components not in the current configuration should be destroyed.
@@ -65,6 +72,7 @@ To succeed in this challenge, you must have the following implemented under the 
 * <a href="https://docs.microsoft.com/azure/devops/pipelines/" target="_blank">Azure Pipelines overview</a>
 * <a href="https://docs.microsoft.com/azure/devops/pipelines/process/stages" target="_blank">Stages for Azure pipelines</a>
 * <a href="https://docs.microsoft.com/azure/devops/pipelines/release/approvals/gates" target="_blank">Approval gates for release pipelines</a>
+* <a href="https://docs.microsoft.com/azure/devops/pipelines/release/deployment-groups/howto-provision-deployment-group-agents?view=azure-devops" target="_blank">Provision agents for deployment groups</a>
 * <a href="https://docs.microsoft.com/azure/azure-resource-manager/templates/bicep-install">Installing Azure Bicep</a>
 * <a href="https://docs.microsoft.com/azure/azure-resource-manager/templates/bicep-overview" target="_blank">Azure templating with Bicep</a>
 * <a href="https://azure.microsoft.com/blog/deployment-strategies-defined/" target="_blank">Deployment strategies defined</a>

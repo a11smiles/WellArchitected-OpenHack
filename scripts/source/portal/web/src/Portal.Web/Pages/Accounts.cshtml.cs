@@ -23,7 +23,7 @@ namespace Portal.Web.Pages
         public Profile Profile = null;
         public Account CurrentAccount = null;
         public List<Account> Accounts = null;
-        public List<Transaction> Transactions = null;
+        public IEnumerable<Transaction> Transactions = null;
         
         public AccountsModel(ILogger<AccountsModel> logger, IConfiguration configuration)
         {
@@ -75,7 +75,7 @@ namespace Portal.Web.Pages
             }
         }
 
-        private async Task<List<Transaction>> GetTransactions() 
+        private async Task<IEnumerable<Transaction>> GetTransactions() 
         {
             var api = _configuration.GetValue<string>("API.BASEURL");
             
@@ -86,7 +86,7 @@ namespace Portal.Web.Pages
                 var resultContent = JsonConvert.DeserializeObject<List<Transaction>>(await result.Content.ReadAsStringAsync());
 
                 if (result.IsSuccessStatusCode) {
-                    return resultContent;
+                    return resultContent.OrderByDescending(x => x.XtnDate).Take(60);
                 } else {
                     throw new Exception();
                 }
