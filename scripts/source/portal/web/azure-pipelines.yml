@@ -1,0 +1,61 @@
+name: $(date:yyyyMMdd)$(rev:.r)
+
+trigger: 
+- master
+
+pool:
+  vmImage: ubuntu-18.04
+  workspace:
+    clean: all
+
+jobs:
+- job: Job_0
+  displayName: 'Build and Test'
+  steps:
+  - task: CopyFiles@2
+    displayName: Copy Files for Artifact
+    inputs: 
+      SourceFolder: '$(Build.SourcesDirectory)'
+      Contents: |
+        **/*
+        !.git/**/*
+        !.vscode/**/*
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: DotNetCoreCLI@2
+    displayName: Nuget Restore
+    inputs:
+      command: restore
+      projects: '**/*.csproj'
+      vstsFeed: '8c636ec5-db59-4e14-b0d3-b95fe06f72e4'
+      
+  - task: DotNetCoreCLI@2
+    displayName: 'Build'
+    inputs:
+      projects: '**/*.csproj'
+      arguments: '--configuration $(BuildConfiguration)'
+  
+  - task: DotNetCoreCLI@2
+    displayName: Test
+    inputs:
+      command: test
+      projects: '**/PortalWebApp.sln'
+      arguments: '-c $(BuildConfiguration) --no-build --logger trx --collect "XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura,opencover'
+  
+  - task: PublishCodeCoverageResults@1
+    displayName: 'Publish code coverage results'
+    inputs:
+      codeCoverageTool: cobertura
+      summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
+  
+  - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
+    displayName: 'Run Code Analysis'
+
+  - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
+    displayName: 'Publish Quality Gate Result'         
+  
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    condition: succeeded()
