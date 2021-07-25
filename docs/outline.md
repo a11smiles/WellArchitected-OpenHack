@@ -26,8 +26,9 @@ When conducting a Well-Architected Assessment, Cloud Solution Architects (CSAs) 
 
 ## Technologies
 * [Azure DevOps](https://docs.microsoft.com/azure/devops/)
+* [Azure Bicep/ARM Templates](https://docs.microsoft.com/azure/azure-resource-manager/bicep/)
+* [Azure Key Value](https://docs.microsoft.com/azure/key-vault)
 * [Azure Traffic Manager](https://docs.microsoft.com/azure/traffic-manager)
-* [Azure Storage](https://docs.microsoft.com/azure/storage/common/storage-introduction)
 * [Virtual Machines](https://docs.microsoft.com/azure/virtual-machines/windows/overview)
 * [Azure App Service](https://docs.microsoft.com/azure/app-service/)
 * [Azure SQL](https://docs.microsoft.com/azure/azure-sql/)
@@ -45,7 +46,7 @@ When conducting a Well-Architected Assessment, Cloud Solution Architects (CSAs) 
 ## Prerequisites
 ### Knowledge Prerequisites
 To be successful and get the most out of this OpenHack, it is highly recommended that participants have a deep understanding (400+ level) of the following:
-* Microsoft [Well-Architected Framework](https://docs.microsoft.com/azure/architecture/framework/)
+* [Microsoft Azure Well-Architected Framework](https://docs.microsoft.com/azure/architecture/framework/)
 * [Cloud Design Patterns](https://docs.microsoft.com/azure/architecture/patterns/index-patterns)
 
 Additionally, participants should be adequately familiar with the technologies listed above.
