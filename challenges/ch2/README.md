@@ -46,10 +46,11 @@ Using automated deployments for building their infrastructure (IaaS) creates a g
 * Azure DevOps has the following two projects:
   * _Bicep_: the Azure Bicep files to build the infrastructure
   * _Portal_: the customer portal web application
+* The _Bicep_ project has a single repository (e.g. _bicep_)
 * Under the _Portal_ project, you will find two repositories:
   * _web_: the source code for the web application
   * _processor_: the source code for the transactions processor timer job
-* The _Bicep_ project has a single repository (e.g. _bicep_)
+
 ### Azure DevOps Release Agents
 When instantiating VMs that will host applications deployed from Azure DevOps build/release pipelines, you will need to deploy release agents on them. There are a few ways to automate this (e.g. imaging, DSC, PowerShell Remoting, etc.), but, unfortunately, none of them are very simple and all are time-consuming as there can be a lot of variation.
 

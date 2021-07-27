@@ -14,9 +14,13 @@ namespace Portal.Processor
         static void Main(string[] args)
         {
             var config = GetConfiguration();
-            var connection = GetConnection(config["ConnectionStrings:PortalContext"]);
-            var accounts = GetAccounts(connection);
-            UpdateAccounts(connection, accounts);
+
+            using (var conn = GetConnection(config["ConnectionStrings:PortalContext"])) {
+                conn.Open();
+
+                var accounts = GetAccounts(conn);
+                UpdateAccounts(conn, accounts);
+            }
         }
 
         private static IConfiguration GetConfiguration()
@@ -41,75 +45,66 @@ namespace Portal.Processor
                 return new SqliteConnection("Filename=" + connectionString);
         }
 
-        private static List<Account> GetAccounts(DbConnection connection)
+        private static List<Account> GetAccounts(DbConnection conn)
         {
             List<Account> accounts = new List<Account>();
 
-            using (var conn = connection)
+            var command = conn.CreateCommand();
+            command.CommandText = "SELECT * FROM Accounts WHERE [IsActive] = 1";
+
+            using (var reader = command.ExecuteReader())
             {
-                conn.Open();
-
-                var command = conn.CreateCommand();
-                command.CommandText = "SELECT * FROM Accounts WHERE [IsActive] = 1";
-
-                using (var reader = command.ExecuteReader())
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    var account = new Account()
                     {
-                        var account = new Account()
-                        {
-                            Id = new Guid(reader["Id"].ToString()),
-                            UserId = new Guid(reader["UserId"].ToString()),
-                            AccountNo = reader["AccountNo"].ToString(),
-                            IsActive = Convert.ToBoolean(reader["IsActive"]),
-                            CurrentBalance = Convert.ToDecimal(reader["CurrentBalance"].ToString())
-                        };
+                        Id = new Guid(reader["Id"].ToString()),
+                        UserId = new Guid(reader["UserId"].ToString()),
+                        AccountNo = reader["AccountNo"].ToString(),
+                        IsActive = Convert.ToBoolean(reader["IsActive"]),
+                        CurrentBalance = Convert.ToDecimal(reader["CurrentBalance"].ToString())
+                    };
 
-                        accounts.Add(account);
-                    }
+                    accounts.Add(account);
                 }
             }
+
 
             return accounts;
         }
 
-        private static void UpdateAccounts(DbConnection connection, List<Account> accounts)
+        private static void UpdateAccounts(DbConnection conn, List<Account> accounts)
         {
             foreach (var account in accounts)
             {
-                var lastXtn = GetLastTransaction(connection, account);
-                var currBalance = AddTransactions(connection, account, lastXtn);
-                UpdateBalance(connection, account, currBalance);
+                var lastXtn = GetLastTransaction(conn, account);
+                var currBalance = AddTransactions(conn, account, lastXtn);
+                UpdateBalance(conn, account, currBalance);
             }
         }
 
-        private static Transaction GetLastTransaction(DbConnection connection, Account account)
+        private static Transaction GetLastTransaction(DbConnection conn, Account account)
         {
             List<Transaction> xtns = new List<Transaction>();
             
-            using (var conn = connection)
+            var command = conn.CreateCommand();
+            command.CommandText = "SELECT * FROM Transactions WHERE [AccountId] = '" + account.Id.ToString().ToUpper() + "'";
+            
+            using (var reader = command.ExecuteReader())
             {
-                conn.Open();
-
-                var command = conn.CreateCommand();
-                command.CommandText = "SELECT * FROM Transactions WHERE [AccountId] = \"" + account.Id.ToString().ToUpper() + "\"";
-
-                using (var reader = command.ExecuteReader())
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        var xtn = new Transaction();
+                    var xtn = new Transaction();
 
-                        xtn.Id = new Guid(reader["Id"].ToString());
-                        xtn.AccountId = new Guid(reader["AccountId"].ToString());
-                        xtn.XtnDate = DateTimeOffset.Parse(reader["XtnDate"].ToString());
-                        xtn.Description = reader["Description"].ToString();
-                        xtn.XtnType = (TransactionType)Convert.ToInt32(reader["XtnType"]);
-                        xtn.Amount = Convert.ToDecimal(reader["Amount"]);
-                        xtn.PostedBalance = Convert.ToDecimal(reader["PostedBalance"]);
+                    xtn.Id = new Guid(reader["Id"].ToString());
+                    xtn.AccountId = new Guid(reader["AccountId"].ToString());
+                    xtn.XtnDate = DateTimeOffset.Parse(reader["XtnDate"].ToString());
+                    xtn.Description = reader["Description"].ToString();
+                    xtn.XtnType = (TransactionType)Convert.ToInt32(reader["XtnType"]);
+                    xtn.Amount = Convert.ToDecimal(reader["Amount"]);
+                    xtn.PostedBalance = Convert.ToDecimal(reader["PostedBalance"]);
 
-                        xtns.Add(xtn);
-                    }
+                    xtns.Add(xtn);
                 }
             }
 
@@ -119,64 +114,54 @@ namespace Portal.Processor
                 return xtns.OrderByDescending(x => x.XtnDate).First();
         }
 
-        private static decimal AddTransactions(DbConnection connection, Account account, Transaction lastXtn)
+        private static decimal AddTransactions(DbConnection conn, Account account, Transaction lastXtn)
         {
             bool initialDeposit = lastXtn is null;
             decimal lastBalance = initialDeposit ? 0.0M : lastXtn.PostedBalance;
             DateTimeOffset lastDateTimeOffset = initialDeposit ? DateTimeOffset.Now.AddDays(-3500) : lastXtn.XtnDate;
             DateTime endDate = DateTime.Now;
 
-            using (var conn = connection)
+            var datePtr = lastDateTimeOffset;
+
+            while (datePtr <= endDate)
             {
-                conn.Open();
+                var numXtns = new Random().Next(0, 5);
 
-                var datePtr = lastDateTimeOffset;
-
-                while (datePtr <= endDate)
+                for (int i = 0; i <= numXtns; i++)
                 {
-                    var numXtns = new Random().Next(0, 5);
+                    datePtr = datePtr.AddTicks(Convert.ToInt64(TimeSpan.TicksPerDay * new Random().NextDouble()));
+                    if (datePtr > endDate)
+                        break;
 
-                    for (int i = 0; i <= numXtns; i++)
-                    {
-                        datePtr = datePtr.AddTicks(Convert.ToInt64(TimeSpan.TicksPerDay * new Random().NextDouble()));
-                        if (datePtr > endDate)
-                            break;
+                    int xtnType = new Random().Next(1, 3);
+                    var amount = Convert.ToDecimal(Convert.ToDecimal(xtnType == 1 ? new Random().NextDouble() * 1000 : new Random().NextDouble() * Convert.ToDouble(lastBalance)).ToString("0.00"));
+                    lastBalance = xtnType == 1 || initialDeposit ? lastBalance + amount : lastBalance - amount;
 
-                        int xtnType = new Random().Next(1, 3);
-                        var amount = Convert.ToDecimal(Convert.ToDecimal(xtnType == 1 ? new Random().NextDouble() * 1000 : new Random().NextDouble() * Convert.ToDouble(lastBalance)).ToString("0.00"));
-                        lastBalance = xtnType == 1 || initialDeposit ? lastBalance + amount : lastBalance - amount;
+                    var command = conn.CreateCommand();
+                    command.CommandText = "INSERT INTO Transactions (Id, AccountId, XtnDate, Description, XtnType, Amount, PostedBalance) VALUES (" +
+                                            "'" + Guid.NewGuid().ToString().ToUpper() + "', " +
+                                            "'" + account.Id.ToString().ToUpper() + "', " +
+                                            "'" + datePtr.ToString() + "', " +
+                                            "'" + GetRandomDescripton(initialDeposit, xtnType) + "', " +
+                                            xtnType.ToString() + ", " +
+                                            "'" + amount.ToString("0.00") + "', " +
+                                            "'" + lastBalance.ToString("0.00") + "')";
+                    command.ExecuteNonQuery();
 
-                        var command = conn.CreateCommand();
-                        command.CommandText = "INSERT INTO Transactions (Id, AccountId, XtnDate, Description, XtnType, Amount, PostedBalance) VALUES (" +
-                                                "\"" + Guid.NewGuid().ToString().ToUpper() + "\", " +
-                                                "\"" + account.Id.ToString().ToUpper() + "\", " +
-                                                "\"" + datePtr.ToString() + "\", " +
-                                                "\"" + GetRandomDescripton(initialDeposit, xtnType) + "\", " +
-                                                xtnType.ToString() + ", " +
-                                                "\"" + amount.ToString("0.00") + "\", " +
-                                                "\"" + lastBalance.ToString("0.00") + "\")";
-                        command.ExecuteNonQuery();
-
-                        initialDeposit = false;
-                    }
-
-                    datePtr = DateTime.SpecifyKind(new DateTime(datePtr.Year, datePtr.Month, datePtr.Day, 0, 0, 0).AddDays(1), DateTimeKind.Utc);
+                    initialDeposit = false;
                 }
+
+                datePtr = DateTime.SpecifyKind(new DateTime(datePtr.Year, datePtr.Month, datePtr.Day, 0, 0, 0).AddDays(1), DateTimeKind.Utc);
             }
 
             return lastBalance;
         }
 
-        private static void UpdateBalance(DbConnection connection, Account account, Decimal currBalance)
+        private static void UpdateBalance(DbConnection conn, Account account, Decimal currBalance)
         {
-            using (var conn = connection)
-            {
-                conn.Open();
-
-                var command = conn.CreateCommand();
-                command.CommandText = "UPDATE Accounts SET CurrentBalance = \"" + currBalance.ToString("0.00") + "\" WHERE Id = \"" + account.Id.ToString().ToUpper() + "\"";
-                command.ExecuteNonQuery();
-            }
+            var command = conn.CreateCommand();
+            command.CommandText = "UPDATE Accounts SET CurrentBalance = '" + currBalance.ToString("0.00") + "' WHERE Id = '" + account.Id.ToString().ToUpper() + "'";
+            command.ExecuteNonQuery();
         }
 
         private static string GetRandomDescripton(bool firstXtn, int xtnType) {
