@@ -155,7 +155,7 @@ You can login to a fictitious customer's bank account using the following creden
 
 The _administrator_ credentials for the virtual machines are:
 * Username: **cloudadmin**
-* Password: **(Pass@word)1234!**
+* Password: **Pass@word1234!**
 
 ### Logging in to the database
 
