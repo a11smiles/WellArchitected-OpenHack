@@ -1,5 +1,7 @@
 # Optimizing the API
 
+Time Length: **2-3 hours**
+
 ## Reminders
 
 

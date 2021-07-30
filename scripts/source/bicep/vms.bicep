@@ -55,24 +55,6 @@ resource web1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
   }
 }
 
-/*
-resource web1vmIIS 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
-  name: 'web1/InstallWebServer'
-  location: region
-  dependsOn: [
-    web1vm
-  ]
-  properties: {
-    publisher: 'Microsoft.Compute'
-    type: 'CustomScriptExtension'
-    typeHandlerVersion: '1.7'
-    autoUpgradeMinorVersion: true
-    settings: {
-      commandToExecute: 'powershell.exe Install-WindowsFeature -name Web-Server -IncludeManagementTools && powershell.exe remove-item \'C:\\inetpub\\wwwroot\\iisstart.htm\' && powershell.exe Add-Content -Path \'C:\\inetpub\\wwwroot\\iisstart.htm\' -Value $(\'Hello World from \' + $env:computername)'
-    }
-  }
-}
-*/
 resource web1vmFiles 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
   name: 'web1/DownloadWebFiles'
   location: region
@@ -155,24 +137,6 @@ resource web2vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
     }
   }
 }
-/*
-resource web2vmIIS 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
-  name: 'web2/InstallWebServer'
-  location: region
-  dependsOn: [
-    web2vm
-  ]
-  properties: {
-    publisher: 'Microsoft.Compute'
-    type: 'CustomScriptExtension'
-    typeHandlerVersion: '1.7'
-    autoUpgradeMinorVersion: true
-    settings: {
-      commandToExecute: 'powershell.exe Install-WindowsFeature -name Web-Server -IncludeManagementTools && powershell.exe remove-item \'C:\\inetpub\\wwwroot\\iisstart.htm\' && powershell.exe Add-Content -Path \'C:\\inetpub\\wwwroot\\iisstart.htm\' -Value $(\'Hello World from \' + $env:computername)'
-    }
-  }
-}
-*/
 
 resource web2vmFiles 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
   name: 'web2/DownloadWebFiles'
@@ -257,7 +221,45 @@ resource worker1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
   }
 }
 
- resource sqlsvr1vmDataDisk0 'Microsoft.Compute/disks@2020-12-01' = {
+resource worker1vmFiles 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
+  name: 'worker1/DownloadWebFiles'
+  location: region
+  dependsOn: [
+    web1vm
+  ]
+  properties: {
+    publisher: 'Microsoft.Compute'
+    type: 'CustomScriptExtension'
+    typeHandlerVersion: '1.7'
+    autoUpgradeMinorVersion: true
+    settings: {
+      commandToExecute: 'powershell.exe Invoke-WebRequest -Uri \'https://raw.githubusercontent.com/a11smiles/waf-oh-dsc/main/Processor.zip\' -OutFile Processor.zip && powershell Expand-Archive -Path Processor.zip -DestinationPath \'D:\\jobs\''
+    }
+  }
+}
+
+resource worker1vmTasks 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
+  name: 'worker1/CreateScheduledTasks'
+  location: region
+  dependsOn: [
+    worker1vm
+    worker1vmFiles
+  ]
+  properties: {
+    publisher: 'Microsoft.Powershell'
+    type: 'DSC'
+    typeHandlerVersion: '2.19'
+    autoUpgradeMinorVersion: true
+    settings: {
+      ConfigurationFunction: 'WorkerServer.ps1\\WorkerServer'
+      ModulesUrl: 'https://raw.githubusercontent.com/a11smiles/waf-oh-dsc/main/DSC/WorkerServer.zip'
+      Properties: {}
+    }
+    protectedSettings: {}
+  }
+}
+
+resource sqlsvr1vmDataDisk0 'Microsoft.Compute/disks@2020-12-01' = {
   name: 'sqlsvr1_DataDisk_0'
   location: region
   sku: {
@@ -415,7 +417,7 @@ resource sqlsvr1sql 'Microsoft.SqlVirtualMachine/sqlVirtualMachines@2017-03-01-p
     }
   }
 }
-/*
+
 resource sqlsvr1sqlDatabase 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
   name: 'sqlsvr1/CreateDatabase'
   location: region
@@ -430,24 +432,31 @@ resource sqlsvr1sqlDatabase 'Microsoft.Compute/virtualMachines/extensions@2020-1
     settings: {
       ConfigurationFunction: 'SqlServer.ps1\\SqlServer'
       ModulesUrl: 'https://raw.githubusercontent.com/a11smiles/waf-oh-dsc/main/DSC/SqlServer.zip'
-      Properties: {
-        LoginCredential: {
-          userName: 'webapp'
-          password: 'PrivateSettingsRef:AppPassword'
+      ConfigurationData: 'https://raw.githubusercontent.com/a11smiles/waf-oh-dsc/main/DSC/ConfigurationData.psd1'
+      Properties: [
+        {
+          Name: 'ServerCredential'
+          Value: {
+            Username: adminUsername
+            Password: 'PrivateSettingsRef:ServerPassword'
+          }
+          TypeName: 'System.Management.Automation.PSCredential'
         }
-        SqlAdminCredentials: {
-          userName: sqlAdminUsername
-          password: 'PrivateSettingsRef:SqlPassword'
+        {
+          Name: 'DatabaseCredential'
+          Value: {
+            Username: 'webapp'
+            Password: 'PrivateSettingsRef:DatabasePassword'
+          }
+          TypeName: 'System.Management.Automation.PSCredential'
         }
-      }
+      ]
     }
     protectedSettings: {
       Items: {
-        AppPassword: 'S0m3R@ndomW0rd$'
-        SqlPassword: sqlAdminPassword
+        ServerPassword: adminPassword
+        DatabasePassword: 'S0m3R@ndomW0rd$'
       }
-      DataBlobUri: 'https://raw.githubusercontent.com/a11smiles/waf-oh-dsc/main/DSC/ConfigurationData.psd1'
     }
   }
 }
-*/
