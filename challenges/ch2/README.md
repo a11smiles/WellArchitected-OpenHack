@@ -21,7 +21,9 @@ As you plan this challenge, you may want to consider the following questions:
 * What deployment models should you consider to ensure uptime during application recycling?
 * How will you rollback failed deployments?
 
-> **NOTE:** For all future challenges, you will be **required** to use Azure Bicep scripts and the build/release pipelines you configure in this challenge. Therefore, make sure you plan and build wisely. Additionally, be sure you know how the included Azure Bicep scripts are constructed so that you are able to correctly refactor them for your needs in future challenges.
+> **NOTE:** For all future challenges, you will be **required** to use automation and the build/release pipelines you configure in this challenge. Therefore, make sure you plan and build wisely. You may find it helpful to know how the included Azure Bicep scripts are constructed so that you are able to correctly refactor them for your needs in future challenges, if desired. 
+
+> **NOTE:** Automation can be performed via Azure Bicep, Terraform, standard ARM templates, direct REST services, or any other method as long as infrastructure changes are implemented through code (IaC). However, for time sake, it may be faster to use the provided Azure Bicep scripts.
 
 ## Customer requirements
 Using automated deployments for building their infrastructure (IaaS) creates a great deal of anxiety for Woodgrove Bank. The IT and security teams want to ensure that all of the following concerns are met:
@@ -53,12 +55,12 @@ Using automated deployments for building their infrastructure (IaaS) creates a g
   * _web_: the source code for the web application
   * _processor_: the source code for the transactions processor timer job
 
-### Azure DevOps Release Agents
+### Azure DevOps Deployment Agents
 When instantiating VMs that will host applications deployed from Azure DevOps build/release pipelines, you will need to deploy release agents on them. There are a few ways to automate this (e.g. imaging, DSC, PowerShell Remoting, etc.), but, unfortunately, none of them are very simple and all are time-consuming as there can be a lot of variation.
 
 The simplest way is, once a new VM is instantiated, a DevOps engineer can RDP and deploy the agent manually. This process gives the DevOps engineer the best chance for success and greatest configurability. Because IaC, if done correctly, should only deploy a VM once, the engineer should only be required to deploy and configure the agent once.
 
-A middle-ground approach is using Bicep/ARM templates to deploy the _Azure Pipelines Agent_. By using Bicep/ARM templates, the DevOps and systems engineers are able to work together in an IaC-approach to provisioning target VMs. The current Bicep scripts have been configured for this. The <a href="#references">References</a> section below provides some additional help, if needed.
+A better, middle-ground approach is using Bicep/ARM templates with desired state configuration (DSC) to deploy the _Azure Pipelines Agent_. By using DSC, the DevOps and systems engineers are able to work together in an IaC approach to provisioning target VMs. However, DSC is outside of scope for this OpenHack and, therefore, **RDP'ing into the deployed VMs for installation of the deployment agent is permissable**. The <a href="#references">References</a> section below provides some additional help, if needed.
 
 ## Success criteria
 To succeed in this challenge, you must have the following implemented under the conditions specified in the customer requirements.

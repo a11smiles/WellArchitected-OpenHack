@@ -58,8 +58,8 @@ As workloads are being transitioned to Azure, Woodgrove Bank has expressed the i
 * Application uptime should meet or exceed 99.99%
 * Business Continuity/Disaster Recovery (BCDR):
   * Implement a hot-hot, multi-region deployment
-  * RTO - 10 minutes
-  * RPO - 1 hour
+  * RPO - 10 minutes
+  * RTO - 1 hour
 
 Woodgrove Bank is concerned that their current cloud architecture may not support this, which is one reason they have reached out to Microsoft for its help. Any architectural decisions going forward should revolve around the above KPIs and their SLAs.
 
