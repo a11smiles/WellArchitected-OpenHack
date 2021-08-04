@@ -7,7 +7,6 @@ resource webStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   location: region
   sku: {
     name: 'Standard_LRS'
-    tier: 'Standard'
   }
   kind: 'StorageV2'
   properties: {
@@ -20,7 +19,6 @@ resource sqlStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   location: region
   sku: {
     name: 'Standard_LRS'
-    tier: 'Standard'
   }
   kind: 'StorageV2'
   properties: {

@@ -8,7 +8,7 @@ param worker1vmDnslabel string
 param sqlsvr1vmDnslabel string
 param elbDnsLabel string
 
-resource vnet 'Microsoft.Network/virtualNetworks@2020-05-01' = {
+resource vnet 'Microsoft.Network/virtualNetworks@2020-11-01' = {
   name: vnetName
   location: region
   properties: {
@@ -84,13 +84,14 @@ resource web1vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   }
 }
 
-resource web1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
+resource web1vmNic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
   name: 'web1nic'
   location: region
   properties: {
     networkSecurityGroup: {
       id: nsg.id
     }
+    vnetEncryptionSupported: false
     ipConfigurations: [
       {
         name: 'ipconfig1'
@@ -126,13 +127,14 @@ resource web2vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   }
 }
 
-resource web2vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
+resource web2vmNic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
   name: 'web2nic'
   location: region
   properties: {
     networkSecurityGroup: {
       id: nsg.id
     }
+    vnetEncryptionSupported: false
     ipConfigurations: [
       {
         name: 'ipconfig1'
@@ -168,13 +170,14 @@ resource worker1vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   }
 }
 
-resource worker1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
+resource worker1vmNic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
   name: 'worker1nic'
   location: region
   properties: {
     networkSecurityGroup: {
       id: nsg.id
     }
+    vnetEncryptionSupported: false
     ipConfigurations: [
       {
         name: 'ipconfig1'
@@ -210,13 +213,14 @@ resource sqlsvr1vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   }
 }
 
-resource sqlsvr1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
+resource sqlsvr1vmNic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
   name: 'sqlsvr1nic'
   location: region
   properties: {
     networkSecurityGroup: {
       id: nsg.id
     }
+    vnetEncryptionSupported: false
     ipConfigurations: [
       {
         name: 'ipconfig1'
@@ -252,7 +256,7 @@ resource elbPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   }
 }
 
-resource elb 'Microsoft.Network/loadBalancers@2021-02-01' = {
+resource elb 'Microsoft.Network/loadBalancers@2020-11-01' = {
   name: elbName
   location: region
   sku: {
@@ -318,7 +322,7 @@ resource elb 'Microsoft.Network/loadBalancers@2021-02-01' = {
 }
 
 resource elbBackendPool 'Microsoft.Network/loadBalancers/backendAddressPools@2020-11-01' = {
-  name: concat(elbName, '/webapp')
+  name: '${elbName}/webapp'
   dependsOn: [
     elb
   ]
