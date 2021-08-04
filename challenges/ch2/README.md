@@ -86,6 +86,138 @@ To succeed in this challenge, you must have the following implemented under the 
 * The infrastructure release pipeline must contain a step for displaying the potential changes in the environment _before_ the changes are applied. This step much come before the actual deployment step to allow the IT team to view the effects of the deployment prior to it being executed.
 * Create and demonstrate restrictions for specific SKUs in Azure Bicep scripts to limit which SKUs are allowed to be used for deploying resources.
 * Plan a strategy for future deployments&mdash;whether in this current environment configuration or a planned, future environment configuration from _Challenge 1_&mdash;that will allow Woodgrove Bank to conduct deployments _without_ requiring any downtime. Discuss this strategy with your coach.
+
+## Success tips
+* There are yaml-based build scripts included with each of the three repos. They currently build the assets and place them in a drop folder. The goal of this challenge is not crafting original build scripts, but to leverage the existing build scripts and configure build/release pipelines.
+* VMs will need to be added to deployment groups. Make sure you are aware of how to install the agents.
+* Don’t be afraid to whiteboard various processes to determine the best approach.
+* Rollbacks don’t necessarily always mean rolling back code deployments. There are other methodologies for rolling back features and enhancements. Your team should consider and discuss pro’s/con’s of various methodologies. 
+
+## Tech tips
+* Azure DevOps tenants are not yet uniform in their taxonomy. Some projects are created with the primary branch being named `main`, while others are still using `master`. Therefore, you may need to adjust the triggers of your _azure-pipelines.yml_ file.
+* In the _network.bicep_ file, there are some undocumented REST properties which will create warnings when building the Azure Bicep definition. You can ignore these warnings.
+  ```bash
+  network.bicep(94,5) : Warning BCP037: The property "vnetEncryptionSupported" is not allowed on objects of type "NetworkInterfacePropertiesFormat". Permissible properties include "dnsSettings", "enableAcceleratedNetworking", "enableIPForwarding", "migrationPhase", "nicType", "privateLinkService", "workloadType". If this is an inaccuracy in the documentation, please report it to the Bicep Team. [https://aka.ms/bicep-type-issues]
+  network.bicep(137,5) : Warning BCP037: The property "vnetEncryptionSupported" is not allowed on objects of type "NetworkInterfacePropertiesFormat". Permissible properties include "dnsSettings", "enableAcceleratedNetworking", "enableIPForwarding", "migrationPhase", "nicType", "privateLinkService", "workloadType". If this is an inaccuracy in the documentation, please report it to the Bicep Team. [https://aka.ms/bicep-type-issues]
+  network.bicep(180,5) : Warning BCP037: The property "vnetEncryptionSupported" is not allowed on objects of type "NetworkInterfacePropertiesFormat". Permissible properties include "dnsSettings", "enableAcceleratedNetworking", "enableIPForwarding", "migrationPhase", "nicType", "privateLinkService", "workloadType". If this is an inaccuracy in the documentation, please report it to the Bicep Team. [https://aka.ms/bicep-type-issues]
+  network.bicep(223,5) : Warning BCP037: The property "vnetEncryptionSupported" is not allowed on objects of type "NetworkInterfacePropertiesFormat". Permissible properties include "dnsSettings", "enableAcceleratedNetworking", "enableIPForwarding", "migrationPhase", "nicType", "privateLinkService", "workloadType". If this is an inaccuracy in the documentation, please report it to the Bicep Team. [https://aka.ms/bicep-type-issues]
+  network.bicep(292,11) : Warning BCP037: The property "allowBackendPortConflict" is not allowed on objects of type "LoadBalancingRulePropertiesFormat". No other properties are allowed. If this is an inaccuracy in the documentation, please report it to the Bicep Team. [https://aka.ms/bicep-type-issues]
+  network.bicep(293,11) : Warning BCP037: The property "enableDestinationServiceEndpoint" is not allowed on objects of type "LoadBalancingRulePropertiesFormat". No other properties are allowed. If this is an inaccuracy in the documentation, please report it to the Bicep Team. [https://aka.ms/bicep-type-issues]
+  ```
+* If your team is not familiar with Azure Bicep and feels more comfortable working with standard ARM Templates, it is acceptable to build the Azure Bicep definition locally, then leverage the ARM template for your deployments going forward. The goal is not to learn Azure Bicep, but to become familiar with infrastructure as code (IaC) and automated deployments. (Using Terraform is also acceptable, but doing so may be a waste of valuable time.)
+* When testing deployments with `what-if`, you will receive a series of false-positives for changes in the external load balancer’s backend pools. See the warnings below for an example (your warnings may be slightly different based on the subscription and resource group). This is a documented bug in the ELB’s REST API.
+  ```bash
+  Note: The result may contain false positive predictions (noise).
+  You can help us improve the accuracy of the result by opening an issue here: https://aka.ms/WhatIfIssues
+
+  Resource and property changes are indicated with these symbols:
+    - Delete
+    ~ Modify
+    = Nochange
+    * Ignore
+
+  The deployment will update the following scope:
+
+  Scope: /subscriptions/905c7701-f724-4623-bcde-5753d61dd3d6/resourceGroups/webapp
+
+    ~ Microsoft.Network/loadBalancers/elbwebapp [2020-11-01]
+      ~ properties.backendAddressPools: [
+        ~ 0:
+
+          - properties:
+
+              loadBalancerBackendAddresses: [
+                0:
+
+                  etag:                         "W/"eec77d44-f36a-4702-be91-a1ad6ae13143""
+                  id:                           "/subscriptions/905c7701-f724-4623-bcde-5753d61dd3d6/resourceGroups/webapp/providers/Microsoft.Network/loadBalancers/elbwebapp/backendAddressPools/webapp/loadBalancerBackendAddresses/web1"
+                  name:                         "web1"
+                  properties.ipAddress:         "10.10.0.4"
+                  properties.provisioningState: "Succeeded"
+                  properties.virtualNetwork.id: "/subscriptions/905c7701-f724-4623-bcde-5753d61dd3d6/resourceGroups/webapp/providers/Microsoft.Network/virtualNetworks/vnet-webapp"
+                  type:                         "Microsoft.Network/loadBalancers/backendAddressPools/loadBalancerBackendAddresses"
+
+                1:
+
+                  etag:                         "W/"eec77d44-f36a-4702-be91-a1ad6ae13143""
+                  id:                           "/subscriptions/905c7701-f724-4623-bcde-5753d61dd3d6/resourceGroups/webapp/providers/Microsoft.Network/loadBalancers/elbwebapp/backendAddressPools/webapp/loadBalancerBackendAddresses/web2"
+                  name:                         "web2"
+                  properties.ipAddress:         "10.10.0.5"
+                  properties.provisioningState: "Succeeded"
+                  properties.virtualNetwork.id: "/subscriptions/905c7701-f724-4623-bcde-5753d61dd3d6/resourceGroups/webapp/providers/Microsoft.Network/virtualNetworks/vnet-webapp"
+                  type:                         "Microsoft.Network/loadBalancers/backendAddressPools/loadBalancerBackendAddresses"
+
+              ]
+
+
+        ]
+      ~ properties.loadBalancingRules: [
+        ~ 0:
+
+          - properties.backendAddressPools: [
+              0:
+
+                id: "/subscriptions/905c7701-f724-4623-bcde-5753d61dd3d6/resourceGroups/webapp/providers/Microsoft.Network/loadBalancers/elbwebapp/backendAddressPools/webapp"
+
+            ]
+
+        ]
+
+    ~ Microsoft.Network/loadBalancers/elbwebapp/backendAddressPools/webapp [2020-11-01]
+      ~ properties.loadBalancerBackendAddresses: [
+        ~ 0:
+
+          - etag:                         "W/"eec77d44-f36a-4702-be91-a1ad6ae13143""
+          - id:                           "/subscriptions/905c7701-f724-4623-bcde-5753d61dd3d6/resourceGroups/webapp/providers/Microsoft.Network/loadBalancers/elbwebapp/backendAddressPools/webapp/loadBalancerBackendAddresses/web1"
+          - properties.provisioningState: "Succeeded"
+          - type:                         "Microsoft.Network/loadBalancers/backendAddressPools/loadBalancerBackendAddresses"
+          ~ properties.ipAddress:         "10.10.0.4" => "[reference(resourceId('Microsoft.Network/networkInterfaces', 'web1nic')).ipConfigurations[0].properties.privateIPAddress]"
+
+        ~ 1:
+
+          - etag:                         "W/"eec77d44-f36a-4702-be91-a1ad6ae13143""
+          - id:                           "/subscriptions/905c7701-f724-4623-bcde-5753d61dd3d6/resourceGroups/webapp/providers/Microsoft.Network/loadBalancers/elbwebapp/backendAddressPools/webapp/loadBalancerBackendAddresses/web2"
+          - properties.provisioningState: "Succeeded"
+          - type:                         "Microsoft.Network/loadBalancers/backendAddressPools/loadBalancerBackendAddresses"
+          ~ properties.ipAddress:         "10.10.0.5" => "[reference(resourceId('Microsoft.Network/networkInterfaces', 'web2nic')).ipConfigurations[0].properties.privateIPAddress]"
+
+        ]
+
+    = Microsoft.Network/networkInterfaces/sqlsvr1nic [2021-02-01]
+    = Microsoft.Network/networkInterfaces/web1nic [2021-02-01]
+    = Microsoft.Network/networkInterfaces/web2nic [2021-02-01]
+    = Microsoft.Network/networkInterfaces/worker1nic [2021-02-01]
+    = Microsoft.Network/networkSecurityGroups/nsg-webapp [2020-11-01]
+    = Microsoft.Network/publicIPAddresses/elbip [2020-11-01]
+    = Microsoft.Network/publicIPAddresses/sqlsvr1ip [2020-11-01]
+    = Microsoft.Network/publicIPAddresses/web1ip [2020-11-01]
+    = Microsoft.Network/publicIPAddresses/web2ip [2020-11-01]
+    = Microsoft.Network/publicIPAddresses/worker1ip [2020-11-01]
+    = Microsoft.Network/virtualNetworks/vnet-webapp [2020-11-01]
+    = Microsoft.Storage/storageAccounts/storwoodgrovesql000000 [2021-02-01]
+    = Microsoft.Storage/storageAccounts/storwoodgroveweb000000 [2021-02-01]
+    * Microsoft.Compute/disks/sqlsvr1_DataDisk_0
+    * Microsoft.Compute/disks/sqlsvr1_DataDisk_1
+    * Microsoft.Compute/disks/sqlsvr1_OsDisk_1_34f6e85dbc6b40d28a7ce54f7329ce86
+    * Microsoft.Compute/disks/web1_OsDisk_1_ac7f0a99d6b2415da426dd61a7fc82f4
+    * Microsoft.Compute/disks/web2_OsDisk_1_fce1a62dd3644822967bb719baf10ebc
+    * Microsoft.Compute/disks/worker1_OsDisk_1_b0c7fd03cc71462da9c44449cff21fd0
+    * Microsoft.Compute/virtualMachines/sqlsvr1
+    * Microsoft.Compute/virtualMachines/sqlsvr1/extensions/CreateDatabase
+    * Microsoft.Compute/virtualMachines/web1
+    * Microsoft.Compute/virtualMachines/web1/extensions/DownloadWebFiles
+    * Microsoft.Compute/virtualMachines/web1/extensions/InstallWebServer
+    * Microsoft.Compute/virtualMachines/web2
+    * Microsoft.Compute/virtualMachines/web2/extensions/DownloadWebFiles
+    * Microsoft.Compute/virtualMachines/web2/extensions/InstallWebServer
+    * Microsoft.Compute/virtualMachines/worker1
+    * Microsoft.Compute/virtualMachines/worker1/extensions/CreateScheduledTasks
+    * Microsoft.Compute/virtualMachines/worker1/extensions/DownloadWebFiles
+    * Microsoft.SqlVirtualMachine/SqlVirtualMachines/sqlsvr1
+
+  Resource changes: 2 to modify, 13 no change, 18 to ignore.
+  ```
+
 ## References
 * <a href="https://docs.microsoft.com/azure/devops/pipelines/" target="_blank">Azure Pipelines overview</a>
 * <a href="https://docs.microsoft.com/azure/devops/pipelines/artifacts/build-artifacts?view=azure-devops&tabs=yaml" target="_blank">Artifacts in Azure Pipelines</a>
