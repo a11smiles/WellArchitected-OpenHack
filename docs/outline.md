@@ -161,7 +161,7 @@ Yes
 
 
 ### Challenge 6: Leveraging PaaS services
-Often, customers choose to build their own environments for services already managed by Microsoft or its partners. This customer is no different. In this challenge, you will begin migrating the components of the web application to Azure's various PaaS offerings. As you migrate the application and configure its services, you must consider all pillars of the Microsoft Well-Architected Framework. With your implementation, you will need to ensure that all of the customer's SLAs are able to be met _at all times_ while maintaining adherence to the Well-Architected Framework. You will also need to make sure that your Grafana dashboards are updated to report desired metrics from the new resources. Finally, all alerts should be updated based on the new resources.
+Often, customers choose to build their own environments for services already managed by Microsoft or its partners. This customer is no different. In this challenge, you will begin migrating the components of the web application to Azure's various PaaS offerings. As you migrate the application and configure its services, you must consider all pillars of the Microsoft Well-Architected Framework. With your implementation, you will need to ensure that all of the customer's SLAs are able to be met _at all times_ while maintaining adherence to the Microsoft Azure Well-Architected Framework. You will also need to make sure that your Grafana dashboards are updated to report desired metrics from the new resources. Finally, all alerts should be updated based on the new resources.
 
 **Required**  
 Yes
@@ -180,7 +180,7 @@ Yes
 
 
 ### Challenge 7: Optimizing the API
-In the previous challenge, you may have elected to move the API to Azure Functions. If so, great! If not, here is your chance. In this challenge, you will separate the web front-end (WFE) from its services layer (API). Upon doing so, you will move the service layer to Azure Functions. In light of the Well-Architected Framework, you will also need to configure Azure Functions accordingly.
+In the previous challenge, you may have elected to move the API to Azure Functions. If so, great! If not, here is your chance. In this challenge, you will separate the web front-end (WFE) from its services layer (API). Upon doing so, you will move the service layer to Azure Functions. In light of the Microsoft Azure Well-Architected Framework, you will also need to configure Azure Functions accordingly.
 
 **Required**  
 No
@@ -202,7 +202,7 @@ No
 
 **Learning Objectives**
 * Using managed identities for database connectivity
-* Understand and discuss the benefits of managed identities in terms of the Microsoft Well-Architected Framework
+* Understand and discuss the benefits of managed identities in terms of the Microsoft Azure Well-Architected Framework
 
 ### Challenge 9: Capturing correlation data
 You have already introduced Application Insights into your application. However, the customer is finding it difficult to correlate errors between the web front-end and the backend. In this challenge, you will _discuss_ approaches to implementing the capturing of correlation data when an error occurs in the application. Remember, solutions should consider all pillars of the Well-Architected Framework.
