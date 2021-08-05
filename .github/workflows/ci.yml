@@ -17,11 +17,11 @@ jobs:
         with:
           dotnet-version: '5.0.x'
       - name: Install dependencies
-        run: dotnet restore ./scripts/source/portal/processor/**/*.csproj
+        run: dotnet restore ${{ github.workspace }}/scripts/source/portal/processor/**/*.csproj
       - name: Build
-        run: dotnet build --configuration Release --no-restore ./scripts/source/portal/processor/**/Processor.csproj
+        run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/processor/**/Processor.csproj
       - name: Test
-        run: dotnet test --no-restore --verbosity normal ./scripts/source/portal/processor/Processor.sln
+        run: dotnet test --no-restore --verbosity normal ${{ github.workspace }}/scripts/source/portal/processor/Processor.sln
   web: 
     runs-on: ubuntu-latest
     name: Build and Test Web Application
@@ -33,11 +33,11 @@ jobs:
         with:
           dotnet-version: '5.0.x'
       - name: Install dependencies
-        run: dotnet restore ./scripts/source/portal/web/**/*.csproj
+        run: dotnet restore ${{ github.workspace }}/scripts/source/portal/web/**/*.csproj
       - name: Build
-        run: dotnet build --configuration Release --no-restore ./scripts/source/portal/web/**/*.csproj
+        run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/web/**/*.csproj
       - name: Test
-        run: dotnet test --no-restore --verbosity normal ./scripts/source/portal/web/PortalWebApp.sln
+        run: dotnet test --no-restore --verbosity normal ${{ github.workspace }}/scripts/source/portal/web/PortalWebApp.sln
       
 
 
