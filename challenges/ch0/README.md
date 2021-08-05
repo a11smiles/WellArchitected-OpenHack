@@ -9,11 +9,13 @@ Any resemblance to actual scenarios, issues, or pain points that you are current
 ## Context
 Though it was once a very small community bank, Woodgrove Bank has experienced rapid growth throughout the past few decades. Their growth has resulted in launching market centers across multiple regions in the United States. Woodgrove Bank, because of its increased revenues and market reach, is now exploring expansion into other countries. In order to accomplish this goal, Woodgrove Bank realizes that some of the ways they conduct business today must change.
 
-Some of these new approaches rely on Woodgrove Bank transitioning their operations to the cloud. It was feasible&mdash;fiscally and operationally&mdash;to manage a hot-cold distribution of services across two data centers. But, as they grow the overall cost-value ratio has decreased considerably. Woodgrove Bank is convinced that moving the the cloud can help reduce these costs while continuing to increase value to its customers and the business.
+Some of these new approaches rely on Woodgrove Bank transitioning their operations to the cloud. Originally, it was feasible&mdash;fiscally and operationally&mdash;to manage a hot-cold distribution of services across two data centers. But, as they grow, the overall cost-value ratio has decreased considerably. Woodgrove Bank is convinced that moving to the cloud can help reduce these costs while continuing to increase value to its customers and the business.
 
 Woodgrove Bank is also looking a refreshing their internally-built applications. Most of these applications were built when the bank first launch and have only experienced ad-hoc, piecemeal upgrades. Architecturally, the bank recognizes that these updates have had detrimental impacts to their applications over time. The applications seem to have degraded in performance, are more vulnerable to security threats, and they are less reliable and require much more time and effort from the SRE team.
 
 The first application undergoing a rebuild is their primary customer portal and is owned by the _Customer Experience_ sector of the business. The customer portal traditionally has allowed customers to login and view balances, transfer money, pay bills, etc. The current redevelopment, however, is considered an MVP and only provides balance and transaction history. While some services may currently be unavailable in this release, Woodgrove Bank considers this acceptable as they wish to build correctly with a cloud-native approach against cloud services. They do not wish to build an on-premises architecture in a cloud environment. For the services that are lacking, customers may contact the bank directly. It is Woodgrove Bank's desire to quickly implement these features in their new application, but, again, they first want to ensure that they are adopting sound development practices.
+
+> NOTE: The database contains customer transactions for the past 10 years. However, the current implementation of the customer portal only shows the posted transactions for the _last 60 days_.
 
 Woodgrove Bank has a longstanding relationship with Microsoft and is a current enterprise customer with an established Enterprise Agreement. Your team is currently assigned to assist Woodgrove Bank with their cloud adoption efforts. You have been tasked to assess Woodgrove Bank's efforts in overall cloud adoption, and to specifically evaluate their primary web application.
 
@@ -56,8 +58,8 @@ As workloads are being transitioned to Azure, Woodgrove Bank has expressed the i
 * Application uptime should meet or exceed 99.99%
 * Business Continuity/Disaster Recovery (BCDR):
   * Implement a hot-hot, multi-region deployment
-  * RTO - 10 minutes
-  * RPO - 1 hour
+  * RPO - 10 minutes
+  * RTO - 1 hour
 
 Woodgrove Bank is concerned that their current cloud architecture may not support this, which is one reason they have reached out to Microsoft for its help. Any architectural decisions going forward should revolve around the above KPIs and their SLAs.
 
@@ -153,7 +155,7 @@ You can login to a fictitious customer's bank account using the following creden
 
 The _administrator_ credentials for the virtual machines are:
 * Username: **cloudadmin**
-* Password: **(Pass@word)1234!**
+* Password: **Pass@word1234!**
 
 ### Logging in to the database
 

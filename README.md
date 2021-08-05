@@ -18,8 +18,7 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
    - [Challenge 8: Tightening database security](challenges/ch8)
    - [Challenge 9: Capturing correlation data](challenges/ch9) -->
 5. Automation/Build Scripts
-6. Coach's Deck
-7. Coach's Guides
+6. Coach's Guides
    - [Challenge 1: Assess the environment](guides/challenges/ch1)  
    - [Challenge 2: Operationalize automated deployments](guides/challenges/ch2)
    - [Challenge 3: Planning for failure](guides/challenges/ch3)  
@@ -29,8 +28,12 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 <!--   - [Challenge 7: Optimizing the API](guides/challenges/ch7)
    - [Challenge 8: Tightening database security](guides/challenges/ch8)
    - [Challenge 9: Capturing correlation data](guides/challenges/ch9) -->
-8. [Success Matrix](guides/successMatrix.xlsx) (Excel)
-9. Tech Lead's Deck
+7. [Success Matrix](guides/successMatrix.xlsx) (Excel)
+8. PowerPoint Decks 
+   - [Coach Standup Deck](<guides/ppt/OpenHack_Virtual_Coach Standup_WAF.pptx>)
+   - [KBYG (Tech Lead) Deck](<guides/ppt/OpenHack_Virtual_KBYG.Coach Prep Deck_WAF.pptx>)
+   - [Opening Deck](<guides/ppt/OpenHack_Virtual_Opening Deck_WAF.pptx>)
+   - [Tech Scenario Coach/Attendee Deck](<guides/ppt/OpenHack_Tech Scenario_Attendee_Coach_Deck_WAF.pptx>)
 
 ## Directory Structure
 ```

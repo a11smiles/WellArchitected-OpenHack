@@ -1,5 +1,7 @@
 # Assess the environment
 
+Time Length: **4-5 hours**
+
 ## Reminders
 * Use an InPrivate/Incognito window in your browser to avoid any confusion with any other credentials that you may use to access Azure resources.
 * The credentials you need to access the Azure subscription assigned to your team are available on the _OpenHack Environment_ tab.
@@ -31,7 +33,7 @@ At all times, remember to make no assumptions and always keep the customer's goa
 Woodgrove Bank has the following requirements which you should take into consideration:
 * Microsoft should have a solid understanding of Woodgrove Bank's application and supporting infrastructure before proceeding. Woodgrove Bank is looking to Microsoft for guidance on properly assessing a given workload and re-architecting it as cloud-native. The Microsoft team should be prepared to clearly communicate and demonstrate, where necessary, any findings and make the proper recommendations.
 * Woodgrove Bank is aware of the upcoming changes in its operational model. What Woodgrove Bank does not understand is how to plan for the budgeting of resources. Woodgrove Bank's IT team needs Microsoft to show how to report current costs and run analysis on specific workloads. Because Woodgrove Bank would like to charge workloads back to their respective cost centers, Woodgrove Bank would like to know how to report on all workloads belonging to any given department.
-* As the IT and development teams work together to introduce new technologies, the IT team needs to understand what the potential costs are for a given product and its SKU. The Microsoft team should demonstrate how to calculate a 
+* As the IT and development teams work together to introduce new technologies, the IT team needs to understand what the potential costs are for a given product and its SKU. The Microsoft team should demonstrate how to calculate a budget for future workloads.
 * The security and operations teams require that the recommended cloud adoption plan should adhere to a _least-privilege_ policy and that no non-domain user has access to the Azure environment. Additionally, securing these resources should conducted via role-based access control and managing the privileges should simplified where possible. 
 * The application in its current state is considered "MVP" (minimum viable product) based on a legacy, previously-used web application. There will be additional components and services added to the application in the coming months. With the introduction (or reintroduction) of those components along with business expansion, it is expected that load will increase dramatically. IT and development teams need recommendations from Microsoft for performance improvements to the application that would allow it to scale appropriately.
 * Any implementation should meet or exceed Woodgrove Bank's SLA requirements.
@@ -40,14 +42,16 @@ Woodgrove Bank has the following requirements which you should take into conside
 ### Network
 Woodgrove Bank has attempted to implement an infrastructure that is somewhat identical to their on-premises implementations for web applications while ensure that there is no CIDR overlap. All resources are on a single virtual network and exist in the same resource group.
 
-* Resource Group: **rg-eastus-portal**
-* The virtual network called **vnet-eastus-portal** has the following attributes:
+* Resource Group: **webapp**
+* The virtual network called **vnet-webapp** has the following attributes:
   * Address space: **10.10.0.0/16**
-  * Subnets (only one): 
-    * Public: **10.10.0.1/24**
+  * Subnets: 
+    * dmz: **10.10.0.0/28**
+    * jobs: **10.10.0.16/28**
+    * sql: **10.10.0.32/27**
 
 ### Performance Tests
-To run performance tests, you can leverage <a href="https://k6.io" target="_blank">k6</a>. A heavily-documented sample script along with basic instructions can be found in the <a href="https://github.com/Azure/WellArchitected-Tools/tree/main/Perf/k6" target="_blank">Well-Architected Framework Tools</a> repo. 
+To run performance tests, you can leverage <a href="https://k6.io" target="_blank">k6</a>. A heavily-documented sample script along with basic instructions can be found in the <a href="https://github.com/Azure/WellArchitected-Tools/tree/main/Perf/k6" target="_blank">Well-Architected Framework Tools</a> repo. All you need to do is update the URLs in the script and execute it against the Woodgrove Bank application endpoints.
 
 Note that k6 is not required and you may use any other tool you prefer, but you must be able to demonstrate adequate knowledge of the test results.
 

@@ -1,5 +1,7 @@
 # Capturing correlation data
 
+Time Length: **1-2 hours**
+
 ## Reminders
 
 

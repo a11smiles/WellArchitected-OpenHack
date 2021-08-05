@@ -18,7 +18,7 @@
   <ItemGroup>
     <None Update="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
     <None Update="appsettings.Development.json" CopyToOutputDirectory="PreserveNewest" />
-    <None Update="appsettings.Local.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="appsettings.Local.json" Condition="'$(Configuration)' != 'Release'" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

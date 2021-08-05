@@ -25,15 +25,16 @@ namespace Portal.Api.Controllers
         [HttpGet]
         public List<Transaction> Get([FromQuery] string id, [FromQuery] string acct)
         {
-            var xtns = _context.Transactions.Where(t => t.Account.UserId == new Guid(id) && t.AccountId == new Guid(acct)).Select(x => 
-                            new Transaction {
-                                Id = x.Id,
-                                XtnDate = x.XtnDate,
-                                Description = x.Description,
-                                XtnType = x.XtnType,
-                                Amount = x.Amount,
-                                PostedBalance = x.PostedBalance
-                            }).ToList();
+            var xtns = _context.Transactions.Where(t => t.Account.UserId == new Guid(id) && t.AccountId == new Guid(acct))
+                                            .Select(x => 
+                                                new Transaction {
+                                                    Id = x.Id,
+                                                    XtnDate = x.XtnDate,
+                                                    Description = x.Description,
+                                                    XtnType = x.XtnType,
+                                                    Amount = x.Amount,
+                                                    PostedBalance = x.PostedBalance
+                                                }).ToList();
 
             return xtns;
         }

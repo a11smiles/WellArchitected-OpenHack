@@ -2,6 +2,7 @@
 
 # Temporary Office files
 ~$*.*
+Thumbs.db
 
 # generated ARM templates
 scripts/source/bicep/**/*.json

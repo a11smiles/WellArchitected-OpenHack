@@ -55,8 +55,8 @@ resource web1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
   }
 }
 
-resource web1vmIIS 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
-  name: 'web1/InstallWebServer'
+resource web1vmFiles 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
+  name: 'web1/DownloadWebFiles'
   location: region
   dependsOn: [
     web1vm
@@ -67,8 +67,29 @@ resource web1vmIIS 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
     typeHandlerVersion: '1.7'
     autoUpgradeMinorVersion: true
     settings: {
-      commandToExecute: 'powershell.exe Install-WindowsFeature -name Web-Server -IncludeManagementTools && powershell.exe remove-item \'C:\\inetpub\\wwwroot\\iisstart.htm\' && powershell.exe Add-Content -Path \'C:\\inetpub\\wwwroot\\iisstart.htm\' -Value $(\'Hello World from \' + $env:computername)'
+      commandToExecute: 'powershell.exe Invoke-WebRequest -Uri \'https://raw.githubusercontent.com/a11smiles/waf-oh-dsc/main/Portal.Web.zip\' -OutFile Portal.Web.zip && powershell Invoke-WebRequest -Uri \'https://raw.githubusercontent.com/a11smiles/waf-oh-dsc/main/Portal.Api.zip\' -OutFile Portal.Api.zip && powershell Expand-Archive -Path Portal.Web.zip -DestinationPath \'D:\\web\' && powershell Expand-Archive -Path Portal.Api.zip -DestinationPath \'D:\\api\''
     }
+  }
+}
+
+resource web1vmIIS 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
+  name: 'web1/InstallWebServer'
+  location: region
+  dependsOn: [
+    web1vm
+    web1vmFiles
+  ]
+  properties: {
+    publisher: 'Microsoft.Powershell'
+    type: 'DSC'
+    typeHandlerVersion: '2.19'
+    autoUpgradeMinorVersion: true
+    settings: {
+      ConfigurationFunction: 'WindowsWebServer.ps1\\WindowsWebServer'
+      ModulesUrl: 'https://raw.githubusercontent.com/a11smiles/waf-oh-dsc/main/DSC/WindowsWebServer.zip'
+      Properties: {}
+    }
+    protectedSettings: {}
   }
 }
 
@@ -117,11 +138,11 @@ resource web2vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
   }
 }
 
-resource web2vmIIS 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
-  name: 'web2/InstallWebServer'
+resource web2vmFiles 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
+  name: 'web2/DownloadWebFiles'
   location: region
   dependsOn: [
-    web2vm
+    web1vm
   ]
   properties: {
     publisher: 'Microsoft.Compute'
@@ -129,8 +150,29 @@ resource web2vmIIS 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
     typeHandlerVersion: '1.7'
     autoUpgradeMinorVersion: true
     settings: {
-      commandToExecute: 'powershell.exe Install-WindowsFeature -name Web-Server -IncludeManagementTools && powershell.exe remove-item \'C:\\inetpub\\wwwroot\\iisstart.htm\' && powershell.exe Add-Content -Path \'C:\\inetpub\\wwwroot\\iisstart.htm\' -Value $(\'Hello World from \' + $env:computername)'
+      commandToExecute: 'powershell.exe Invoke-WebRequest -Uri \'https://raw.githubusercontent.com/a11smiles/waf-oh-dsc/main/Portal.Web.zip\' -OutFile Portal.Web.zip && powershell Invoke-WebRequest -Uri \'https://raw.githubusercontent.com/a11smiles/waf-oh-dsc/main/Portal.Api.zip\' -OutFile Portal.Api.zip && powershell Expand-Archive -Path Portal.Web.zip -DestinationPath \'D:\\web\' && powershell Expand-Archive -Path Portal.Api.zip -DestinationPath \'D:\\api\''
     }
+  }
+}
+
+resource web2vmIIS 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
+  name: 'web2/InstallWebServer'
+  location: region
+  dependsOn: [
+    web2vm
+    web2vmFiles
+  ]
+  properties: {
+    publisher: 'Microsoft.Powershell'
+    type: 'DSC'
+    typeHandlerVersion: '2.19'
+    autoUpgradeMinorVersion: true
+    settings: {
+      ConfigurationFunction: 'WindowsWebServer.ps1\\WindowsWebServer'
+      ModulesUrl: 'https://raw.githubusercontent.com/a11smiles/waf-oh-dsc/main/DSC/WindowsWebServer.zip'
+      Properties: {}
+    }
+    protectedSettings: {}
   }
 }
 
@@ -179,7 +221,45 @@ resource worker1vm 'Microsoft.Compute/virtualMachines@2020-12-01' = {
   }
 }
 
- resource sqlsvr1vmDataDisk0 'Microsoft.Compute/disks@2020-12-01' = {
+resource worker1vmFiles 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
+  name: 'worker1/DownloadWebFiles'
+  location: region
+  dependsOn: [
+    web1vm
+  ]
+  properties: {
+    publisher: 'Microsoft.Compute'
+    type: 'CustomScriptExtension'
+    typeHandlerVersion: '1.7'
+    autoUpgradeMinorVersion: true
+    settings: {
+      commandToExecute: 'powershell.exe Invoke-WebRequest -Uri \'https://raw.githubusercontent.com/a11smiles/waf-oh-dsc/main/Processor.zip\' -OutFile Processor.zip && powershell Expand-Archive -Path Processor.zip -DestinationPath \'D:\\jobs\''
+    }
+  }
+}
+
+resource worker1vmTasks 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
+  name: 'worker1/CreateScheduledTasks'
+  location: region
+  dependsOn: [
+    worker1vm
+    worker1vmFiles
+  ]
+  properties: {
+    publisher: 'Microsoft.Powershell'
+    type: 'DSC'
+    typeHandlerVersion: '2.19'
+    autoUpgradeMinorVersion: true
+    settings: {
+      ConfigurationFunction: 'WorkerServer.ps1\\WorkerServer'
+      ModulesUrl: 'https://raw.githubusercontent.com/a11smiles/waf-oh-dsc/main/DSC/WorkerServer.zip'
+      Properties: {}
+    }
+    protectedSettings: {}
+  }
+}
+
+resource sqlsvr1vmDataDisk0 'Microsoft.Compute/disks@2020-12-01' = {
   name: 'sqlsvr1_DataDisk_0'
   location: region
   sku: {
@@ -333,6 +413,49 @@ resource sqlsvr1sql 'Microsoft.SqlVirtualMachine/sqlVirtualMachines@2017-03-01-p
       }
       additionalFeaturesServerConfigurations: {
         isRServicesEnabled: false
+      }
+    }
+  }
+}
+
+resource sqlsvr1sqlDatabase 'Microsoft.Compute/virtualMachines/extensions@2020-12-01' = {
+  name: 'sqlsvr1/CreateDatabase'
+  location: region
+  dependsOn: [
+    sqlsvr1vm
+  ]
+  properties: {
+    publisher: 'Microsoft.Powershell'
+    type: 'DSC'
+    typeHandlerVersion: '2.19'
+    autoUpgradeMinorVersion: true
+    settings: {
+      ConfigurationFunction: 'SqlServer.ps1\\SqlServer'
+      ModulesUrl: 'https://raw.githubusercontent.com/a11smiles/waf-oh-dsc/main/DSC/SqlServer.zip'
+      ConfigurationData: 'https://raw.githubusercontent.com/a11smiles/waf-oh-dsc/main/DSC/ConfigurationData.psd1'
+      Properties: [
+        {
+          Name: 'ServerCredential'
+          Value: {
+            Username: adminUsername
+            Password: 'PrivateSettingsRef:ServerPassword'
+          }
+          TypeName: 'System.Management.Automation.PSCredential'
+        }
+        {
+          Name: 'DatabaseCredential'
+          Value: {
+            Username: 'webapp'
+            Password: 'PrivateSettingsRef:DatabasePassword'
+          }
+          TypeName: 'System.Management.Automation.PSCredential'
+        }
+      ]
+    }
+    protectedSettings: {
+      Items: {
+        ServerPassword: adminPassword
+        DatabasePassword: 'S0m3R@ndomW0rd$'
       }
     }
   }

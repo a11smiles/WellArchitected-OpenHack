@@ -1,0 +1,56 @@
+name: Build and Deploy Artifacts
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  processor: 
+    runs-on: ubuntu-latest
+    name: Build and Test Processor
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: '5.0.x'
+      - name: Install dependencies
+        run: dotnet restore ./scripts/source/portal/processor/**/*.csproj
+      - name: Build
+        run: dotnet build --configuration Release --no-restore ./scripts/source/portal/processor/**/Processor.csproj
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal ./scripts/source/portal/processor/Processor.sln
+  web: 
+    runs-on: ubuntu-latest
+    name: Build and Test Web Application
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: '5.0.x'
+      - name: Install dependencies
+        run: dotnet restore ./scripts/source/portal/web/**/*.csproj
+      - name: Build
+        run: dotnet build --configuration Release --no-restore ./scripts/source/portal/web/**/*.csproj
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal ./scripts/source/portal/web/PortalWebApp.sln
+      
+
+
+# Build and test Processor
+
+# Build and test Web
+
+# Build and test Bicep
+
+# If all passes...
+  # Check-out `main` repo for OpenHack
+  # Copy challenges and guides to repo and check-in
+  # Check-out `main` repo for Opsgility
+  # Copy Deployment Guide, Deploy and Source folders to repo and check-in
+  # Check-out "public" `main` repo
+  # Copy all DSC to repo and check-in

@@ -8,7 +8,7 @@ param worker1vmDnslabel string
 param sqlsvr1vmDnslabel string
 param elbDnsLabel string
 
-resource vnet 'Microsoft.Network/virtualNetworks@2020-05-01' = {
+resource vnet 'Microsoft.Network/virtualNetworks@2020-11-01' = {
   name: vnetName
   location: region
   properties: {
@@ -22,18 +22,24 @@ resource vnet 'Microsoft.Network/virtualNetworks@2020-05-01' = {
         name: 'dmz'
         properties: {
           addressPrefix: '10.10.0.0/28'
+          privateEndpointNetworkPolicies: 'Enabled'
+          privateLinkServiceNetworkPolicies: 'Enabled'
         }
       }
       {
         name: 'jobs'
         properties: {
           addressPrefix: '10.10.0.16/28'
+          privateEndpointNetworkPolicies: 'Enabled'
+          privateLinkServiceNetworkPolicies: 'Enabled'
         }
       }
       {
         name: 'sql'
         properties: {
           addressPrefix: '10.10.0.32/27'
+          privateEndpointNetworkPolicies: 'Enabled'
+          privateLinkServiceNetworkPolicies: 'Enabled'
         }
       }
     ]
@@ -78,13 +84,14 @@ resource web1vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   }
 }
 
-resource web1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
+resource web1vmNic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
   name: 'web1nic'
   location: region
   properties: {
     networkSecurityGroup: {
       id: nsg.id
     }
+    vnetEncryptionSupported: false
     ipConfigurations: [
       {
         name: 'ipconfig1'
@@ -94,6 +101,7 @@ resource web1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
           }
           privateIPAddress: '10.10.0.4'
           privateIPAllocationMethod: 'Static'
+          privateIPAddressVersion: 'IPv4'
           publicIPAddress: {
             id: web1vmPIP.id
           }
@@ -119,13 +127,14 @@ resource web2vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   }
 }
 
-resource web2vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
+resource web2vmNic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
   name: 'web2nic'
   location: region
   properties: {
     networkSecurityGroup: {
       id: nsg.id
     }
+    vnetEncryptionSupported: false
     ipConfigurations: [
       {
         name: 'ipconfig1'
@@ -135,6 +144,7 @@ resource web2vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
           }
           privateIPAddress: '10.10.0.5'
           privateIPAllocationMethod: 'Static'
+          privateIPAddressVersion: 'IPv4'
           publicIPAddress: {
             id: web2vmPIP.id
           }
@@ -160,13 +170,14 @@ resource worker1vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   }
 }
 
-resource worker1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
+resource worker1vmNic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
   name: 'worker1nic'
   location: region
   properties: {
     networkSecurityGroup: {
       id: nsg.id
     }
+    vnetEncryptionSupported: false
     ipConfigurations: [
       {
         name: 'ipconfig1'
@@ -175,6 +186,8 @@ resource worker1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
             id: '${vnet.id}/subnets/jobs'
           }
           privateIPAddress: '10.10.0.20'
+          privateIPAllocationMethod: 'Static'
+          privateIPAddressVersion: 'IPv4'
           publicIPAddress: {
             id: worker1vmPIP.id
           }
@@ -200,13 +213,14 @@ resource sqlsvr1vmPIP 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   }
 }
 
-resource sqlsvr1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
+resource sqlsvr1vmNic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
   name: 'sqlsvr1nic'
   location: region
   properties: {
     networkSecurityGroup: {
       id: nsg.id
     }
+    vnetEncryptionSupported: false
     ipConfigurations: [
       {
         name: 'ipconfig1'
@@ -215,6 +229,8 @@ resource sqlsvr1vmNic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
             id: '${vnet.id}/subnets/sql'
           }
           privateIPAddress: '10.10.0.36'
+          privateIPAllocationMethod: 'Static'
+          privateIPAddressVersion: 'IPv4'
           publicIPAddress: {
             id: sqlsvr1vmPIP.id
           }
@@ -273,6 +289,8 @@ resource elb 'Microsoft.Network/loadBalancers@2020-11-01' = {
           }
           frontendPort: 80
           backendPort: 80
+          allowBackendPortConflict: false
+          enableDestinationServiceEndpoint: false
           enableFloatingIP: false
           idleTimeoutInMinutes: 4
           protocol: 'Tcp'
@@ -304,7 +322,7 @@ resource elb 'Microsoft.Network/loadBalancers@2020-11-01' = {
 }
 
 resource elbBackendPool 'Microsoft.Network/loadBalancers/backendAddressPools@2020-11-01' = {
-  name: concat(elbName, '/webapp')
+  name: '${elbName}/webapp'
   dependsOn: [
     elb
   ]

@@ -14,5 +14,5 @@
 * This challenge should engage both developers and infrastructure architects as it requires a mixture of DevOps and ARM. If the team appears overwhelmed, encourage the team to split up and prioritize the requirements so that they can work in parallel.
 
 ## References
-* <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes" target="_blank">ARM deployment modes</a>
+* <a href="https://docs.microsoft.com/azure/azure-resource-manager/templates/deployment-modes" target="_blank">ARM deployment modes</a>
 * <a href="https://docs.microsoft.com/azure/azure-resource-manager/templates/bicep-tutorial-add-parameters?tabs=azure-powershell#customize-by-environment" target="_blank">Using `@allowed` in Azure Bicep parameters

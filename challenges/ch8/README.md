@@ -1,5 +1,7 @@
 # Tightening database security
 
+Time Length: **1 hour**
+
 ## Reminders
 
 
