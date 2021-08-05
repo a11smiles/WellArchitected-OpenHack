@@ -3,7 +3,8 @@ name: Build Artifacts (CI)
 on:
   push:
     branches:
-      - !main
+      - '*'
+      - '!main'
 
 jobs:
   processor: 
