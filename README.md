@@ -18,6 +18,7 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
    - [Challenge 8: Tightening database security](challenges/ch8)
    - [Challenge 9: Capturing correlation data](challenges/ch9) -->
 5. Automation/Build Scripts
+   - [Deployment Guide](docs/deployment.md)
 6. Coach's Guides
    - [Challenge 1: Assess the environment](guides/challenges/ch1)  
    - [Challenge 2: Operationalize automated deployments](guides/challenges/ch2)

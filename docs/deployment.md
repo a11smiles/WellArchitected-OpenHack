@@ -1,6 +1,8 @@
 # Deployment Guide
 This deployment guide will assist you in deploying the required resources and artifacts for the Microsoft Azure Well-Architected OpenHack.
 
+> Total deployment time may take **15-20 minutes** for provisioning Azure resources.
+
 ## Prerequisites
 * Azure DevOps Organization/Tenant (the script will create the necessary projects and upload the artifacts)
 * Azure subscription
@@ -25,7 +27,7 @@ The deployment script **requires** the following five parameters.
 2. Retrieve your Azure DevOps PAT (see above)
 3. If necessary, create a target Azure subscription
 4. Generate an Azure AUTH file (see above)
-5. Run the command below (it may take 15-20 minutes)
+5. Run the command below
 
 Assuming you are currently in the `/scripts/tools/Deploy` folder:  
 
