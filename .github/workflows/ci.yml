@@ -17,9 +17,9 @@ jobs:
         with:
           dotnet-version: '5.0.x'
       - name: Install dependencies
-        steps:
-          - run: dotnet restore ${{ github.workspace }}/scripts/source/portal/processor/src/Processor/Processor.csproj
-          - run: dotnet restore ${{ github.workspace }}/scripts/source/portal/processor/test/Processor.Tests/Processor.Tests.csproj
+        run: |
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/processor/src/Processor/Processor.csproj
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/processor/test/Processor.Tests/Processor.Tests.csproj
       - name: Build
         run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/processor/Processor.sln
       - name: Test
@@ -35,13 +35,13 @@ jobs:
         with:
           dotnet-version: '5.0.x'
       - name: Install dependencies
-        steps:
-          - run: dotnet restore ${{ github.workspace }}/scripts/source/portal/web/src/Portal.Api/Portal.Api.csproj
-          - run: dotnet restore ${{ github.workspace }}/scripts/source/portal/web/src/Portal.Data/Portal.Data.csproj
-          - run: dotnet restore ${{ github.workspace }}/scripts/source/portal/web/src/Portal.Web/Portal.Web.csproj
-          - run: dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Api.Tests/Portal.Api.Tests.csproj
-          - run: dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Data.Tests/Portal.Data.Tests.csproj
-          - run: dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Web.Tests/Portal.Web.Tests.csproj
+        run: |
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/web/src/Portal.Api/Portal.Api.csproj
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/web/src/Portal.Data/Portal.Data.csproj
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/web/src/Portal.Web/Portal.Web.csproj
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Api.Tests/Portal.Api.Tests.csproj
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Data.Tests/Portal.Data.Tests.csproj
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Web.Tests/Portal.Web.Tests.csproj
       - name: Build
         run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/web/PortalWebApp.sln
       - name: Test
