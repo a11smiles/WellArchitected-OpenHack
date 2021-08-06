@@ -1,9 +1,9 @@
-name: Build and Deploy Artifacts
+name: Build and Deploy Artifacts (Main)
 
 on:
   push:
     branches:
-      - !main
+      - main
 
 jobs:
   processor: 
