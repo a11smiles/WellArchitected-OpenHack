@@ -47,19 +47,17 @@ jobs:
         run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/web/PortalWebApp.sln
       - name: Test
         run: dotnet test --no-restore --verbosity normal ${{ github.workspace }}/scripts/source/portal/web/PortalWebApp.sln
-      
-
-
-# Build and test Processor
-
-# Build and test Web
-
-# Build and test Bicep
-
-# If all passes...
-  # Check-out `main` repo for OpenHack
-  # Copy challenges and guides to repo and check-in
-  # Check-out `main` repo for Opsgility
-  # Copy Deployment Guide, Deploy and Source folders to repo and check-in
-  # Check-out "public" `main` repo
-  # Copy all DSC to repo and check-in
+  bicep: 
+    runs-on: ubuntu-latest
+    name: Build ARM Templates
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Install Azure Bicep
+        run: |
+          curl -Lo bicep.bin https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+          chmod +x ./bicep.bin 
+      - name: Install Azure Bicep
+        run: |
+          bicep build main.bicep --outdir ${{ github.workspace }}/output
+          cp deploymentParameters.json ${{ github.workspace }}/output
