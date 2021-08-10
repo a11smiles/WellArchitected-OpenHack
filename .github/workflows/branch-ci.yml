@@ -59,6 +59,5 @@ jobs:
           chmod +x ./bicep.bin 
       - name: Build ARM Template
         run: |
-          mkdir ${{ github.workspace }}/output
-          bicep build --outdir ${{ github.workspace }}/output main.bicep
-          cp deploymentParameters.json ${{ github.workspace }}/output
+          bicep build --outdir ${{ github.workspace }}/scripts/source/bicep/output ${{ github.workspace }}/scripts/source/bicep/main.bicep
+          cp ${{ github.workspace }}/scripts/source/bicep/deploymentParameters.json ${{ github.workspace }}/scripts/source/bicep/
