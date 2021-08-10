@@ -57,7 +57,8 @@ jobs:
         run: |
           curl -Lo bicep.bin https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
           chmod +x ./bicep.bin 
-      - name: Install Azure Bicep
+      - name: Build ARM Template
         run: |
+          mkdir ${{ github.workspace }}/output
           bicep build main.bicep --outdir ${{ github.workspace }}/output
           cp deploymentParameters.json ${{ github.workspace }}/output
