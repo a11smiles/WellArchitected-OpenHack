@@ -60,5 +60,5 @@ jobs:
       - name: Build ARM Template
         run: |
           mkdir ${{ github.workspace }}/output
-          bicep build main.bicep --outdir ${{ github.workspace }}/output
+          bicep build --outdir ${{ github.workspace }}/output main.bicep
           cp deploymentParameters.json ${{ github.workspace }}/output
