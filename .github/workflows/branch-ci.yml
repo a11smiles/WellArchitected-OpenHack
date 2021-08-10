@@ -7,7 +7,7 @@ on:
       - '!main'
 
 jobs:
-  processor: 
+  processor-test: 
     runs-on: ubuntu-latest
     name: Build and Test Processor
     steps:
@@ -25,7 +25,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/processor/Processor.sln
       - name: Test
         run: dotnet test --no-restore --verbosity normal ${{ github.workspace }}/scripts/source/portal/processor/Processor.sln
-  web: 
+  web-test: 
     runs-on: ubuntu-latest
     name: Build and Test Web Application
     steps:
@@ -47,7 +47,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/web/PortalWebApp.sln
       - name: Test
         run: dotnet test --no-restore --verbosity normal ${{ github.workspace }}/scripts/source/portal/web/PortalWebApp.sln
-  bicep: 
+  bicep-test: 
     runs-on: ubuntu-latest
     name: Build ARM Templates
     steps:

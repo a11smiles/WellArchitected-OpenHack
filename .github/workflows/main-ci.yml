@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  processor: 
+  processor-test: 
     runs-on: ubuntu-latest
     name: Build and Test Processor
     steps:
@@ -24,7 +24,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/processor/Processor.sln
       - name: Test
         run: dotnet test --no-restore --verbosity normal ${{ github.workspace }}/scripts/source/portal/processor/Processor.sln
-  web: 
+  web-test: 
     runs-on: ubuntu-latest
     name: Build and Test Web Application
     steps:
@@ -46,7 +46,21 @@ jobs:
         run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/web/PortalWebApp.sln
       - name: Test
         run: dotnet test --no-restore --verbosity normal ${{ github.workspace }}/scripts/source/portal/web/PortalWebApp.sln
-
+  bicep-test: 
+    runs-on: ubuntu-latest
+    name: Build ARM Templates
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Install Azure Bicep
+        run: |
+          curl -Lo bicep.bin https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+          chmod +x ./bicep.bin 
+      - name: Build ARM Template
+        run: |
+          mkdir ${{ github.workspace }}/scripts/source/bicep/output
+          bicep build --outdir ${{ github.workspace }}/scripts/source/bicep/output ${{ github.workspace }}/scripts/source/bicep/main.bicep
+          cp ${{ github.workspace }}/scripts/source/bicep/deploymentParameters.json ${{ github.workspace }}/scripts/source/bicep/output
 
 # Build and test Processor
 
