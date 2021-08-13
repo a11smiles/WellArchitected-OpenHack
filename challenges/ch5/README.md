@@ -46,7 +46,7 @@ Hopefully, your changes have improved the environment. If not, revert back. Howe
 Unfortunately, this is a scenario where the customer "doesn't know what they don't know." Woodgrove Bank has very little in terms of concrete requirements. However, as they become more familiar with the Microsoft Well-Architected Framework, they are seeking answers to the following questions in order to improve on their understanding:
 
 * Did we choose the right virtual machines and configure them correctly?
-* Is our cloud environment, including the Azure tenant, all application components and underlying hardware, tightly secured? 
+* Is our cloud environment, including the Azure tenant, all application components and underlying hardware, tightly secured?
 * How can we improve our visibility of the application's inner-workings?
 * Is there a way to add alerts when the application ceases to respond?
 * How can we improve the application's reliability and performance?
