@@ -198,7 +198,7 @@ jobs:
           uses: EndBug/add-and-commit@v7
           with:
             cwd: 'target'
-            message: $ {{ github.event.head_commit.message }}
+            message: ${{ github.event.head_commit.message }}
             default_author: user_info
 
 
