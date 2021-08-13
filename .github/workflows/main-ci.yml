@@ -158,7 +158,7 @@ jobs:
         - name: Checkout target
           uses: actions/checkout@v2
           with:
-            repository: Microsoft-OpenHacks/well-architected-framework
+            repository: Microsoft-OpenHack/well-architected-framework
             token: ${{ secrets.MICROSOFT_REPOS_KEY }}
             ref: main
             path: target
