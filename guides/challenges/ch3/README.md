@@ -1,4 +1,5 @@
 # Guide: Planning for failure
+
 ## Success Criteria
 
 * A process for alerting and notifications should be documented. There is not necessarily a specific format that the team should use. However, it is imperative that the team has a documented approach that identifies events, their criticality and business impact, responsibilities, and remediation actions, including who should be notified and the pertinent information that should be provided to them.
@@ -15,7 +16,8 @@
 * The team may also consider enabling Network Monitor to monitor and better understand traffic on the network.
 * A BCDR strategy must be documented by the team and each team member should be aware of the selected strategy. They must communicate this strategy to you and demonstrate their technical knowledge. The team should be able to communicate areas of traffic distribution and data backup and replication. The strategy must meet or exceed Woodgrove Bank's RPO and RTO goals.
 * A second region (US West) should be deployed with the same resources as currently in US East. The two regions should be configured with load balancing to ensure maximum uptime and to meet Woodgrove Bank's SLA of 99.99%.
-* A RACI chart should be created to identify the components in the architecture, their impact to the success of the application, and who/which teams at Woodgrove Bank is/are responsible should they become unavailable. 
+* A RACI chart should be created to identify the components in the architecture, their impact to the success of the application, and who/which teams at Woodgrove Bank is/are responsible should they become unavailable.
+
 ## Hints/Suggestions
 
 * In addition to injecting logs into the Log Analytics workspace, the team should have logs being stored in _cold_ storage for no time period less than 7 years. (Azure Log Analytics only stores logs for up to 2 years. Additionally, cold storage will minimize costs.)

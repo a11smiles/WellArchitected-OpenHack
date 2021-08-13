@@ -31,7 +31,7 @@ There are many ways the team can improve Woodgrove Bank's environment. The below
 * This challenge, by far, will be the most intensive and time-consuming. The entire team must be engaged to accomplish all of the potential changes. You as the coach should be actively participating to ensure that the team continues to progress.
 * The team may want to consider creating fictitious Azure AD groups that correspond the the Woodgrove Bank teams they identified for the RACI matrix. This will allow them to assign appropriate RBAC policies across the environment.
 * The team will need to add the `<placeholder>` IIS App Pool identity to the `Performance Monitor Users` permission group so that Application Insights has access to the virtual machine's performance counters.
-* The NSG on the web servers should only allow access across the public network on ports 80 (HTTP) and 443 (HTTPS). The private network should only allow access through port 1433 (SQL). RDP (port 369) should only be allowed to certain IP addresses on both networks (and/or use Azure Bastion). 
+* The NSG on the web servers should only allow access across the public network on ports 80 (HTTP) and 443 (HTTPS). The private network should only allow access through port 1433 (SQL). RDP (port 369) should only be allowed to certain IP addresses on both networks (and/or use Azure Bastion).
 
 ## References
 

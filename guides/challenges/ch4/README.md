@@ -8,6 +8,7 @@
 * The dashboards should auto-fresh at intervals no greater than 10 seconds.
 * The team should successfully present an approach for storing and querying operational data from on-premises resources. 
 * Permissions need to be configured in Grafana to allow some users to edit dashboards and others to only view them.
+
 ## Hints/Suggestions
 
 * In order for different dashboards to automatically cycle through, the team will need to create what's called a "stack" (or folder) of the dashboards in Grafana. 
@@ -16,7 +17,9 @@
 > NOTE: InfluxDB also has a free account, or a subscription can be established for an InfluxDB account via an Azure subscription.
 
 * Grafana manages group permissions by creating "teams" and assigning appropriate permissions, and the respective users, to them.
+
 ## References
+
 * <a href="https://www.influxdata.com/time-series-database/" target="_blank">Time series database (TSDB) explained</a>
 * <a href="https://www.influxdata.com/products/influxdb-cloud/" target="_blank">InfluxDB Cloud</a>
 * <a href="https://grafana.com/docs/grafana/latest/datasources/loki/" target="_blank">Using Loki in Grafana</a>
