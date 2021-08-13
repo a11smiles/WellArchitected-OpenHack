@@ -30,7 +30,6 @@ jobs:
           # files, directories, or globs
           files: ./challenges/**/*.md
 
-      # Lint all open-hack markdown
       - name: 'Linting OpenHack Coach Content'
         uses: nosborn/github-action-markdown-cli@v1.1.1
         with:
