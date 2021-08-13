@@ -160,6 +160,7 @@ jobs:
           with:
             repository: Microsoft-OpenHacks/well-architected-framework
             token: ${{ secrets.MICROSOFT_REPOS_KEY }}
+            ref: main
             path: target
 
         # Copy participant content to target
