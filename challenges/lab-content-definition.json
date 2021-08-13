@@ -1,0 +1,72 @@
+{
+    "Title": "OpenHack - Microsoft Azure Well-Architected Framework",
+    "Description" : "OpenHack challenges for validating one's understanding of the Microsoft Azure Well--Architected Framework",
+    "OverviewUrl" : "Challenge0.html",
+    "ContentVersion": "1.0",
+    "ContentPackage": {
+      "ContentItems": [
+        {
+          "Order": 1,
+          "Title": "Challenge 1: Assess the environment",
+          "Description": "Assess the environment",
+          "Url": "Challenge1.html"
+        },
+        {
+          "Order": 2,
+          "Follows": 1,
+          "Title": "Challenge 2: Operationalize automated deployments",
+          "Description": "Operationalize automated deployments",
+          "Url": "Challenge2.html"
+        },
+        {
+          "Order": 3,
+          "Follows": 2,
+          "Title": "Challenge 3: Planning for failure",
+          "Description": "Planning for failure",
+          "Url": "Challenge3.html"
+        },
+        {
+          "Order": 4,
+          "Follows": 3,
+          "Title": "Challenge 4: Visualizing operations",
+          "Description": "Visualizing operations",
+          "Url": "Challenge4.html"
+        },
+        {
+          "Order": 5,
+          "Follows": 4,
+          "Title": "Challenge 5: Improve the environment",
+          "Description": "Improve the environment",
+          "Url": "Challenge5.html"
+        },
+        {
+          "Order": 6,
+          "Follows": 5,
+          "Title": "Challenge 6: Leveraging PaaS services",
+          "Description": "Leveraging PaaS services",
+          "Url": "Challenge6.html"
+        },
+        {
+          "Order": 7,
+          "Follows": 6,
+          "Title": "Challenge 7: Optimizing the API",
+          "Description": "Optimizing the API",
+          "Url": "Challenge7.html"
+        },
+        {
+          "Order": 8,
+          "Follows": 7,
+          "Title": "Challenge 8: Tightening database security",
+          "Description": "Tightening database security",
+          "Url": "Challenge8.html"
+        },
+        {
+          "Order": 9,
+          "Follows": 8,
+          "Title": "Challenge 9: Capturing correlation data",
+          "Description": "Capturing correlation data",
+          "Url": "Challenge9.html"
+        }
+      ]
+    }
+  }

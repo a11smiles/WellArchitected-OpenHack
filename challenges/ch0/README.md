@@ -7,6 +7,7 @@ Any resemblance to actual scenarios, issues, or pain points that you are current
 > **IMPORTANT:** This OpenHack is intended to be difficult and will require an extremely large amount of energy from _all_ team members if you expect to succeed. It is encouraged that an assessment of each team member's strengths and weaknesses is made at the commencement of your event and that the requirements of each challenge is delegated based upon that assessment. It it highly encouraged that the members of the team work as efficiently as possible to complete each challenge in a timely manner. This OpenHack will require _every_ team member to give their full, undivided commitment.
 
 ## Context
+
 Though it was once a very small community bank, Woodgrove Bank has experienced rapid growth throughout the past few decades. Their growth has resulted in launching market centers across multiple regions in the United States. Woodgrove Bank, because of its increased revenues and market reach, is now exploring expansion into other countries. In order to accomplish this goal, Woodgrove Bank realizes that some of the ways they conduct business today must change.
 
 Some of these new approaches rely on Woodgrove Bank transitioning their operations to the cloud. Originally, it was feasible&mdash;fiscally and operationally&mdash;to manage a hot-cold distribution of services across two data centers. But, as they grow, the overall cost-value ratio has decreased considerably. Woodgrove Bank is convinced that moving to the cloud can help reduce these costs while continuing to increase value to its customers and the business.
@@ -30,10 +31,9 @@ Business drivers for this effort include:
 * Expansion while reducing overhead. While Woodgrove Bank is currently in a data center, they are looking to the cloud for expanding their IT while attempting to reduce operating costs.
 * Innovation. Woodgrove Bank is taking this migration opportunity to update many of its legacy applications. The new applications will be built cloud-native to support current company growth and future technology innovations.
 
-
 IT leadership's goals for Azure adoption include:
 
-* Reduce costs of hosting and operating current workloads. All VMs on-premises are based on predefined images. IT needs greater flexibility in VM sizing that better accommodates the hosted workload. 
+* Reduce costs of hosting and operating current workloads. All VMs on-premises are based on predefined images. IT needs greater flexibility in VM sizing that better accommodates the hosted workload.
 * Current on-premises implementation is a hot-cold configuration. When the primary site goes down, there is some latency and necessary reconfiguration to bring the second data center online. IT wishes to streamline this process and implement a full-distributed hot-hot environment across multiple regions, if possible.
 * Security of resources is currently managed by individual Active Directory identities. IT needs to maintain the same least-privilege policy in the cloud, but needs a simpler way of managing access to services.
 * Current deployments of on-premises VMs, while generally a simple process, are manual, time-consuming, and error-prone due to the heavy demands of IT resources. IT team members are typically balancing multiple support tickets at any given time. IT wishes to automate deployments as much as possible to alleviate any potential bottlenecks or misconfigurations.
@@ -51,19 +51,20 @@ As workloads are being transitioned to Azure, Woodgrove Bank has expressed the i
 
 * Current load should support 10,000 users at any point in time.
 * Page load timing:
-  * < 1 sec - Excellent
-  * 2-3 secs - Good
-  * 3-5 secs - Acceptable
-  * \> 5 secs - Unacceptable
+    * < 1 sec - Excellent
+    * 2-3 secs - Good
+    * 3-5 secs - Acceptable
+    * \> 5 secs - Unacceptable
 * Application uptime should meet or exceed 99.99%
 * Business Continuity/Disaster Recovery (BCDR):
-  * Implement a hot-hot, multi-region deployment
-  * RPO - 10 minutes
-  * RTO - 1 hour
+    * Implement a hot-hot, multi-region deployment
+    * RPO - 10 minutes
+    * RTO - 1 hour
 
 Woodgrove Bank is concerned that their current cloud architecture may not support this, which is one reason they have reached out to Microsoft for its help. Any architectural decisions going forward should revolve around the above KPIs and their SLAs.
 
 ## Architecture
+
 Woodgrove Bank leverages a pair of web servers to currently host their customer-facing web application. All customers login to this application to view their account balances. In the future, the application will support additional services. This is currently a _live_, production workload. So any faulty changes can break production and hurt the bank's reputation with its customers. Therefore, downtime must be minimized.
 
 **Your mission, should you accept it, is to re-architect the current deployment in accordance with the Microsoft Well-Architected Framework and meet the customer's goals while minimizing downtime to the application.**
@@ -71,7 +72,8 @@ Woodgrove Bank leverages a pair of web servers to currently host their customer-
 The success of your team depends on your ability to perform the necessary architectural changes, meet customer's goals and objectives, and minimize the downtime of the application.
 
 ### Application Architecture
-The customer portal is comprised of a few web services, background services and a database. All services reside on their own, independent VMs and share the database. All web requests pass through an external load balancer, which is configured to listen on ports 80 and 443. Additionally, it is configured with session affinity based on client IP and protocol. This architecture was chosen as it most closely mimics what the customer currently has on-premises. 
+
+The customer portal is comprised of a few web services, background services and a database. All services reside on their own, independent VMs and share the database. All web requests pass through an external load balancer, which is configured to listen on ports 80 and 443. Additionally, it is configured with session affinity based on client IP and protocol. This architecture was chosen as it most closely mimics what the customer currently has on-premises.
 
 The web application is a standard, 3-tier implementation that is comprised of a separate front-end and backend developed with .NET Core 3.0, and the application leverages SQL Server 2014 SP3 for its database. The front-end and backend services reside on independent Application Pools in IIS on each web server. The front-end and backend services are deployed to _both_ web servers.
 
@@ -88,16 +90,17 @@ When moving their workload to the cloud, Woodgrove Bank chose virtual machine si
 As you can see from the diagram above, all virtual machines have been attached to the same virtual network, which has three subnets. The IP addresses have been statically assigned to the virtual machines. The subnet and machine configurations are listed in the tables below.
 
 #### Subnets
+
 | Subnet     | Address Space | Total Available IPs | Purpose |
 | :--------: | ------------- | ------------------- | ------- |
 | **dmz**    | 10.10.0.0/28  | 11                  | Resources that are considered publicly accessible. |
-| **jobs**   | 10.10.0.16/28 | 11                  | Background/utility resources.           | 
+| **jobs**   | 10.10.0.16/28 | 11                  | Background/utility resources.           |
 | **sql**    | 10.10.0.32/27 | 27                  | SQL and data resources.                 |
 
 > NOTE: Total available IPs _do not_ include those IPs used by Azure internally.
 
-
 #### Virtual Machines
+
 | Server Name | OS | vCPUs | Memory (GiB) | Subnet | IP Address | Purpose |
 | ----------- | -- | :---: | :----------: | :----: | ---------- | --------|
 | **web1**    | Windows Server 2019 Datacenter | 8 | 16 | dmz | 10.10.0.4 | First load-balanced web server hosting front-end and backend of the site |
@@ -105,8 +108,8 @@ As you can see from the diagram above, all virtual machines have been attached t
 | **worker1** | Windows Server 2019 Datacenter | 8 | 16 | jobs | 10.10.0.20 | Server that hosts timer jobs |
 | **sqlsvr1** | Windows Server 2012 R2 Datacenter | 2 | 8 | sql |10.10.0.36 | SQL Server 2014 SP3 for the web site |
 
-
 #### DNS Mappings
+
 External FQDNs must be globally unique. Therefore, all public DNS host names have a six-character alphanumeric code appended in the format below.
 | DNS                     | Mapping |
 | ----------------------- | ------- |
@@ -125,6 +128,7 @@ Woodgrove Bank currently has an existing Azure subscription and Azure Active Dir
 **NOTE:** Active Directory will report that AD users are _cloud only_. However, you are to assume that these users were indeed synchronized from Woodgrove Bank's on-premises Active Directory.
 
 ## Cheat sheet
+
 In this section, you will find a list of hints to help you through the Well-Architected Framework OpenHack.
 
 ### Obtaining the credentials of your team environment
@@ -136,7 +140,8 @@ In this section, you will find a list of hints to help you through the Well-Arch
 
 1. Open the [Azure portal](https://portal.azure.com).
 2. Use a username/password combination found in your **OPEN HACK ENVIRONMENT** tab to login.
-3. Search for the resource **elb-eastus-web**. This is your external load balancer. The _public_ IP address of the load balancer can be used to access the web application in the OpenHack. 
+3. Search for the resource **elb-eastus-web**. This is your external load balancer. The _public_ IP address of the load balancer can be used to access the web application in the OpenHack.
+
 ### Logging in to the web application
 
 You can login to a fictitious customer's bank account using the following credentials:
@@ -150,10 +155,11 @@ You can login to a fictitious customer's bank account using the following creden
 
 1. Open the [Azure portal](https://portal.azure.com).
 2. Use a username/password combination found in your **OPEN HACK ENVIRONMENT** tab to login.
-3. Search for the VM by its name listed in the table above. 
+3. Search for the VM by its name listed in the table above.
 4. Use a Remote Desktop Connection (RDP) to connect to the server you choose by using its Public IP address.
 
 The _administrator_ credentials for the virtual machines are:
+
 * Username: **cloudadmin**
 * Password: **Pass@word1234!**
 
@@ -168,5 +174,6 @@ The database credentials are the following:
 | cloudsqladmin | (Pass@word)1234! | SQL Administrator |
 | webapp   | S0m3R@ndomW0rd$  | Account used by web application |
 
-
 ## References
+
+_None._

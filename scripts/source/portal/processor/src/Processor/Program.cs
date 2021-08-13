@@ -37,9 +37,7 @@ namespace Portal.Processor
 
         private static DbConnection GetConnection(string connectionString)
         {
-            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-            if (env == "Production" || env == "Development")
+            if (connectionString.Contains("Server="))
                 return new SqlConnection(connectionString);
             else
                 return new SqliteConnection("Filename=" + connectionString);

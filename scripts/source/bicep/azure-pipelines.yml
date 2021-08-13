@@ -16,7 +16,7 @@ jobs:
     displayName: 'Install Azure Bicep'
 
   - bash: |
-     bicep build main.bicep --outdir $(Build.ArtifactStagingDirectory)
+     bicep build --outdir $(Build.ArtifactStagingDirectory) main.bicep
      cp deploymentParameters.json $(Build.ArtifactStagingDirectory)
     displayName: 'Build ARM Template'
  

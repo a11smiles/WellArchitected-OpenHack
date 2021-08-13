@@ -1,6 +1,7 @@
 # Guide: Operationalize automated deployments
 
 ## Success Criteria
+
 * The ARM deployments should be executed in _complete_ mode (versus _incremental_ mode) so that resources not specified in the ARM template will be destroyed.
 * The attendees will need to build _at least_ three separate build and release pipelines&mdash;a separate build and release pipeline for each project. They will need to demonstrate that each build and release pipeline is functional.
 * All three release pipelines should have an approval gate that requires human approval prior to a build being published to production. Attendees must demonstrate the operating approval gate.
@@ -10,9 +11,11 @@
 * The team should be prepared to present their chosen deployment strategy and explain why they chose that strategy compared to others.
 
 ## Hints/Suggestions
+
 * Unless someone of the team has had previous experience with Azure Bicep, it may prove to be the most difficult aspect of this challenge. It may be helpful if the team pauses to explore the capabilities and usage of Azure Bicep.
 * This challenge should engage both developers and infrastructure architects as it requires a mixture of DevOps and ARM. If the team appears overwhelmed, encourage the team to split up and prioritize the requirements so that they can work in parallel.
 
 ## References
+
 * <a href="https://docs.microsoft.com/azure/azure-resource-manager/templates/deployment-modes" target="_blank">ARM deployment modes</a>
-* <a href="https://docs.microsoft.com/azure/azure-resource-manager/templates/bicep-tutorial-add-parameters?tabs=azure-powershell#customize-by-environment" target="_blank">Using `@allowed` in Azure Bicep parameters
+* <a href="https://docs.microsoft.com/azure/azure-resource-manager/templates/bicep-tutorial-add-parameters?tabs=azure-powershell#customize-by-environment" target="_blank">Using `@allowed` in Azure Bicep parameters</a>

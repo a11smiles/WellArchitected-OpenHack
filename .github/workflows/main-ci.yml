@@ -1,39 +1,106 @@
 name: Build and Deploy Artifacts (Main)
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch
 
 jobs:
-  processor: 
+  content-test: 
+    runs-on: ubuntu-latest
+    name: Lint All Markdown and Json Content
+    steps:
+      # Checkout source
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      # Install Node
+      - name: 'Setup Node'
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x      
+
+      # Lint all open-hack markdown
+      - name: 'Linting OpenHack Participant Content'
+        uses: nosborn/github-action-markdown-cli@v1.1.1
+        with:
+          # configuration file (JSON or YAML)
+          config_file: .markdownlint.json
+          # files, directories, or globs
+          files: ./challenges/**/*.md
+
+      - name: 'Linting OpenHack Coach Content'
+        uses: nosborn/github-action-markdown-cli@v1.1.1
+        with:
+          # configuration file (JSON or YAML)
+          config_file: .markdownlint.json
+          # files, directories, or globs
+          files: ./guides/challenges/**/*.md
+
+
+      # Lint any additional guides you have (any *.md files).  Remove if not needed.
+#      - name: 'Linting Resources'
+#        uses: nosborn/github-action-markdown-cli@v1.1.1
+#        with:
+#          # configuration file (JSON or YAML)
+#          config_file: .markdownlint.json
+#          # files, directories, or globs
+#          files:  ./resources
+
+      # Lint your JSON files [mostly for content def]
+      - name: 'Install dependencies'
+        run: npm install jsonlint -g
+
+      # Make sure to lint any language-specific versions you've created(remove unnecessary/non-existent paths)
+      - name: 'Execute json linter lab-content-definitions'
+        run: |
+          jsonlint ./challenges/lab-content-definition.json   
+
+
+
+  processor-test: 
     runs-on: ubuntu-latest
     name: Build and Test Processor
     steps:
+      # Checkout source
       - name: Checkout source
         uses: actions/checkout@v2
+
+      # Install .NET Core SDK
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1.7.2
         with:
           dotnet-version: '5.0.x'
+
+      # Restore any nuget dependencies
       - name: Install dependencies
         run: |
           dotnet restore ${{ github.workspace }}/scripts/source/portal/processor/src/Processor/Processor.csproj
           dotnet restore ${{ github.workspace }}/scripts/source/portal/processor/test/Processor.Tests/Processor.Tests.csproj
+
+      # Build the 'Processor' solution
       - name: Build
         run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/processor/Processor.sln
+
+      # Run any unit tests
       - name: Test
         run: dotnet test --no-restore --verbosity normal ${{ github.workspace }}/scripts/source/portal/processor/Processor.sln
-  web: 
+
+
+
+  web-test: 
     runs-on: ubuntu-latest
     name: Build and Test Web Application
     steps:
+      # Checkout source
       - name: Checkout source
         uses: actions/checkout@v2
+
+      # Install .NET Core SDK
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1.7.2
         with:
           dotnet-version: '5.0.x'
+
+      # Restore any nuget dependencies
       - name: Install dependencies
         run: |
           dotnet restore ${{ github.workspace }}/scripts/source/portal/web/src/Portal.Api/Portal.Api.csproj
@@ -42,12 +109,167 @@ jobs:
           dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Api.Tests/Portal.Api.Tests.csproj
           dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Data.Tests/Portal.Data.Tests.csproj
           dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Web.Tests/Portal.Web.Tests.csproj
+
+      # Build the Web Application (e.g. Razor and API)
       - name: Build
         run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/web/PortalWebApp.sln
+
+      # Run any unit tests
       - name: Test
         run: dotnet test --no-restore --verbosity normal ${{ github.workspace }}/scripts/source/portal/web/PortalWebApp.sln
 
 
+
+  bicep-test: 
+    runs-on: ubuntu-latest
+    name: Build ARM Templates
+    steps:
+      # Checkout source
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      # Install the bicep binary 
+      - name: Install Azure Bicep
+        run: |
+          curl -Lo bicep.bin https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+          chmod +x ./bicep.bin 
+
+      # Test a successful build of the bicep definition
+      - name: Build ARM Template
+        run: |
+          mkdir ${{ github.workspace }}/scripts/source/bicep/output
+          bicep build --outdir ${{ github.workspace }}/scripts/source/bicep/output ${{ github.workspace }}/scripts/source/bicep/main.bicep
+          cp ${{ github.workspace }}/scripts/source/bicep/deploymentParameters.json ${{ github.workspace }}/scripts/source/bicep/output
+          
+          
+          
+  push-content:
+      needs: [content-test, processor-test, web-test, bicep-test]
+      runs-on: ubuntu-latest
+      name: Push Content to 'Microsoft-OpenHack/well-architected-framework'
+      steps:
+        # Checkout the source repo
+        - name: Checkout source
+          uses: actions/checkout@v2
+          with:
+            path: source
+        
+        # Checkout the 'Microsoft-OpenHack/well-architected-framework' repo
+        - name: Checkout target
+          uses: actions/checkout@v2
+          with:
+            repository: Microsoft-OpenHacks/well-architected-framework
+            token: ${{ secrets.MICROSOFT_REPOS_KEY }}
+            path: target
+
+        # Copy participant content to target
+        - name: Copy participant content to target
+          run: |
+            cp ./source/challenges/ch0/README.md ./target/portal/en/Challenge0.md
+            cp -R ./source/challenges/ch0/images ./target/portal/en
+            cp ./source/challenges/ch1/README.md ./target/portal/en/Challenge1.md
+            cp -R ./source/challenges/ch1/images ./target/portal/en
+            cp ./source/challenges/ch2/README.md ./target/portal/en/Challenge2.md
+            cp -R ./source/challenges/ch2/images ./target/portal/en
+            cp ./source/challenges/ch3/README.md ./target/portal/en/Challenge3.md
+            cp -R ./source/challenges/ch3/images ./target/portal/en
+            cp ./source/challenges/ch4/README.md ./target/portal/en/Challenge4.md
+            cp -R ./source/challenges/ch4/images ./target/portal/en
+            cp ./source/challenges/ch5/README.md ./target/portal/en/Challenge5.md
+            cp -R ./source/challenges/ch5/images ./target/portal/en
+            cp ./source/challenges/ch6/README.md ./target/portal/en/Challenge6.md
+            cp -R ./source/challenges/ch6/images ./target/portal/en
+            cp ./source/challenges/ch7/README.md ./target/portal/en/Challenge7.md
+            cp -R ./source/challenges/ch7/images ./target/portal/en
+            cp ./source/challenges/ch8/README.md ./target/portal/en/Challenge8.md
+            cp -R ./source/challenges/ch8/images ./target/portal/en
+            cp ./source/challenges/ch9/README.md ./target/portal/en/Challenge9.md
+            cp -R ./source/challenges/ch9/images ./target/portal/en
+
+        # Copy lab definition file to target
+        - name: Copy lab definition
+          run: |
+            cp ./source/challenges/lab-content-definition.json ./target/portal/en
+
+        # Commit and push changes
+        - name: Commit and push changes
+          uses: EndBug/add-and-commit@v7
+          with:
+            cwd: 'target'
+            message: ${{ github.event.head_commit.message }}
+            default_author: user_info
+
+
+  # processor-package:
+  #   needs: [processor-test, web-test, bicep-test]
+  #   runs-on: ubuntu-latest
+  #   name: Copy Processor Source
+  #   steps:
+  #     - name: Checkout source
+  #       uses: actions/checkout@v2
+  #     - name: Setup .NET Core SDK
+  #       uses: actions/setup-dotnet@v1.7.2
+  #       with:
+  #         dotnet-version: '5.0.x'
+  #     - name: Install dependencies
+  #       run: |
+  #         dotnet restore ${{ github.workspace }}/scripts/source/portal/processor/src/Processor/Processor.csproj
+  #         dotnet restore ${{ github.workspace }}/scripts/source/portal/processor/test/Processor.Tests/Processor.Tests.csproj
+  #     - name: Build
+  #       run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/processor/Processor.sln
+  # web-package: 
+  #   runs-on: ubuntu-latest
+  #   needs: [processor-test, web-test, bicep-test]
+  #   name: Copy Web UI and API Application Source
+  #   steps:
+  #     - name: Checkout source
+  #       uses: actions/checkout@v2
+  #     - name: Setup .NET Core SDK
+  #       uses: actions/setup-dotnet@v1.7.2
+  #       with:
+  #         dotnet-version: '5.0.x'
+  #     - name: Install dependencies
+  #       run: |
+  #         dotnet restore ${{ github.workspace }}/scripts/source/portal/web/src/Portal.Api/Portal.Api.csproj
+  #         dotnet restore ${{ github.workspace }}/scripts/source/portal/web/src/Portal.Data/Portal.Data.csproj
+  #         dotnet restore ${{ github.workspace }}/scripts/source/portal/web/src/Portal.Web/Portal.Web.csproj
+  #         dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Api.Tests/Portal.Api.Tests.csproj
+  #         dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Data.Tests/Portal.Data.Tests.csproj
+  #         dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Web.Tests/Portal.Web.Tests.csproj
+  #     - name: Build
+  #       run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/web/PortalWebApp.sln
+  # bicep-package: 
+  #   runs-on: ubuntu-latest
+  #   needs: [processor-test, web-test, bicep-test]
+  #   name: Copy ARM Templates Source
+  #   steps:
+  #     - name: Checkout source
+  #       uses: actions/checkout@v2
+  #     - name: Install Azure Bicep
+  #       run: |
+  #         curl -Lo bicep.bin https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+  #         chmod +x ./bicep.bin 
+  #     - name: Build ARM Template
+  #       run: |
+  #         mkdir ${{ github.workspace }}/scripts/source/bicep/output
+  #         bicep build --outdir ${{ github.workspace }}/scripts/source/bicep/output ${{ github.workspace }}/scripts/source/bicep/main.bicep
+  #         cp ${{ github.workspace }}/scripts/source/bicep/deploymentParameters.json ${{ github.workspace }}/scripts/source/bicep/output
+
+#  dsc-package: 
+#    runs-on: ubuntu-latest
+#    name: Copy DSC Folder
+#    steps:
+#      - name: Checkout source
+#        uses: actions/checkout@v2
+#      - name: Install Azure Bicep
+#        run: |
+#          curl -Lo bicep.bin https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+#          chmod +x ./bicep.bin 
+#      - name: Build ARM Template
+#        run: |
+#          mkdir ${{ github.workspace }}/scripts/source/bicep/output
+#          bicep build --outdir ${{ github.workspace }}/scripts/source/bicep/output ${{ github.workspace }}/scripts/source/bicep/main.bicep
+#          cp ${{ github.workspace }}/scripts/source/bicep/deploymentParameters.json ${{ github.workspace }}/scripts/source/bicep/output
 # Build and test Processor
 
 # Build and test Web
