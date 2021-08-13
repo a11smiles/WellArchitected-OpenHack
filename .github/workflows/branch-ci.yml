@@ -28,7 +28,7 @@ jobs:
           # configuration file (JSON or YAML)
           config_file: .markdownlint.json
           # files, directories, or globs
-          files: ./**/challenges/**/*.md
+          files: **/challenges/**/*.md
 
       # Lint any additional guides you have (any *.md files).  Remove if not needed.
 #      - name: 'Linting Resources'
