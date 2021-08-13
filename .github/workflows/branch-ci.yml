@@ -22,16 +22,23 @@ jobs:
           node-version: 12.x      
 
       # Lint all open-hack markdown
-      - name: 'Linting OpenHack Content'
+      - name: 'Linting OpenHack Participant Content'
         uses: nosborn/github-action-markdown-cli@v1.1.1
         with:
           # configuration file (JSON or YAML)
           config_file: .markdownlint.json
           # files, directories, or globs
-          files: [
-            ./challenges/**/*.md,
-            ./guides/challenges/**/*.md
-          ]
+          files: ./challenges/**/*.md
+
+      # Lint all open-hack markdown
+      - name: 'Linting OpenHack Coach Content'
+        uses: nosborn/github-action-markdown-cli@v1.1.1
+        with:
+          # configuration file (JSON or YAML)
+          config_file: .markdownlint.json
+          # files, directories, or globs
+          files: ./guides/challenges/**/*.md
+
 
       # Lint any additional guides you have (any *.md files).  Remove if not needed.
 #      - name: 'Linting Resources'
