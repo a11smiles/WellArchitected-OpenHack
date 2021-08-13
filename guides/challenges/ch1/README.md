@@ -35,11 +35,12 @@
 * Attendees should know how to conduct a performance test. There are a number of free tools available. However, if they do not have a preferred tool, it is recommended that they familiarize themselves with the basics of k6. The sample script found in the _Cheat sheet_ section is heavily documented. Team members should be encouraged to save the script and edit it as needed based on their preferred stages and thresholds.
 
 ## References
+
 * <a href="https://docs.microsoft.com/azure/architecture/framework/" target="_blank">Microsoft Well-Architected Framework</a>
     * <a href="https://docs.microsoft.com/azure/architecture/framework/cost/" target="_blank">Cost Optimization</a>  (<a href="https://docs.microsoft.com/azure/architecture/framework/cost/overview" target="_blank">Core Principles</a>)
     * <a href="https://docs.microsoft.com/azure/architecture/framework/devops/overview" target="_blank">Operational Excellence</a> (<a href="https://docs.microsoft.com/azure/architecture/framework/devops/principles" target="_blank">Core Principles</a>)
     * <a href="https://docs.microsoft.com/azure/architecture/framework/scalability/overview" target="_blank">Performance Efficiency</a> (<a href="https://docs.microsoft.com/azure/architecture/framework/scalability/principles" target="_blank">Core Principles</a>)
-    * <a href="https://docs.microsoft.com/azure/architecture/framework/resiliency/overview" target="_blank">Reliability</a> (<a href="https://docs.microsoft.com/azure/architecture/framework/resiliency/overview" target="_blank">Core Principles</a>) 
+    * <a href="https://docs.microsoft.com/azure/architecture/framework/resiliency/overview" target="_blank">Reliability</a> (<a href="https://docs.microsoft.com/azure/architecture/framework/resiliency/overview" target="_blank">Core Principles</a>)
     * <a href="https://docs.microsoft.com/azure/architecture/framework/security/overview" target="_blank">Security</a> (<a href="https://docs.microsoft.com/azure/architecture/framework/security/security-principles" target="_blank">Core Principles</a>)
 * <a href="https://docs.microsoft.com/azure/cost-management-billing/costs/quick-acm-cost-analysis?tabs=azure-portal" target="_blank">Quickstart: Explore and analyze costs with cost analysis</a>
     * <a href="https://docs.microsoft.com/azure/cost-management-billing/costs/cost-analysis-common-uses#view-costs-for-a-specific-tag" target="_blank">Viewing costs based on tag</a>

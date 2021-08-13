@@ -31,13 +31,13 @@ jobs:
           files:  ./**/challenges/**/*.md
 
       # Lint any additional guides you have (any *.md files).  Remove if not needed.
-      - name: 'Linting Resources'
-        uses: nosborn/github-action-markdown-cli@v1.1.1
-        with:
-          # configuration file (JSON or YAML)
-          config_file: ./portal/.markdownlint.json
-          # files, directories, or globs
-          files:  ./resources
+#      - name: 'Linting Resources'
+#        uses: nosborn/github-action-markdown-cli@v1.1.1
+#        with:
+#          # configuration file (JSON or YAML)
+#          config_file: .markdownlint.json
+#          # files, directories, or globs
+#          files:  ./resources
 
       # Lint your JSON files [mostly for content def]
       - name: 'Install dependencies'
@@ -46,7 +46,7 @@ jobs:
       # Make sure to lint any language-specific versions you've created(remove unnecessary/non-existent paths)
       - name: 'Execute json linter lab-content-definitions'
         run: |
-          jsonlint ./portal/en/lab-content-definition.json        
+          jsonlint ./challenges/lab-content-definition.json        
 
 
 
