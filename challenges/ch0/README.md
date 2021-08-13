@@ -73,7 +73,7 @@ The success of your team depends on your ability to perform the necessary archit
 
 ### Application Architecture
 
-The customer portal is comprised of a few web services, background services and a database. All services reside on their own, independent VMs and share the database. All web requests pass through an external load balancer, which is configured to listen on ports 80 and 443. Additionally, it is configured with session affinity based on client IP and protocol. This architecture was chosen as it most closely mimics what the customer currently has on-premises. 
+The customer portal is comprised of a few web services, background services and a database. All services reside on their own, independent VMs and share the database. All web requests pass through an external load balancer, which is configured to listen on ports 80 and 443. Additionally, it is configured with session affinity based on client IP and protocol. This architecture was chosen as it most closely mimics what the customer currently has on-premises.
 
 The web application is a standard, 3-tier implementation that is comprised of a separate front-end and backend developed with .NET Core 3.0, and the application leverages SQL Server 2014 SP3 for its database. The front-end and backend services reside on independent Application Pools in IIS on each web server. The front-end and backend services are deployed to _both_ web servers.
 
@@ -94,11 +94,10 @@ As you can see from the diagram above, all virtual machines have been attached t
 | Subnet     | Address Space | Total Available IPs | Purpose |
 | :--------: | ------------- | ------------------- | ------- |
 | **dmz**    | 10.10.0.0/28  | 11                  | Resources that are considered publicly accessible. |
-| **jobs**   | 10.10.0.16/28 | 11                  | Background/utility resources.           | 
+| **jobs**   | 10.10.0.16/28 | 11                  | Background/utility resources.           |
 | **sql**    | 10.10.0.32/27 | 27                  | SQL and data resources.                 |
 
 > NOTE: Total available IPs _do not_ include those IPs used by Azure internally.
-
 
 #### Virtual Machines
 
@@ -108,7 +107,6 @@ As you can see from the diagram above, all virtual machines have been attached t
 | **web2**    | Windows Server 2019 Datacenter | 8 | 16 | dmz | 10.10.0.5 | Second load-balanced web server hosting front-end and backend of the site |
 | **worker1** | Windows Server 2019 Datacenter | 8 | 16 | jobs | 10.10.0.20 | Server that hosts timer jobs |
 | **sqlsvr1** | Windows Server 2012 R2 Datacenter | 2 | 8 | sql |10.10.0.36 | SQL Server 2014 SP3 for the web site |
-
 
 #### DNS Mappings
 
@@ -142,7 +140,7 @@ In this section, you will find a list of hints to help you through the Well-Arch
 
 1. Open the [Azure portal](https://portal.azure.com).
 2. Use a username/password combination found in your **OPEN HACK ENVIRONMENT** tab to login.
-3. Search for the resource **elb-eastus-web**. This is your external load balancer. The _public_ IP address of the load balancer can be used to access the web application in the OpenHack. 
+3. Search for the resource **elb-eastus-web**. This is your external load balancer. The _public_ IP address of the load balancer can be used to access the web application in the OpenHack.
 
 ### Logging in to the web application
 
@@ -157,10 +155,11 @@ You can login to a fictitious customer's bank account using the following creden
 
 1. Open the [Azure portal](https://portal.azure.com).
 2. Use a username/password combination found in your **OPEN HACK ENVIRONMENT** tab to login.
-3. Search for the VM by its name listed in the table above. 
+3. Search for the VM by its name listed in the table above.
 4. Use a Remote Desktop Connection (RDP) to connect to the server you choose by using its Public IP address.
 
 The _administrator_ credentials for the virtual machines are:
+
 * Username: **cloudadmin**
 * Password: **Pass@word1234!**
 
@@ -175,5 +174,6 @@ The database credentials are the following:
 | cloudsqladmin | (Pass@word)1234! | SQL Administrator |
 | webapp   | S0m3R@ndomW0rd$  | Account used by web application |
 
-
 ## References
+
+_None._
