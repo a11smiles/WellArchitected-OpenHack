@@ -61,7 +61,76 @@ jobs:
           mkdir ${{ github.workspace }}/scripts/source/bicep/output
           bicep build --outdir ${{ github.workspace }}/scripts/source/bicep/output ${{ github.workspace }}/scripts/source/bicep/main.bicep
           cp ${{ github.workspace }}/scripts/source/bicep/deploymentParameters.json ${{ github.workspace }}/scripts/source/bicep/output
+  processor-package:
+    needs: [processor-test, web-test, bicep-test]
+    runs-on: ubuntu-latest
+    name: Copy Processor Source
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: '5.0.x'
+      - name: Install dependencies
+        run: |
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/processor/src/Processor/Processor.csproj
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/processor/test/Processor.Tests/Processor.Tests.csproj
+      - name: Build
+        run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/processor/Processor.sln
+  web-package: 
+    runs-on: ubuntu-latest
+    needs: [processor-test, web-test, bicep-test]
+    name: Copy Web UI and API Application Source
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: '5.0.x'
+      - name: Install dependencies
+        run: |
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/web/src/Portal.Api/Portal.Api.csproj
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/web/src/Portal.Data/Portal.Data.csproj
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/web/src/Portal.Web/Portal.Web.csproj
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Api.Tests/Portal.Api.Tests.csproj
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Data.Tests/Portal.Data.Tests.csproj
+          dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Web.Tests/Portal.Web.Tests.csproj
+      - name: Build
+        run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/web/PortalWebApp.sln
+  bicep-package: 
+    runs-on: ubuntu-latest
+    needs: [processor-test, web-test, bicep-test]
+    name: Copy ARM Templates Source
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Install Azure Bicep
+        run: |
+          curl -Lo bicep.bin https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+          chmod +x ./bicep.bin 
+      - name: Build ARM Template
+        run: |
+          mkdir ${{ github.workspace }}/scripts/source/bicep/output
+          bicep build --outdir ${{ github.workspace }}/scripts/source/bicep/output ${{ github.workspace }}/scripts/source/bicep/main.bicep
+          cp ${{ github.workspace }}/scripts/source/bicep/deploymentParameters.json ${{ github.workspace }}/scripts/source/bicep/output
 
+#  dsc-package: 
+#    runs-on: ubuntu-latest
+#    name: Copy DSC Folder
+#    steps:
+#      - name: Checkout source
+#        uses: actions/checkout@v2
+#      - name: Install Azure Bicep
+#        run: |
+#          curl -Lo bicep.bin https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+#          chmod +x ./bicep.bin 
+#      - name: Build ARM Template
+#        run: |
+#          mkdir ${{ github.workspace }}/scripts/source/bicep/output
+#          bicep build --outdir ${{ github.workspace }}/scripts/source/bicep/output ${{ github.workspace }}/scripts/source/bicep/main.bicep
+#          cp ${{ github.workspace }}/scripts/source/bicep/deploymentParameters.json ${{ github.workspace }}/scripts/source/bicep/output
 # Build and test Processor
 
 # Build and test Web
