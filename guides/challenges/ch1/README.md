@@ -28,7 +28,6 @@
 * Attendees should demonstrate and document stress testing of the application. At what point does the application fail?
 
 ## Hints/Suggestions
-
 * While it is _ideal_ that all architects know the Microsoft Well-Architected Framework, given the time constraints of the OpenHack, this may not be entirely possible. It may be a better use of the team's time for the attendees to split up the pillars among themselves. Each pillar can then be researched independently and team members can inform their colleagues on the pillars and their respective core principles.
 * One customer requirement identified in the _Overview_ is that only users who have a Woodgrove Bank AD account&mdash;no guest user&mdash;should have access to Azure resources. This should be noted by the team.
 * Filtering workloads for the _Cost Analysis_ tool can be accomplished using tags. The department for the current workload was mentioned in the OpenHack overview. The owner of this workload is the "Customer Experience" business sector, or department.
