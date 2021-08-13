@@ -29,7 +29,7 @@ As you answer the questions above, make sure you review the business drivers, go
 At all times, remember to make no assumptions and always keep the customer's goals in view. The customer's business drivers and goals must always be seen through the lenses of the Microsoft Well-Architected Framework. This is how you will succeed in this challenge and with the workloads of your real customers.
 
 > **NOTES:**
-
+>
 > * While Woodgrove Bank may consider multiple subscriptions at a later time for development, testing, staging, etc., you should assume that Woodgrove will only leverage a single subscription for the time being, and that this subscription will host all of its production workloads. Woodgrove will continue to use on-premises resources for development and quality assurance until its data center leases expire.
 > * Woodgrove Bank uses a 3rd-party, globally-distributed DNS. The scope of this OpenHack exists _behind_ the DNS. You should assume that whatever you implement can be accessible upon a DNS update. For the OpenHack you should access the web application via its external load balancer, or with whatever you choose to replace the ELB. The only exception is that the resource **must** be configured to accept web requests via a properly-configured DNS record (A, CNAME, etc.).
 
@@ -53,7 +53,7 @@ Woodgrove Bank has attempted to implement an infrastructure that is somewhat ide
 * Resource Group: **webapp**
 * The virtual network called **vnet-webapp** has the following attributes:
     * Address space: **10.10.0.0/16**
-    * Subnets: 
+    * Subnets:
         * dmz: **10.10.0.0/28**
         * jobs: **10.10.0.16/28**
         * sql: **10.10.0.32/27**
