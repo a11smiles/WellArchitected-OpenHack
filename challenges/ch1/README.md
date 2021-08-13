@@ -58,6 +58,7 @@ Note that k6 is not required and you may use any other tool you prefer, but you 
 > **NOTE:** As you conduct performance tests for your customers, if you find they are not currently using any performance testing tools, you can point them to script in the Well-Architected Framework Tools repo. The repo is public and the script is designed to be easily modified based on the needs of the user.
 
 ## Success criteria
+
 In order to succeed in this challenge, you will need to present a number of items to your coach along with demonstrating your knowledge across multiple areas. Your success in the future challenges of this OpenHack depend _heavily_ on your ability to lay the foundation in this challenge.
 
 Be ready to present to your coach the following:

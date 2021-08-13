@@ -115,7 +115,7 @@ jobs:
           mkdir ${{ github.workspace }}/scripts/source/bicep/output
           bicep build --outdir ${{ github.workspace }}/scripts/source/bicep/output ${{ github.workspace }}/scripts/source/bicep/main.bicep
           cp ${{ github.workspace }}/scripts/source/bicep/deploymentParameters.json ${{ github.workspace }}/scripts/source/bicep/output
-zq3edy6rje6edy4bdnvdohqunf42vpltapqvucncfphxnu3jmobq
+
 #  dsc-package: 
 #    runs-on: ubuntu-latest
 #    name: Copy DSC Folder

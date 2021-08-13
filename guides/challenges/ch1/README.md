@@ -1,22 +1,23 @@
 # Guide: Assess the environment
 
 ## Success Criteria
+
 * The attendees will need to be able to describe each pillar of the Microsoft Well-Architected Framework (e.g. Cost Optimization, Operational Excellence, Performance Efficiency, Reliability, and Security) along with each respective pillar's core principles.
 * The attendees should have a list of all components in the architecture and demonstrate that they have researched the configuration. This list should _not_ just include what's shown in the architecture diagram. Instead, it should also include components such as:
-  * NSG configurations
-  * shared blob storage
-  * RBAC configurations
-  * Azure AD configurations
-  * how the application is configured on the VMs (connection strings, file locations, IIS, etc.)  
+    * NSG configurations
+    * shared blob storage
+    * RBAC configurations
+    * Azure AD configurations
+    * how the application is configured on the VMs (connection strings, file locations, IIS, etc.)  
 * Attendees concerns should include, but should not be not limited to:
-  * lack of RBAC configuration
-  * connection strings not being encrypted
-  * credentials being stored in the database
-  * VM right-sizing
-  * inability to scale
-  * VMs sharing the same storage
-  * no availability zones
-  * lack of BCDR
+    * lack of RBAC configuration
+    * connection strings not being encrypted
+    * credentials being stored in the database
+    * VM right-sizing
+    * inability to scale
+    * VMs sharing the same storage
+    * no availability zones
+    * lack of BCDR
 >_Completeness of the above two inventories is absolutely essential as it will serve as a compass for the team moving forward through remaining challenges._
 * Attendees should demonstrate how to perform a _Cost Analysis_ on the current subscription.
 * Attendees should add tags to the resources in the current workload based on department and demonstrate how to filter costs based on the department.
