@@ -7,34 +7,94 @@ on:
       - '!main'
 
 jobs:
+  content-test: 
+    runs-on: ubuntu-latest
+    name: Lint All Markdown and Json Content
+    steps:
+      # Checkout source
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      # Install Node
+      - name: 'Setup Node'
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x      
+
+      # Lint your open-hack guides
+      - name: 'Linting OpenHack Content'
+        uses: nosborn/github-action-markdown-cli@v1.1.1
+        with:
+          # configuration file (JSON or YAML)
+          config_file: .markdownlint.json
+          # files, directories, or globs
+          files:  ./**/challenges/**/*.md
+
+      # Lint any additional guides you have (any *.md files).  Remove if not needed.
+      - name: 'Linting Resources'
+        uses: nosborn/github-action-markdown-cli@v1.1.1
+        with:
+          # configuration file (JSON or YAML)
+          config_file: ./portal/.markdownlint.json
+          # files, directories, or globs
+          files:  ./resources
+
+      # Lint your JSON files [mostly for content def]
+      - name: 'Install dependencies'
+        run: npm install jsonlint -g
+
+      # Make sure to lint any language-specific versions you've created(remove unnecessary/non-existent paths)
+      - name: 'Execute json linter lab-content-definitions'
+        run: |
+          jsonlint ./portal/en/lab-content-definition.json        
+
+
+
   processor-test: 
     runs-on: ubuntu-latest
     name: Build and Test Processor
     steps:
+      # Checkout source
       - name: Checkout source
         uses: actions/checkout@v2
+
+      # Install .NET Core SDK
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1.7.2
         with:
           dotnet-version: '5.0.x'
+
+      # Restore any nuget dependencies
       - name: Install dependencies
         run: |
           dotnet restore ${{ github.workspace }}/scripts/source/portal/processor/src/Processor/Processor.csproj
           dotnet restore ${{ github.workspace }}/scripts/source/portal/processor/test/Processor.Tests/Processor.Tests.csproj
+
+      # Build the 'Processor' solution
       - name: Build
         run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/processor/Processor.sln
+
+      # Run any unit tests
       - name: Test
         run: dotnet test --no-restore --verbosity normal ${{ github.workspace }}/scripts/source/portal/processor/Processor.sln
+  
+
+
   web-test: 
     runs-on: ubuntu-latest
     name: Build and Test Web Application
     steps:
+      # Checkout source
       - name: Checkout source
         uses: actions/checkout@v2
+
+      # Install .NET Core SDK
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1.7.2
         with:
           dotnet-version: '5.0.x'
+
+      # Restore any nuget dependencies
       - name: Install dependencies
         run: |
           dotnet restore ${{ github.workspace }}/scripts/source/portal/web/src/Portal.Api/Portal.Api.csproj
@@ -43,20 +103,32 @@ jobs:
           dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Api.Tests/Portal.Api.Tests.csproj
           dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Data.Tests/Portal.Data.Tests.csproj
           dotnet restore ${{ github.workspace }}/scripts/source/portal/web/test/Portal.Web.Tests/Portal.Web.Tests.csproj
+
+      # Build the Web Application (e.g. Razor and API)
       - name: Build
         run: dotnet build --configuration Release --no-restore ${{ github.workspace }}/scripts/source/portal/web/PortalWebApp.sln
+
+      # Run any unit tests
       - name: Test
         run: dotnet test --no-restore --verbosity normal ${{ github.workspace }}/scripts/source/portal/web/PortalWebApp.sln
+
+
+
   bicep-test: 
     runs-on: ubuntu-latest
     name: Build ARM Templates
     steps:
+      # Checkout source
       - name: Checkout source
         uses: actions/checkout@v2
+
+      # Install the bicep binary 
       - name: Install Azure Bicep
         run: |
           curl -Lo bicep.bin https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
           chmod +x ./bicep.bin 
+
+      # Test a successful build of the bicep definition
       - name: Build ARM Template
         run: |
           mkdir ${{ github.workspace }}/scripts/source/bicep/output
