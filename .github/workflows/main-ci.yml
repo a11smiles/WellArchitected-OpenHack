@@ -171,8 +171,9 @@ jobs:
         # Set commit message
         - name: Set commit message
           run: |
-            echo ::set-env name=commitmsg::$(git log --format=%B -n 1 ${{ github.event.after }})
-            echo $commitmsg
+            echo $(git log --format=%B -n 1 ${{ github.event.after }})
+            echo "commitmsg=$(git log --format=%B -n 1 ${{ github.event.after }})" >> $GITHUB_ENV
+            echo "${{ env.commitmsg }}"
 
         # Copy participant content to target
         - name: Copy participant content to target
