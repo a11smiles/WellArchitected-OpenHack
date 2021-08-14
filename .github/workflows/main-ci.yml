@@ -264,8 +264,8 @@ jobs:
           echo "commitmsg=$(git log -1 --format=%s)" >> $GITHUB_ENV
           echo "${{ env.commitmsg }}"
 
-      # Copy sources to target
-      - name: Copy sources content to target
+      # Copy source folder to target
+      - name: Copy source folder to target
         run: |
           cd ${{ github.workspace }} 
           xcopy /E .\source\scripts\source .\target\byos\waf
@@ -274,7 +274,7 @@ jobs:
       - name: Copy deployment tool to target
         run: |
           cd ${{ github.workspace }} 
-          xcopy /E .\source\tools\Deploy .\target\byos\waf
+          xcopy /E .\source\scripts\tools\Deploy .\target\byos\waf
 
       # Copy deployment doc to target
       - name: Copy deployment doc to target
