@@ -235,6 +235,62 @@ jobs:
             message: ${{ env.commitmsg }}
 
 
+
+push-byos:
+      needs: [content-test, processor-test, web-test, bicep-test]
+      runs-on: windows-latest
+      name: Push Content to 'microsoft/OpenHack'
+      steps:
+        # Checkout the source repo
+        - name: Checkout source
+          uses: actions/checkout@v2
+          with:
+            path: source
+        
+        # Checkout the 'microsoft/OpenHack' repo
+        - name: Checkout target
+          uses: actions/checkout@v2
+          with:
+            repository: microsoft/OpenHack
+            token: ${{ secrets.MICROSOFT_REPOS_KEY }}
+            ref: main
+            path: target
+
+        # Get/set commit message
+        - name: Set commit message
+          run: |
+            cd ${{ github.workspace }}/source
+            echo $(git log -1 --format=%s)
+            echo "commitmsg=$(git log -1 --format=%s)" >> $GITHUB_ENV
+            echo "${{ env.commitmsg }}"
+
+        # Copy sources to target
+        - name: Copy sources content to target
+          run: |
+            cd ${{ github.workspace }} 
+            xcopy /E .\source/scripts\source .\target\byos\waf
+
+        # Copy deployment tool to target
+        - name: Copy deployment tool to target
+          run: |
+            cd ${{ github.workspace }} 
+            xcopy /E .\source\tools\Deploy .\target\byos\waf
+
+        # Copy deployment doc to target
+        - name: Copy deployment doc to target
+          run: |
+            cd ${{ github.workspace }} 
+            copy .\source\docs\deployment.md .\target\byos\waf
+
+        # Commit and push changes
+        - name: Commit and push changes
+          uses: EndBug/add-and-commit@v7
+          with:
+            cwd: 'target'
+            default_author: github_actor
+            message: ${{ env.commitmsg }}
+
+
   # processor-package:
   #   needs: [processor-test, web-test, bicep-test]
   #   runs-on: ubuntu-latest
