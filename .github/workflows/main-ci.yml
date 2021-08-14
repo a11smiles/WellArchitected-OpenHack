@@ -197,19 +197,19 @@ jobs:
         - name: Copy one-pager
           run: |
             cd ${{ github.workspace }}
-            cp ./docs/outline.md ./target/resources/one-pager.md
+            cp ./source/docs/outline.md ./target/resources/one-pager.md
 
         # Copy PPTs to target
         - name: Copy PowerPoint files
           run: |
             cd ${{ github.workspace }}
-            cp -R ./guides ./target/resources
+            cp -R ./source/guides ./target/resources
 
         # Copy ServiceMatrix.xlsx
         - name: Copy PowerPoint files
           run: |
             cd ${{ github.workspace }}
-            cp ./guides/successMatrix.xlsx ./target/resources
+            cp ./source/guides/successMatrix.xlsx ./target/resources
 
         # Commit and push changes
         - name: Commit and push changes
