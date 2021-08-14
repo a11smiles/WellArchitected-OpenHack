@@ -170,23 +170,14 @@ jobs:
             cp ./source/challenges/ch0/README.md ./target/portal/en/Challenge0.md
             cp -R ./source/challenges/ch0/images ./target/portal/en
             cp ./source/challenges/ch1/README.md ./target/portal/en/Challenge1.md
-            cp -R ./source/challenges/ch1/images ./target/portal/en
             cp ./source/challenges/ch2/README.md ./target/portal/en/Challenge2.md
-            cp -R ./source/challenges/ch2/images ./target/portal/en
             cp ./source/challenges/ch3/README.md ./target/portal/en/Challenge3.md
-            cp -R ./source/challenges/ch3/images ./target/portal/en
             cp ./source/challenges/ch4/README.md ./target/portal/en/Challenge4.md
-            cp -R ./source/challenges/ch4/images ./target/portal/en
             cp ./source/challenges/ch5/README.md ./target/portal/en/Challenge5.md
-            cp -R ./source/challenges/ch5/images ./target/portal/en
             cp ./source/challenges/ch6/README.md ./target/portal/en/Challenge6.md
-            cp -R ./source/challenges/ch6/images ./target/portal/en
             cp ./source/challenges/ch7/README.md ./target/portal/en/Challenge7.md
-            cp -R ./source/challenges/ch7/images ./target/portal/en
             cp ./source/challenges/ch8/README.md ./target/portal/en/Challenge8.md
-            cp -R ./source/challenges/ch8/images ./target/portal/en
             cp ./source/challenges/ch9/README.md ./target/portal/en/Challenge9.md
-            cp -R ./source/challenges/ch9/images ./target/portal/en
 
         # Copy lab definition file to target
         - name: Copy lab definition
