@@ -268,7 +268,7 @@ jobs:
       - name: Copy sources content to target
         run: |
           cd ${{ github.workspace }} 
-          xcopy /E .\source/scripts\source .\target\byos\waf
+          xcopy /E .\source\scripts\source .\target\byos\waf
 
       # Copy deployment tool to target
       - name: Copy deployment tool to target
