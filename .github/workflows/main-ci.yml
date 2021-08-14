@@ -144,151 +144,151 @@ jobs:
           
           
   push-content:
-      needs: [content-test, processor-test, web-test, bicep-test]
-      runs-on: ubuntu-latest
-      name: Push Content to 'Microsoft-OpenHack/well-architected-framework'
-      steps:
-        # Checkout the source repo
-        - name: Checkout source
-          uses: actions/checkout@v2
-          with:
-            path: source
-        
-        # Checkout the 'Microsoft-OpenHack/well-architected-framework' repo
-        - name: Checkout target
-          uses: actions/checkout@v2
-          with:
-            repository: Microsoft-OpenHack/well-architected-framework
-            token: ${{ secrets.MICROSOFT_REPOS_KEY }}
-            ref: main
-            path: target
+    needs: [content-test, processor-test, web-test, bicep-test]
+    runs-on: ubuntu-latest
+    name: Push Content to 'Microsoft-OpenHack/well-architected-framework'
+    steps:
+      # Checkout the source repo
+      - name: Checkout source
+        uses: actions/checkout@v2
+        with:
+          path: source
+      
+      # Checkout the 'Microsoft-OpenHack/well-architected-framework' repo
+      - name: Checkout target
+        uses: actions/checkout@v2
+        with:
+          repository: Microsoft-OpenHack/well-architected-framework
+          token: ${{ secrets.MICROSOFT_REPOS_KEY }}
+          ref: main
+          path: target
 
-        # Get/set commit message
-        - name: Set commit message
-          run: |
-            cd ${{ github.workspace }}/source
-            echo $(git log -1 --format=%s)
-            echo "commitmsg=$(git log -1 --format=%s)" >> $GITHUB_ENV
-            echo "${{ env.commitmsg }}"
+      # Get/set commit message
+      - name: Set commit message
+        run: |
+          cd ${{ github.workspace }}/source
+          echo $(git log -1 --format=%s)
+          echo "commitmsg=$(git log -1 --format=%s)" >> $GITHUB_ENV
+          echo "${{ env.commitmsg }}"
 
-        # Copy participant content to target
-        - name: Copy participant content to target
-          run: |
-            cd ${{ github.workspace }} 
-            cp ./source/challenges/ch0/README.md ./target/portal/en/Challenge0.md
-            cp -R ./source/challenges/ch0/images ./target/portal/en
-            cp ./source/challenges/ch1/README.md ./target/portal/en/Challenge1.md
-            cp ./source/challenges/ch2/README.md ./target/portal/en/Challenge2.md
-            cp ./source/challenges/ch3/README.md ./target/portal/en/Challenge3.md
-            cp ./source/challenges/ch4/README.md ./target/portal/en/Challenge4.md
-            cp ./source/challenges/ch5/README.md ./target/portal/en/Challenge5.md
-            cp ./source/challenges/ch6/README.md ./target/portal/en/Challenge6.md
-            cp ./source/challenges/ch7/README.md ./target/portal/en/Challenge7.md
-            cp ./source/challenges/ch8/README.md ./target/portal/en/Challenge8.md
-            cp ./source/challenges/ch9/README.md ./target/portal/en/Challenge9.md
+      # Copy participant content to target
+      - name: Copy participant content to target
+        run: |
+          cd ${{ github.workspace }} 
+          cp ./source/challenges/ch0/README.md ./target/portal/en/Challenge0.md
+          cp -R ./source/challenges/ch0/images ./target/portal/en
+          cp ./source/challenges/ch1/README.md ./target/portal/en/Challenge1.md
+          cp ./source/challenges/ch2/README.md ./target/portal/en/Challenge2.md
+          cp ./source/challenges/ch3/README.md ./target/portal/en/Challenge3.md
+          cp ./source/challenges/ch4/README.md ./target/portal/en/Challenge4.md
+          cp ./source/challenges/ch5/README.md ./target/portal/en/Challenge5.md
+          cp ./source/challenges/ch6/README.md ./target/portal/en/Challenge6.md
+          cp ./source/challenges/ch7/README.md ./target/portal/en/Challenge7.md
+          cp ./source/challenges/ch8/README.md ./target/portal/en/Challenge8.md
+          cp ./source/challenges/ch9/README.md ./target/portal/en/Challenge9.md
 
-        # Copy lab definition file to target
-        - name: Copy lab definition
-          run: |
-            cd ${{ github.workspace }}
-            cp ./source/challenges/lab-content-definition.json ./target/portal/en
+      # Copy lab definition file to target
+      - name: Copy lab definition
+        run: |
+          cd ${{ github.workspace }}
+          cp ./source/challenges/lab-content-definition.json ./target/portal/en
 
-        # Copy one-pager to target
-        - name: Copy one-pager
-          run: |
-            cd ${{ github.workspace }}
-            cp ./source/docs/outline.md ./target/resources/one-pager.md
+      # Copy one-pager to target
+      - name: Copy one-pager
+        run: |
+          cd ${{ github.workspace }}
+          cp ./source/docs/outline.md ./target/resources/one-pager.md
 
-        # Copy coach content to target
-        - name: Copy coach content to target
-          run: |
-            cd ${{ github.workspace }}
-            mkdir -p ./target/resources/guides
-            cp ./source/guides/challenges/ch1/README.md ./target/resources/guides/Challenge1.md
-            cp ./source/guides/challenges/ch2/README.md ./target/resources/guides/Challenge2.md
-            cp ./source/guides/challenges/ch3/README.md ./target/resources/guides/Challenge3.md
-            cp ./source/guides/challenges/ch4/README.md ./target/resources/guides/Challenge4.md
-            cp ./source/guides/challenges/ch5/README.md ./target/resources/guides/Challenge5.md
-            cp ./source/guides/challenges/ch6/README.md ./target/resources/guides/Challenge6.md
-            cp ./source/guides/challenges/ch7/README.md ./target/resources/guides/Challenge7.md
-            cp ./source/guides/challenges/ch8/README.md ./target/resources/guides/Challenge8.md
-            cp ./source/guides/challenges/ch9/README.md ./target/resources/guides/Challenge9.md
+      # Copy coach content to target
+      - name: Copy coach content to target
+        run: |
+          cd ${{ github.workspace }}
+          mkdir -p ./target/resources/guides
+          cp ./source/guides/challenges/ch1/README.md ./target/resources/guides/Challenge1.md
+          cp ./source/guides/challenges/ch2/README.md ./target/resources/guides/Challenge2.md
+          cp ./source/guides/challenges/ch3/README.md ./target/resources/guides/Challenge3.md
+          cp ./source/guides/challenges/ch4/README.md ./target/resources/guides/Challenge4.md
+          cp ./source/guides/challenges/ch5/README.md ./target/resources/guides/Challenge5.md
+          cp ./source/guides/challenges/ch6/README.md ./target/resources/guides/Challenge6.md
+          cp ./source/guides/challenges/ch7/README.md ./target/resources/guides/Challenge7.md
+          cp ./source/guides/challenges/ch8/README.md ./target/resources/guides/Challenge8.md
+          cp ./source/guides/challenges/ch9/README.md ./target/resources/guides/Challenge9.md
 
-        # Copy PPTs to target
-        - name: Copy PowerPoint files
-          run: |
-            cd ${{ github.workspace }}
-            cp -R ./source/guides/ppt ./target/resources
+      # Copy PPTs to target
+      - name: Copy PowerPoint files
+        run: |
+          cd ${{ github.workspace }}
+          cp -R ./source/guides/ppt ./target/resources
 
-        # Copy ServiceMatrix.xlsx
-        - name: Copy Success Matrix
-          run: |
-            cd ${{ github.workspace }}
-            cp ./source/guides/successMatrix.xlsx ./target/resources
+      # Copy ServiceMatrix.xlsx
+      - name: Copy Success Matrix
+        run: |
+          cd ${{ github.workspace }}
+          cp ./source/guides/successMatrix.xlsx ./target/resources
 
-        # Commit and push changes
-        - name: Commit and push changes
-          uses: EndBug/add-and-commit@v7
-          with:
-            cwd: 'target'
-            default_author: github_actor
-            message: ${{ env.commitmsg }}
+      # Commit and push changes
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          cwd: 'target'
+          default_author: github_actor
+          message: ${{ env.commitmsg }}
 
 
 
-push-byos:
-      needs: [content-test, processor-test, web-test, bicep-test]
-      runs-on: windows-latest
-      name: Push Content to 'microsoft/OpenHack'
-      steps:
-        # Checkout the source repo
-        - name: Checkout source
-          uses: actions/checkout@v2
-          with:
-            path: source
-        
-        # Checkout the 'microsoft/OpenHack' repo
-        - name: Checkout target
-          uses: actions/checkout@v2
-          with:
-            repository: microsoft/OpenHack
-            token: ${{ secrets.MICROSOFT_REPOS_KEY }}
-            ref: main
-            path: target
+  push-byos:
+    needs: [content-test, processor-test, web-test, bicep-test]
+    runs-on: windows-latest
+    name: Push Content to 'microsoft/OpenHack'
+    steps:
+      # Checkout the source repo
+      - name: Checkout source
+        uses: actions/checkout@v2
+        with:
+          path: source
+      
+      # Checkout the 'microsoft/OpenHack' repo
+      - name: Checkout target
+        uses: actions/checkout@v2
+        with:
+          repository: microsoft/OpenHack
+          token: ${{ secrets.MICROSOFT_REPOS_KEY }}
+          ref: main
+          path: target
 
-        # Get/set commit message
-        - name: Set commit message
-          run: |
-            cd ${{ github.workspace }}/source
-            echo $(git log -1 --format=%s)
-            echo "commitmsg=$(git log -1 --format=%s)" >> $GITHUB_ENV
-            echo "${{ env.commitmsg }}"
+      # Get/set commit message
+      - name: Set commit message
+        run: |
+          cd ${{ github.workspace }}/source
+          echo $(git log -1 --format=%s)
+          echo "commitmsg=$(git log -1 --format=%s)" >> $GITHUB_ENV
+          echo "${{ env.commitmsg }}"
 
-        # Copy sources to target
-        - name: Copy sources content to target
-          run: |
-            cd ${{ github.workspace }} 
-            xcopy /E .\source/scripts\source .\target\byos\waf
+      # Copy sources to target
+      - name: Copy sources content to target
+        run: |
+          cd ${{ github.workspace }} 
+          xcopy /E .\source/scripts\source .\target\byos\waf
 
-        # Copy deployment tool to target
-        - name: Copy deployment tool to target
-          run: |
-            cd ${{ github.workspace }} 
-            xcopy /E .\source\tools\Deploy .\target\byos\waf
+      # Copy deployment tool to target
+      - name: Copy deployment tool to target
+        run: |
+          cd ${{ github.workspace }} 
+          xcopy /E .\source\tools\Deploy .\target\byos\waf
 
-        # Copy deployment doc to target
-        - name: Copy deployment doc to target
-          run: |
-            cd ${{ github.workspace }} 
-            copy .\source\docs\deployment.md .\target\byos\waf
+      # Copy deployment doc to target
+      - name: Copy deployment doc to target
+        run: |
+          cd ${{ github.workspace }} 
+          copy .\source\docs\deployment.md .\target\byos\waf
 
-        # Commit and push changes
-        - name: Commit and push changes
-          uses: EndBug/add-and-commit@v7
-          with:
-            cwd: 'target'
-            default_author: github_actor
-            message: ${{ env.commitmsg }}
+      # Commit and push changes
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          cwd: 'target'
+          default_author: github_actor
+          message: ${{ env.commitmsg }}
 
 
   # processor-package:
