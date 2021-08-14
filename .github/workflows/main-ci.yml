@@ -199,14 +199,28 @@ jobs:
             cd ${{ github.workspace }}
             cp ./source/docs/outline.md ./target/resources/one-pager.md
 
+        # Copy coach content to target
+        - name: Copy coach content to target
+          run: |
+            cd ${{ github.workspace }}
+            cp ./source/guides/challenges/ch1/README.md ./target/resources/guides/Challenge1.md
+            cp ./source/guides/challenges/ch2/README.md ./target/resources/guides/Challenge2.md
+            cp ./source/guides/challenges/ch3/README.md ./target/resources/guides/Challenge3.md
+            cp ./source/guides/challenges/ch4/README.md ./target/resources/guides/Challenge4.md
+            cp ./source/guides/challenges/ch5/README.md ./target/resources/guides/Challenge5.md
+            cp ./source/guides/challenges/ch6/README.md ./target/resources/guides/Challenge6.md
+            cp ./source/guides/challenges/ch7/README.md ./target/resources/guides/Challenge7.md
+            cp ./source/guides/challenges/ch8/README.md ./target/resources/guides/Challenge8.md
+            cp ./source/guides/challenges/ch9/README.md ./target/resources/guides/Challenge9.md
+
         # Copy PPTs to target
         - name: Copy PowerPoint files
           run: |
             cd ${{ github.workspace }}
-            cp -R ./source/guides ./target/resources
+            cp -R ./source/guides/ppt ./target/resources
 
         # Copy ServiceMatrix.xlsx
-        - name: Copy PowerPoint files
+        - name: Copy Success Matrix
           run: |
             cd ${{ github.workspace }}
             cp ./source/guides/successMatrix.xlsx ./target/resources
