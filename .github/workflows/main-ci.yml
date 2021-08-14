@@ -172,8 +172,8 @@ jobs:
         - name: Set commit message
           run: |
             cd ${{ github.workspace }}/source
-            echo $(git log --format=%B -n 1)
-            echo "commitmsg=$(git log --format=%B -n 1)" >> $GITHUB_ENV
+            echo $(git log -1 --format=%s)
+            echo "commitmsg=$(git log -1 --format=%s)" >> $GITHUB_ENV
             echo "${{ env.commitmsg }}"
 
         # Copy participant content to target
