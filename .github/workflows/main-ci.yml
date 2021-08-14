@@ -203,6 +203,7 @@ jobs:
         - name: Copy coach content to target
           run: |
             cd ${{ github.workspace }}
+            mkdir -p ./target/resources/guides
             cp ./source/guides/challenges/ch1/README.md ./target/resources/guides/Challenge1.md
             cp ./source/guides/challenges/ch2/README.md ./target/resources/guides/Challenge2.md
             cp ./source/guides/challenges/ch3/README.md ./target/resources/guides/Challenge3.md
