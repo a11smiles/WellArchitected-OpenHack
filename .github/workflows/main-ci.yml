@@ -163,11 +163,6 @@ jobs:
             ref: main
             path: target
 
-        - name : GITHUB CONTEXT
-          env:
-            GITHUB_CONTEXT: ${{ toJson(github) }}
-          run: echo "$GITHUB_CONTEXT"
-
         # Get/set commit message
         - name: Set commit message
           run: |
