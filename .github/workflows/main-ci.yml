@@ -193,6 +193,24 @@ jobs:
             cd ${{ github.workspace }}
             cp ./source/challenges/lab-content-definition.json ./target/portal/en
 
+        # Copy one-pager to target
+        - name: Copy one-pager
+          run: |
+            cd ${{ github.workspace }}
+            cp ./docs/outline.md ./target/resources/one-pager.md
+
+        # Copy PPTs to target
+        - name: Copy PowerPoint files
+          run: |
+            cd ${{ github.workspace }}
+            cp -R ./guides ./target/resources
+
+        # Copy ServiceMatrix.xlsx
+        - name: Copy PowerPoint files
+          run: |
+            cd ${{ github.workspace }}
+            cp ./guides/successMatrix.xlsx ./target/resources
+
         # Commit and push changes
         - name: Commit and push changes
           uses: EndBug/add-and-commit@v7
