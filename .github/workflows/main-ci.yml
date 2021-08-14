@@ -1,4 +1,4 @@
-name: Build and Deploy Artifacts (Main)
+name: Build and Deploy Artifacts (Manual)
 
 on:
   workflow_dispatch
@@ -166,6 +166,7 @@ jobs:
         # Copy participant content to target
         - name: Copy participant content to target
           run: |
+            cd ${{ github.workspace }} 
             cp ./source/challenges/ch0/README.md ./target/portal/en/Challenge0.md
             cp -R ./source/challenges/ch0/images ./target/portal/en
             cp ./source/challenges/ch1/README.md ./target/portal/en/Challenge1.md
@@ -190,13 +191,14 @@ jobs:
         # Copy lab definition file to target
         - name: Copy lab definition
           run: |
+            cd ${{ github.workspace }}
             cp ./source/challenges/lab-content-definition.json ./target/portal/en
 
         # Commit and push changes
         - name: Commit and push changes
           uses: EndBug/add-and-commit@v7
           with:
-            cwd: 'target'
+            cwd: '${{ github.workspace }}/target'
             message: ${{ github.event.head_commit.message }}
             default_author: user_info
 
