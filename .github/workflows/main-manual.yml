@@ -292,19 +292,19 @@ jobs:
       - name: Build 'Processor' and copy to target
         run: |
           dotnet publish ${{ github.workspace }}\source\scripts\source\portal\processor\src\Processor\Processor.csproj -c Release -r win10-x64 --self-contained true --output ${{ github.workspace }}\output\Processor
-          Compress-Archive -Path ${{ github.workspace }}\output\Processor\* -DestinationPath ${{ github.workspace }}\target\byos\waf\source\dsc\Processor.zip
+          Compress-Archive -Path ${{ github.workspace }}\output\Processor\* -DestinationPath ${{ github.workspace }}\target\byos\waf\source\dsc\Processor.zip -Force
      
       # Build 'Web' and copy to target's source folder
       - name: Build 'Web' and copy to target
         run: |
           dotnet publish ${{ github.workspace }}\source\scripts\source\portal\web\src\Portal.Web\Portal.Web.csproj -c Release --output ${{ github.workspace }}\output\Web
-          Compress-Archive -Path ${{ github.workspace }}\output\Web\* -DestinationPath ${{ github.workspace }}\target\byos\waf\source\dsc\Portal.Web.zip
+          Compress-Archive -Path ${{ github.workspace }}\output\Web\* -DestinationPath ${{ github.workspace }}\target\byos\waf\source\dsc\Portal.Web.zip -Force
 
       # Build 'Api' and copy to target's source folder
       - name: Build 'Api' and copy to target
         run: |
           dotnet publish ${{ github.workspace }}\source\scripts\source\portal\web\src\Portal.Api\Portal.Api.csproj -c Release --output ${{ github.workspace }}\output\Api
-          Compress-Archive -Path ${{ github.workspace }}\output\Api\* -DestinationPath ${{ github.workspace }}\target\byos\waf\source\dsc\Portal.Api.zip
+          Compress-Archive -Path ${{ github.workspace }}\output\Api\* -DestinationPath ${{ github.workspace }}\target\byos\waf\source\dsc\Portal.Api.zip -Force
 
       # Commit and push changes
       - name: Commit and push changes
