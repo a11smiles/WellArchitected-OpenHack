@@ -291,7 +291,7 @@ jobs:
       # Build 'Processor' and copy to target's source folder
       - name: Build 'Processor' and copy to target
         run: |
-          dotnet publish ${{ github.workspace }}\source\scripts\source\portal\processor\Processor.sln -c Release -r win10-x64 --self-contained true --output ${{ github.workspace }}\output\Processor
+          dotnet publish ${{ github.workspace }}\source\scripts\source\portal\processor\src\Processor\Processor.csproj -c Release -r win10-x64 --self-contained true --output ${{ github.workspace }}\output\Processor
           Compress-Archive -Path ${{ github.workspace }}\output\Processor\* -DestinationPath ${{ github.workspace }}\target\byos\waf\source\dsc\Processor.zip
      
       # Build 'Web' and copy to target's source folder
