@@ -1,11 +1,11 @@
 general:
-  ☐ remove anchor links throughout content
-  ☐ remove relative links throughout content
+  ✔ remove anchor links throughout content @done(21-08-17 14:29)
+  ✔ remove relative links throughout content @done(21-08-17 14:29)
   ☐ update k6 content description
 
 build:
   ☐ copy tools/k6 to target
-  ☐ lint tools folder
+  ✔ lint tools folder @done(21-08-17 14:31)
 
 outline.md:
   ☐ Update "Training Prerequisites" with links to MSLearn and MOOC content

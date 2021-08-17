@@ -35,15 +35,14 @@ jobs:
           # files, directories, or globs
           files: ./guides/challenges/**/*.md
 
-
-      # Lint any additional guides you have (any *.md files).  Remove if not needed.
-#      - name: 'Linting Resources'
-#        uses: nosborn/github-action-markdown-cli@v1.1.1
-#        with:
-#          # configuration file (JSON or YAML)
-#          config_file: .markdownlint.json
-#          # files, directories, or globs
-#          files:  ./resources
+      # Lint any content you have (any *.md files).
+      - name: 'Linting Tools'
+        uses: nosborn/github-action-markdown-cli@v1.1.1
+        with:
+          # configuration file (JSON or YAML)
+          config_file: .markdownlint.json
+          # files, directories, or globs
+          files:  ./tools
 
       # Lint your JSON files [mostly for content def]
       - name: 'Install dependencies'
@@ -225,6 +224,12 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           cp ./source/guides/successMatrix.xlsx ./target/resources
+
+      # Copy tools folder to target
+      - name: Copy participant tools
+        run: |
+          cd ${{ github.workspace }}
+          cp ./source/tools ./target/tools
 
       # Commit and push changes
       - name: Commit and push changes
