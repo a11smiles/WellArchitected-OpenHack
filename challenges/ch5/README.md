@@ -56,7 +56,7 @@ Unfortunately, this is a scenario where the customer "doesn't know what they don
 
 There are not many "helpful hints" for this challenge. You must begin to truly scrutinize the configuration of Woodgrove Bank's environment and apply the principles of the Microsoft Well-Architected Framework. There are no shortcuts to WAF. You must successfully apply your knowledge of Azure and WAF to deliver an IaaS implementation that is optimized, secure, reliable and performant.
 
-* In order for Application Insights to collect performance counters on the virtual machine, the IIS App Pool under which the application is running, must be added to the `Performance Monitor Users` group on each VM. \[[See the Stack Overflow link under references.](#references)\]
+* In order for Application Insights to collect performance counters on the virtual machine, the IIS App Pool under which the application is running, must be added to the `Performance Monitor Users` group on each VM. \[See the Stack Overflow link under references.\]
 
 ## Success criteria
 
@@ -86,7 +86,7 @@ For success in this challenge, you will need to perform the following:
 * Accurately describe the ACHIEVE process and its benefits.
 * Discuss with your coach any other improvements that you could potentially implement.
 
-Remember, **NOW** is the time for you to practice the _ACHIEVE_ method ([see above](#achieve-microsoft-waf)).
+Remember, **NOW** is the time for you to practice the _ACHIEVE_ method (see above).
 
 ## References
 
