@@ -138,9 +138,9 @@ In this section, you will find a list of hints to help you through the Well-Arch
 
 ### Connecting to the public-facing application
 
-1. Open the [Azure portal](https://portal.azure.com).
+1. Open the <a href="https://portal.azure.com" target="_blank">Azure portal</a>.
 2. Use a username/password combination found in your **OPEN HACK ENVIRONMENT** tab to login.
-3. Search for the resource **elb-eastus-web**. This is your external load balancer. The _public_ IP address of the load balancer can be used to access the web application in the OpenHack.
+3. Search for the resource **elbwebapp**. This is your external load balancer. The _public_ IP address of the load balancer can be used to access the web application in the OpenHack.
 
 ### Logging in to the web application
 
@@ -153,7 +153,7 @@ You can login to a fictitious customer's bank account using the following creden
 
 ### Connecting to the servers
 
-1. Open the [Azure portal](https://portal.azure.com).
+1. Open the <a href="https://portal.azure.com" target="_blank">Azure portal</a>.
 2. Use a username/password combination found in your **OPEN HACK ENVIRONMENT** tab to login.
 3. Search for the VM by its name listed in the table above.
 4. Use a Remote Desktop Connection (RDP) to connect to the server you choose by using its Public IP address.

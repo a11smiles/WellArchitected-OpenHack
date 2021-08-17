@@ -1,3 +1,12 @@
+general:
+  ☐ remove anchor links throughout content
+  ☐ remove relative links throughout content
+  ☐ update k6 content description
+
+build:
+  ☐ copy tools/k6 to target
+  ☐ lint tools folder
+
 outline.md:
   ☐ Update "Training Prerequisites" with links to MSLearn and MOOC content
   ☐ Update *Links & Resources*
@@ -6,10 +15,65 @@ outline.md:
 challenge 1: 
   ✔ Discuss blue-green deployments @done(21-05-12 13:17)
   ☐ batch/services vm should be stated that these services do not run continously
+  ☐ proof content
+  ☐ create "issues" document
+
+challenge 1 (coach's guide):
+  ☐ proof content
+  ☐ create list of issues
+
+challenge 2:
+  ☐ proof content
+
+challenge 2 (coach's guide):
+  ☐ proof content
+
+challenge 3:
+  ☐ proof content
 
 challenge 3 (coach's guide):
   ☐ create chaos script (SC #2)
   ☐ create a sample of queries for Sentinel (HS #2)
 
+challenge 4:
+  ☐ proof content
+
+challenge 4 (coach's guide):
+  ☐ proof content
+
+challenge 5:
+  ☐ proof content
+
 challenge 5 (coach's guide):
   ☐ update the IIS App Pool name (HS #3)
+
+challenge 6:
+  ☐ proof content
+
+challenge 6 (coach's guide):
+  ☐ proof content
+
+challenge 7:
+  ☐ write content
+  ☐ proof content
+
+challenge 7 (coach's guide):
+  ☐ write content
+  ☐ proof content
+
+challenge 8:
+  ☐ write content
+  ☐ proof content
+
+challenge 8 (coach's guide):
+  ☐ write content
+  ☐ proof content
+
+challenge 9:
+  ☐ write content
+  ☐ proof content
+
+challenge 9 (coach's guide):
+  ☐ write content
+  ☐ proof content
+    
