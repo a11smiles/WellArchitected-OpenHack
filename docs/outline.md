@@ -2,16 +2,16 @@
 The below defines the individual challenges, along with their abstract, any requirements, and their expected objectives.
 
 ## Overview
-The **Well-Architected Framework OpenHack** attempts to test the participants' understanding of the Microsoft Well-Architected pillars. During the OpenHack, participants will demonstrate and practice a standardized process of conducting a Well-Architected assessment across all five of its pillars against a customer's workload.
+The **Microsoft Azure Well-Architected Framework OpenHack** attempts to test the participants' understanding of the Microsoft Well-Architected pillars. During the OpenHack, participants will demonstrate and practice a standardized process of conducting a Well-Architected assessment across all five of its pillars against a customer's workload.
 
-The **Well-Architected Framework OpenHack** simulates a real-world scenario of a bank who has attempted to deploy a production workload to Azure.  Unfortunately, the bank was unaware of the Well-Architected pillars and proven design patterns, therefore, the production workload fails in many areas.
+The **Microsoft Azure Well-Architected Framework OpenHack** simulates a real-world scenario of a bank who has attempted to deploy a production workload to Azure.  Unfortunately, the bank was unaware of the Well-Architected pillars and proven design patterns, therefore, the production workload fails in many areas.
 
 During the "hacking," attendees will focus on:
 1) Analyzing and identifying enhancements to the customer's environment
 2) Strengthening the customer's operational landscape
 3) Ensuring that the customer's experience with the Microsoft cloud is of the utmost quality, value, and excellence
 
-By the end of the OpenHack, it is expected that attendees will be familiar with the Microsoft Well-Architected Framework and able to conduct an assessment against a customer's workload in the Azure cloud.
+By the end of the OpenHack, it is expected that attendees will be familiar with the Microsoft Azure Well-Architected Framework and able to conduct an assessment against a customer's workload in the Azure cloud.
 
 ## Business Outcomes
 When conducting a Well-Architected Assessment, Cloud Solution Architects (CSAs) will follow the  standardized process outlined below. This standard process is designed to drive an expected, high-level business value to the customer and to Microsoft. By participating in this OpenHack, CSAs will:
@@ -45,33 +45,95 @@ When conducting a Well-Architected Assessment, Cloud Solution Architects (CSAs) 
 
 ## Prerequisites
 ### Knowledge Prerequisites
-To be successful and get the most out of this OpenHack, it is highly recommended that participants have a deep understanding (400+ level) of the following:
+To be successful and get the most out of this OpenHack, it is highly recommended that participants have a deep understanding (L400+) of the following:
 * [Microsoft Azure Well-Architected Framework](https://docs.microsoft.com/azure/architecture/framework/)
 * [Cloud Design Patterns](https://docs.microsoft.com/azure/architecture/patterns/index-patterns)
 
-Additionally, participants should be adequately familiar with the technologies listed above.
+Additionally, teams should be deeply familiar with the technologies listed above.
 
-Finally, participants should have knowledge of the following technologies:
+Finally, participants should have operational knowledge (L200) of the following technologies:
 * [Azure DevOps Build/Release Pipelines](https://docs.microsoft.com/azure/devops/pipelines/get-started/what-is-azure-pipelines)
 * [Azure Bicep](https://docs.microsoft.com/azure/azure-resource-manager/templates/bicep-overview)
 * [Azure CLI](https://docs.microsoft.com/cli/azure/)
 ### Training Prerequisites
 For preparation in passing the required challenges, participants are required to have completed all WAF training available via MS Learn. Additionally, it is expected that participants have completed pillar-specific hands-on learning labs.
-### Language-Specific Prerequisites
-
 ### Tooling Prerequisites
 To avoid any delays with downloading or installing tooling, have the following ready to go ahead of the OpenHack:
+
 * A modern laptop running Windows 10 (1703 or higher), Mac OSX (10.12 or higher), or Ubuntu (16.04 or higher)
 * Install your choice of Integrated Development Environment (IDE) software, such as [Visual Studio](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://visualstudio.microsoft.com/)
 * Download the latest version of [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
 * Download the latest version of [Azure Bicep CLI](https://github.com/Azure/bicep/blob/main/docs/installing.md)
-* For performance tests, install [k6 CLI](https://k6.io/docs/getting-started/installation/) (to install k6 CLI on Windows, you'll first need to install [Chocolatey Package Manager](https://chocolatey.org/install)) or install [Docker Desktop](https://docs.docker.com/engine/install/).
-### Development Environment Configuration
+* For performance tests, install [k6 CLI](https://k6.io/docs/getting-started/installation/) (to install k6 CLI on Windows, you'll first need to install [Chocolatey Package Manager](https://chocolatey.org/install)) or install [Docker Desktop](https://docs.docker.com/engine/install/)
 * To build applications locally, participants will need to download and install [.NET Core 5.0 SDK](https://dotnet.microsoft.com/download) 
+### Development Environment Configuration
+Each team will need the following resources for the OpenHack:
+
+* An Azure subscription with _Owner_ privileges. The teams will be required to create Service Principals to connect Azure DevOps for deploying templates and to connect Grafana to Azure Monitor.
+* An Azure DevOps tenant with _Project Collection Administrator_ privileges. The tenant will contain two projects along with source code for the OpenHack. 
+
+A deployment guide can be found in the public [BYOS repo](https://github.com/microsoft/OpenHack/blob/main/byos/waf/deployment.md).
+
+### Language-Specific Resources
+The following languages/technologies are not required of _each participant_. However, the team, as a whole, should be able to cover the following together.
+
+* **C#** - Some understanding is necessary for comprehending source code and completing later challenges.
+* **JavaScript** - An extremely elementary knowledge is required if participants wish to understand the code. Otherwise, they will only be updating a few strings at the beginning of a script.
+* **SQL (Entity Framework) with SQL Profiler** - Teams should be able to identify under performing queries and have the ability to optimize, as necessary.
+* **YAML for Azure DevOps Build/Release Pipelines** - Initial YAML files are provided. However, teams must be able to update the scripts, as necessary, to complete challenges. (NOTE: Teams may wish to leverage GitHub workflows but doing so is outside the scope of this OpenHack.)
+* **Azure Bicep** - The infrastructure is built using Azure Bicep, along with some desired state configurations (DSC). Teams will need to know how to develop Azure Bicep scripts in order to complete the Infrastructure-as-Code (IaC) components of this OpenHack. (NOTE: Teams may also leverage pure ARM templates or Terraform. However, both are outside the scope of this OpenHack and may prove to cost the team valuable time.)
+
+
 ### Links & Resources
-_TBD_
+Besides the foundation knowledge requirements outlined above, below are a few additional resources that may be helpful prior to beginning this OpenHack.
+
+**General**
+* [Microsoft Assessments: Azure Well-Architected Review](https://docs.microsoft.com/assessments/?mode=pre-assessment&id=azure-architecture-review)
+
+**DevSecOps**
+* [DevSecOps in Azure](https://docs.microsoft.com/azure/architecture/solution-ideas/articles/devsecops-in-azure) (NOTE: While some content centers around AKS and Terraform, the general concepts are the same.)
+* [Design a CI/CD pipeline using Azure DevOps](https://docs.microsoft.com/azure/architecture/example-scenario/apps/devops-dotnet-webapp)
+* [End-to-end governance in Azure when using CI/CD](https://docs.microsoft.com/azure/architecture/example-scenario/governance/end-to-end-governance-in-azure)
+* [DevTest and DevOps for IaaS solutions](https://docs.microsoft.com/azure/architecture/solution-ideas/articles/dev-test-iaas)
+* [CI/CD for Azure VMs](https://docs.microsoft.com/azure/architecture/solution-ideas/articles/cicd-for-azure-vms)
+* [DevTest and DevOps for PaaS solutions](https://docs.microsoft.com/azure/architecture/solution-ideas/articles/dev-test-paas)
+* [CI/CD for Azure Web Apps](https://docs.microsoft.com/azure/architecture/solution-ideas/articles/azure-devops-continuous-integration-and-continuous-deployment-for-azure-web-apps)
+* [DevOps in a hybrid environment](https://docs.microsoft.com/azure/architecture/solution-ideas/articles/devops-in-a-hybrid-environment)
+* [Implementation reference for load testing pipeline solution](https://docs.microsoft.com/azure/architecture/example-scenario/banking/jmeter-load-testing-pipeline-implementation-reference) (NOTE: Documentation is specific to JMeter but can be adapted to k6.)
+* [Hybrid availability and performance monitoring](https://docs.microsoft.com/azure/architecture/hybrid/hybrid-perf-monitoring)
+* [Centralized app configuration and security](https://docs.microsoft.com/azure/architecture/solution-ideas/articles/appconfig-key-vault)
+* [Secure and govern workloads with network level segmentation](https://docs.microsoft.com/azure/architecture/reference-architectures/hybrid-networking/network-level-segmentation)
+* [Security considerations for highly sensitive IaaS apps in Azure](https://docs.microsoft.com/azure/architecture/reference-architectures/n-tier/high-security-iaas)
+* [Threat indicators for cyber threat intelligence in Azure Sentinel](https://docs.microsoft.com/azure/architecture/example-scenario/data/sentinel-threat-intelligence)
+* [Web application monitoring on Azure](https://docs.microsoft.com/azure/architecture/reference-architectures/app-service-web-app/app-monitoring)
+
+**Core Networking**
+* [Zero-trust network for web applications with Azure Firewall and Application Gateway](https://docs.microsoft.com/azure/architecture/example-scenario/gateway/application-gateway-before-azure-firewall)
+* [Multi-region load balancing with Traffic Manager and Application Gateway](https://docs.microsoft.com/azure/architecture/high-availability/reference-architecture-traffic-manager-application-gateway)
+* [Protect APIs with Application Gateway and API Management](https://docs.microsoft.com/azure/architecture/reference-architectures/apis/protect-apis)
+* [Azure Firewall architecture overview](https://docs.microsoft.com/azure/architecture/example-scenario/firewalls/)
+* [Securely managed web applications](https://docs.microsoft.com/azure/architecture/example-scenario/apps/fully-managed-secure-apps)
+
+**Infrastructure**
+* [IaaS: Web application with relational database](https://docs.microsoft.com/azure/architecture/high-availability/ref-arch-iaas-web-and-db)
+* [Basic Web Application](https://docs.microsoft.com/azure/architecture/reference-architectures/app-service-web-app/basic-web-app)
+* [Multi-region web app with private connectivity to database](https://docs.microsoft.com/azure/architecture/example-scenario/sql-failover/app-service-private-sql-multi-region)
+* [Enterprise deployment using App Services Environment](https://docs.microsoft.com/azure/architecture/reference-architectures/enterprise-integration/ase-standard-deployment)
+* [High availability enterprise deployment using App Services Environment](https://docs.microsoft.com/azure/architecture/reference-architectures/enterprise-integration/ase-high-availability-deployment)
+* [High availability and disaster recovery scenarios for IaaS apps](https://docs.microsoft.com/azure/architecture/example-scenario/infrastructure/iaas-high-availability-disaster-recovery)
+* [Build high availability into your BCDR strategy](https://docs.microsoft.com/azure/architecture/solution-ideas/articles/build-high-availability-into-your-bcdr-strategy)
+* [Highly available multi-region web application](https://docs.microsoft.com/azure/architecture/reference-architectures/app-service-web-app/multi-region)
+
+**Applications**
+* [Unified logging for microservices applications](https://docs.microsoft.com/azure/architecture/example-scenario/logging/unified-logging)
+* [Modernize .NET applications](https://docs.microsoft.com/azure/architecture/solution-ideas/articles/net-app-modernization)
+* [Scalable Web Apps](https://docs.microsoft.com/azure/architecture/solution-ideas/articles/scalable-web-apps)
+* [Simple branded website](https://docs.microsoft.com/azure/architecture/solution-ideas/articles/simple-branded-website)
+* [Serverless web application](https://docs.microsoft.com/azure/architecture/reference-architectures/serverless/web-app)
+
 ### Post-Learning Recommendations
-_TBD_
+_TBD._  
+_CSU is currently determining a “post-learning” process. I can complete this section once those details are finalized._
 
 ## Challenges
 ### Challenge 1: Assess the environment
@@ -242,17 +304,29 @@ No
 ## Registration Questions
 | Required | Field | Response Options |
 | -------- | ----- | ---------------- |
-| **Yes**  | What is your level of understanding using Azure today?    | None<br />Some understanding<br />I have some pilot work on Azure<br />I rely on Azure today for cloud|
+| **Yes**  | What is your level of understanding using Azure today?    | None<br />Some understanding<br />I have some pilot work on Azure<br />I heavily rely on Azure today for cloud|
 | **Yes**  | What is your level of understanding of the Azure Architecture Center? | None<br />Some understanding<br />I use it occasionally<br />I use it frequently |
 | **Yes**  | What is your level of understanding of Cloud Design Patterns? | None<br />Some understanding<br />I reference them occasionally<br />I reference them frequently |
-| **Yes**  | What is your level of understanding of the Microsoft Well-Architected Framework? | None<br />Some understanding<br />Intermediate knowledge<br />Expert
+| **Yes**  | What is your level of understanding of the Microsoft Azure Well-Architected Framework? | None<br />Some understanding<br />Intermediate knowledge<br />Expert |
+| **Yes**  | Which area most closely aligns to your expertise/role? | Developer<br />Infrastructure<br />Data<br />Security<br />Other |
+| **Yes**  | How many years of experience do you have in your area? | &lt; 1 year<br />1-5 years<br />5-10 years<br />10+ years |
+| **Yes** | Which level of understanding do you have in (separate answer for each of the following areas):<br /><br /><ul><li>Performance testing</li><li>Azure DevOps Build/Release Pipelines</li><li>Azure Bicep, ARM Templates</li><li>Core Azure IaaS services</li><li>Core Azure PaaS services</li><li>Azure Networking</li><li>Cost Management</li><li>Azure Monitor</li><li>Grafana</li><li>Cloud &amp; application security</li><li>Business continuity and disaster recovery (BCDR)</li></ul> | None<br />Introductory<br />Fundamental<br />Intermediate<br />Advanced |
+
 
 ## FAQs
 Q: Are there any pre-requisites to attending this OpenHack?  
    A: Yes. Attendees should have completed all MS Learn modules for WAF and the Hands-On Labs for the individual pillars.
 
-Q: I have been working in Azure for years. Is this OpenHack really necessary?  
-   A: Yes. There are elements of the Well-Architected Framework with which you may be unfamiliar. This OpenHack will help solidify your knowledge of all five pillars.
+Q:	Are there any OpenHacks that I should complete or would be considered advantageous to complete before participating in Microsoft Azure Well-Architected Framework OpenHack?  
+   A:	Yes. While the following OpenHacks are not required, they could provide some fundamental understanding in many of the principles covered in the Microsoft Azure Well-Architected Framework OpenHack.
 
-Q: I'm not a developer, so should I attend this OpenHack?  
-   A. Yes. The Microsoft-Well Architected Framework is not just for developers, but for other technology professionals as well. This OpenHack is relevant to all IT professionals who work in the cloud, but it also gives insights into proven practices for on-prem environments.
+   * App Modernization with NoSQL
+   * DevOps
+   * Migration (Line of Business)
+   * Serverless
+
+Q: I have been working in Azure for years. Is this OpenHack really necessary?  
+   A: Yes. There are elements of the Microsoft Azure Well-Architected Framework with which you may be unfamiliar. This OpenHack will help solidify your knowledge of all five pillars.
+
+Q: For which technology vertical is this OpenHack designed?  
+   A. The Microsoft Azure Well-Architected Framework is not for any single role or vertical but for all technology professionals. Furthermore, while this OpenHack is designed to challenge any IT professional who works in the cloud, many insights can be gleaned for those who work with on-premises environments.
