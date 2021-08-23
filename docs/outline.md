@@ -99,7 +99,6 @@ The following languages/technologies are not required of _each participant_. How
 * **YAML for Azure DevOps Build/Release Pipelines** - Initial YAML files are provided. However, teams must be able to update the scripts, as necessary, to complete challenges. (NOTE: Teams may wish to leverage GitHub workflows but doing so is outside the scope of this OpenHack.)
 * **Azure Bicep** - The infrastructure is built using Azure Bicep, along with some desired state configurations (DSC). Teams will need to know how to develop Azure Bicep scripts in order to complete the Infrastructure-as-Code (IaC) components of this OpenHack. (NOTE: Teams may also leverage pure ARM templates or Terraform. However, both are outside the scope of this OpenHack and may prove to cost the team valuable time.)
 
-
 ### Links & Resources
 
 Besides the foundation knowledge requirements outlined above, below are a few additional resources that may be helpful prior to beginning this OpenHack.
