@@ -78,14 +78,14 @@ To avoid any delays with downloading or installing tooling, have the following r
 * Download the latest version of [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
 * Download the latest version of [Azure Bicep CLI](https://github.com/Azure/bicep/blob/main/docs/installing.md)
 * For performance tests, install [k6 CLI](https://k6.io/docs/getting-started/installation/) (to install k6 CLI on Windows, you'll first need to install [Chocolatey Package Manager](https://chocolatey.org/install)) or install [Docker Desktop](https://docs.docker.com/engine/install/)
-* To build applications locally, participants will need to download and install [.NET Core 5.0 SDK](https://dotnet.microsoft.com/download) 
+* To build applications locally, participants will need to download and install [.NET Core 5.0 SDK](https://dotnet.microsoft.com/download)
 
 ### Development Environment Configuration
 
 Each team will need the following resources for the OpenHack:
 
 * An Azure subscription with _Owner_ privileges. The teams will be required to create Service Principals to connect Azure DevOps for deploying templates and to connect Grafana to Azure Monitor.
-* An Azure DevOps tenant with _Project Collection Administrator_ privileges. The tenant will contain two projects along with source code for the OpenHack. 
+* An Azure DevOps tenant with _Project Collection Administrator_ privileges. The tenant will contain two projects along with source code for the OpenHack.
 
 A deployment guide can be found in the public [BYOS repo](https://github.com/microsoft/OpenHack/blob/main/byos/waf/deployment.md).
 
@@ -104,11 +104,11 @@ The following languages/technologies are not required of _each participant_. How
 
 Besides the foundation knowledge requirements outlined above, below are a few additional resources that may be helpful prior to beginning this OpenHack.
 
-**General**
+#### General
 
 * [Microsoft Assessments: Azure Well-Architected Review](https://docs.microsoft.com/assessments/?mode=pre-assessment&id=azure-architecture-review)
 
-**DevSecOps**
+#### DevSecOps
 
 * [DevSecOps in Azure](https://docs.microsoft.com/azure/architecture/solution-ideas/articles/devsecops-in-azure) (NOTE: While some content centers around AKS and Terraform, the general concepts are the same.)
 * [Design a CI/CD pipeline using Azure DevOps](https://docs.microsoft.com/azure/architecture/example-scenario/apps/devops-dotnet-webapp)
@@ -126,7 +126,7 @@ Besides the foundation knowledge requirements outlined above, below are a few ad
 * [Threat indicators for cyber threat intelligence in Azure Sentinel](https://docs.microsoft.com/azure/architecture/example-scenario/data/sentinel-threat-intelligence)
 * [Web application monitoring on Azure](https://docs.microsoft.com/azure/architecture/reference-architectures/app-service-web-app/app-monitoring)
 
-**Core Networking**
+#### Core Networking
 
 * [Zero-trust network for web applications with Azure Firewall and Application Gateway](https://docs.microsoft.com/azure/architecture/example-scenario/gateway/application-gateway-before-azure-firewall)
 * [Multi-region load balancing with Traffic Manager and Application Gateway](https://docs.microsoft.com/azure/architecture/high-availability/reference-architecture-traffic-manager-application-gateway)
@@ -134,7 +134,7 @@ Besides the foundation knowledge requirements outlined above, below are a few ad
 * [Azure Firewall architecture overview](https://docs.microsoft.com/azure/architecture/example-scenario/firewalls/)
 * [Securely managed web applications](https://docs.microsoft.com/azure/architecture/example-scenario/apps/fully-managed-secure-apps)
 
-**Infrastructure**
+#### Infrastructure
 
 * [IaaS: Web application with relational database](https://docs.microsoft.com/azure/architecture/high-availability/ref-arch-iaas-web-and-db)
 * [Basic Web Application](https://docs.microsoft.com/azure/architecture/reference-architectures/app-service-web-app/basic-web-app)
@@ -145,7 +145,7 @@ Besides the foundation knowledge requirements outlined above, below are a few ad
 * [Build high availability into your BCDR strategy](https://docs.microsoft.com/azure/architecture/solution-ideas/articles/build-high-availability-into-your-bcdr-strategy)
 * [Highly available multi-region web application](https://docs.microsoft.com/azure/architecture/reference-architectures/app-service-web-app/multi-region)
 
-**Applications**
+#### Applications
 
 * [Unified logging for microservices applications](https://docs.microsoft.com/azure/architecture/example-scenario/logging/unified-logging)
 * [Modernize .NET applications](https://docs.microsoft.com/azure/architecture/solution-ideas/articles/net-app-modernization)
@@ -154,6 +154,7 @@ Besides the foundation knowledge requirements outlined above, below are a few ad
 * [Serverless web application](https://docs.microsoft.com/azure/architecture/reference-architectures/serverless/web-app)
 
 ### Post-Learning Recommendations
+
 _TBD._  
 _CSU is currently determining a “post-learning” process. I can complete this section once those details are finalized._
 
@@ -180,7 +181,6 @@ Yes
 * Demonstrate a basic understanding of WAF
 * Document any initial concerns for business meeting SLAs
 
-
 ### Challenge 2: Operationalize automated deployments
 
 In this challenge, you will assist the customer in adopting automated deployments of both the application and infrastructure. You will explore the Azure Bicep scripts included in the Azure DevOps project and learn how to convert them to ARM templates for environment configuration and deployments. When helping the customer automate infrastructure and application changes, you will configure build and release pipelines. You will also attach deployment gates to release pipelines for security and governance of cloud resources. Deployments should ensure that only the correct resources should be removed by reporting changes _prior to_ being executed. It is important that you have a firm understanding of Azure Bicep and that your pipelines are configured correctly as **all future changes to the Azure environment must be conducted through the pipelines**.
@@ -196,7 +196,6 @@ Yes
 * Demonstrate "what-if" scenarios with deployments
 * Configure gated deployments
 * Discuss deployment models to maximize uptime
-
 
 ### Challenge 3: Planning for failure
 
@@ -219,7 +218,6 @@ Yes
 * Document BCDR strategy
 * Identify points (roles) of contact for failures in the environment and construct a RACI chart
 
-
 ### Challenge 4: Visualizing operations
 
 Now that significant planning and documentation has been completed, it is time to begin executing those plans. However, one last thing to consider is _visualizing_ changes across your environment. In this short challenge, you will take the composed list of metrics and conditions from the last challenge and build some operational dashboards. You will create a free Grafana account and link your Azure Monitor instance to it. You will then build some time-series reports and create an operational dashboard.
@@ -235,7 +233,6 @@ Yes
 * Creating operational dashboard in Grafana
 * Reporting on IaaS resources
 * Discuss the benefits and use cases of a real-time operational dashboard
-
 
 ### Challenge 5: Improve the environment
 
@@ -259,7 +256,6 @@ Yes
 * Comparing performance to baselines and ensuring that business SLAs are met with changes in architecture
 * Discuss potential cost improvements (Azure Reserved Instances)
 
-
 ### Challenge 6: Leveraging PaaS services
 
 Often, customers choose to build their own environments for services already managed by Microsoft or its partners. This customer is no different. In this challenge, you will begin migrating the components of the web application to Azure's various PaaS offerings. As you migrate the application and configure its services, you must consider all pillars of the Microsoft Well-Architected Framework. With your implementation, you will need to ensure that all of the customer's SLAs are able to be met _at all times_ while maintaining adherence to the Microsoft Azure Well-Architected Framework. You will also need to make sure that your Grafana dashboards are updated to report desired metrics from the new resources. Finally, all alerts should be updated based on the new resources.
@@ -280,7 +276,6 @@ Yes
 * Continuing to compare performance to baselines and ensuring that business SLAs are met with changes in architecture
 * Failing a region while maintaining performance SLAs
 * Reporting on PaaS services
-
 
 ### Challenge 7: Optimizing the API
 
