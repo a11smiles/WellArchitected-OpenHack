@@ -1,12 +1,13 @@
-# Well-Architected Framework OpenHack
+# Microsoft Azure Well-Architected Framework OpenHack
 
 This project is the home of the OpenHack experience for the Well-Architected Framework. All training material which includes, but is not limited to, challenges, diagrams, coaching assistance, and environment materials (e.g. ARM templates, source code, etc.) will be kept in this repository. The exception to this rule will be the tools that participants will be trained upon and can use in customer engagements for conducting assessments. Those tools will be stored in the _public_ repo [Azure/WellArchitected-Tools](https://github.com/Azure/WellArchitected-Tools).
 
 ## Documentation
 1. [Build of Materials](docs/bom.md)
 2. [OpenHack Overview](docs/overview.md)
-3. [Challenge Outline](docs/outline.md)
-4. Challenges  
+3. [OpenHack "One-Pager" (.docx)](docs/one-pager.docx)
+4. [Challenge Outline](docs/outline.md)
+5. Challenges  
    - [Overview](challenges/ch0)  
    - [Challenge 1: Assess the environment](challenges/ch1)  
    - [Challenge 2: Operationalize automated deployments](challenges/ch2)  
@@ -17,9 +18,9 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 <!--   - [Challenge 7: Optimizing the API](challenges/ch7)
    - [Challenge 8: Tightening database security](challenges/ch8)
    - [Challenge 9: Capturing correlation data](challenges/ch9) -->
-5. Automation/Build Scripts
+6. Automation/Build Scripts
    - [Deployment Guide](docs/deployment.md)
-6. Coach's Guides
+7. Coach's Guides
    - [Challenge 1: Assess the environment](guides/challenges/ch1)  
    - [Challenge 2: Operationalize automated deployments](guides/challenges/ch2)
    - [Challenge 3: Planning for failure](guides/challenges/ch3)  
@@ -29,8 +30,8 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 <!--   - [Challenge 7: Optimizing the API](guides/challenges/ch7)
    - [Challenge 8: Tightening database security](guides/challenges/ch8)
    - [Challenge 9: Capturing correlation data](guides/challenges/ch9) -->
-7. [Success Matrix](guides/successMatrix.xlsx) (Excel)
-8. PowerPoint Decks 
+8. [Success Matrix](guides/successMatrix.xlsx) (Excel)
+9. PowerPoint Decks 
    - [Coach Standup Deck](<guides/ppt/OpenHack_Virtual_Coach Standup_WAF.pptx>)
    - [KBYG (Tech Lead) Deck](<guides/ppt/OpenHack_Virtual_KBYG.Coach Prep Deck_WAF.pptx>)
    - [Opening Deck](<guides/ppt/OpenHack_Virtual_Opening Deck_WAF.pptx>)

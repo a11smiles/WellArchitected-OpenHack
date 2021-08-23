@@ -1,8 +1,11 @@
 # OpenHack Overview
+
 ## Abstract
+
 To demonstrate and standardize the process of delivering a Well-Architected Assessment across all of its five pillars in order to 1) analyze and identify enhancements to a customer's environments; 2) strengthen the customer's operational landscape; and, 3) ensure that the customer's experience with the Microsoft cloud is of the utmost quality, value, and excellence.
 
 ## Business Outcomes
+
 - [ ] Empower CSAs to perform detailed analysis of customer workloads within the Well-Architected Framework.  
       **(Performing initial analysis)**
 - [ ] Solidify and demonstrate the knowledge of CSAs around the pillars of the Well-Architected Framework.  
