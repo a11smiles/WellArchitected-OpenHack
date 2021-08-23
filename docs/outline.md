@@ -49,6 +49,7 @@ When conducting a Well-Architected Assessment, Cloud Solution Architects (CSAs) 
 * [Grafana](https://grafana.com/docs/)
 
 ## Prerequisites
+
 ### Knowledge Prerequisites
 
 To be successful and get the most out of this OpenHack, it is highly recommended that participants have a deep understanding (L400+) of the following:
@@ -157,14 +158,16 @@ _TBD._
 _CSU is currently determining a “post-learning” process. I can complete this section once those details are finalized._
 
 ## Challenges
+
 ### Challenge 1: Assess the environment
 
 In this challenge, you will assess a customer's production environment that has been deployed to Azure and currently hosting a live workload. You will gain an understanding of the customer's current process for deployment and management of the applications and supporting cloud resources. Part of this understanding will include performing a cost analysis of the Azure environment and establishing some baseline performance metrics. Based upon the assessment, you will need to craft a plan to assist the customer in adoption and implementation of the Microsoft Well-Architected Framework. You will use this plan to govern how you proceed in future challenges.
 
-**Required**  
+#### Required  
+
 Yes
 
-**Learning Objectives**
+#### Learning Objectives
 
 * Inventory current components
 * Identify potential areas of improvement
@@ -182,10 +185,11 @@ Yes
 
 In this challenge, you will assist the customer in adopting automated deployments of both the application and infrastructure. You will explore the Azure Bicep scripts included in the Azure DevOps project and learn how to convert them to ARM templates for environment configuration and deployments. When helping the customer automate infrastructure and application changes, you will configure build and release pipelines. You will also attach deployment gates to release pipelines for security and governance of cloud resources. Deployments should ensure that only the correct resources should be removed by reporting changes _prior to_ being executed. It is important that you have a firm understanding of Azure Bicep and that your pipelines are configured correctly as **all future changes to the Azure environment must be conducted through the pipelines**.
 
-**Required**  
+#### Required  
+
 Yes
 
-**Learning Objectives**
+#### Learning Objectives
 
 * Create build/release pipelines in Azure DevOps
 * Determine best strategy for deployments (conditions, types, etc.)
@@ -198,10 +202,11 @@ Yes
 
 It is not a matter of _if_ an environment will fail, but _when_. Therefore, prior to any changes being introduced into the application or its supporting infrastructure, it is important that proper monitoring and alerting be configured. In this challenge, you will determine what types of monitoring, along with the necessary data points, should be conducted. You will also determine and configure any necessary alerting of activities within your environment. These activities could include, but are not limited to, resource availability (or lack thereof), security threats, etc. Finally, you will determine a BCDR strategy in which you will implement in a future challenge.
 
-**Required**  
+#### Required  
+
 Yes
 
-**Learning Objectives**
+#### Learning Objectives
 
 * Discuss potential alerting options and processes
 * Compose a list of metrics that should be monitored
@@ -219,10 +224,11 @@ Yes
 
 Now that significant planning and documentation has been completed, it is time to begin executing those plans. However, one last thing to consider is _visualizing_ changes across your environment. In this short challenge, you will take the composed list of metrics and conditions from the last challenge and build some operational dashboards. You will create a free Grafana account and link your Azure Monitor instance to it. You will then build some time-series reports and create an operational dashboard.
 
-**Required**  
+#### Required  
+
 Yes
 
-**Learning Objectives**
+#### Learning Objectives
 
 * Creating demo Grafana account
 * Linking Azure Monitor to Grafana
@@ -235,10 +241,11 @@ Yes
 
 Before any changes are introduced into the current application architecture, the customer is interested in hardening what is currently deployed in terms of security, redundancy, and overall optimization. In this challenge, you will leave the application structure as-is&mdash;leaving it running on VMs&mdash;but you will implement some changes to the deployments and configurations of the environment. You will need to address secrets, potential areas of attack, and resiliency within the application. You will also need to make sure the telemetry is captured from the application and the virtual machine.
 
-**Required**  
+#### Required  
+
 Yes
 
-**Learning Objectives**
+#### Learning Objectives
 
 * Right-sizing VMs
 * Redundancy of VMs using Availability Zones and proper storage configurations
@@ -257,10 +264,11 @@ Yes
 
 Often, customers choose to build their own environments for services already managed by Microsoft or its partners. This customer is no different. In this challenge, you will begin migrating the components of the web application to Azure's various PaaS offerings. As you migrate the application and configure its services, you must consider all pillars of the Microsoft Well-Architected Framework. With your implementation, you will need to ensure that all of the customer's SLAs are able to be met _at all times_ while maintaining adherence to the Microsoft Azure Well-Architected Framework. You will also need to make sure that your Grafana dashboards are updated to report desired metrics from the new resources. Finally, all alerts should be updated based on the new resources.
 
-**Required**  
+#### Required  
+
 Yes
 
-**Learning Objectives**
+#### Learning Objectives
 
 * Configuring Azure App Service for autoscale
 * Securing Azure App Service
@@ -278,10 +286,11 @@ Yes
 
 In the previous challenge, you may have elected to move the API to Azure Functions. If so, great! If not, here is your chance. In this challenge, you will separate the web front-end (WFE) from its services layer (API). Upon doing so, you will move the service layer to Azure Functions. In light of the Microsoft Azure Well-Architected Framework, you will also need to configure Azure Functions accordingly.
 
-**Required**  
+#### Required  
+
 No
 
-**Learning Objectives**
+#### Learning Objectives
 
 * Separating an application's front-end from its API
 * Securing of Azure Functions
@@ -295,10 +304,11 @@ No
 
 The application, unfortunately, is still using legacy database connection strings. This means that there are still identities (SQL or Azure AD) that are used to connect the application to the database. In this challenge, you will refactor your application to leverage managed identities for database connectivity and remove application-specific named users from the database.
 
-**Required**  
+#### Required  
+
 No
 
-**Learning Objectives**
+#### Learning Objectives
 
 * Using managed identities for database connectivity
 * Understand and discuss the benefits of managed identities in terms of the Microsoft Azure Well-Architected Framework
@@ -307,10 +317,11 @@ No
 
 You have already introduced Application Insights into your application. However, the customer is finding it difficult to correlate errors between the web front-end and the backend. In this challenge, you will _discuss_ approaches to implementing the capturing of correlation data when an error occurs in the application. Remember, solutions should consider all pillars of the Well-Architected Framework.
 
-**Required**  
+#### Required  
+
 No
 
-**Learning Objectives**
+#### Learning Objectives
 
 * Discuss techniques for capturing correlation data
 * Understand costs and security when storing correlation data
@@ -360,8 +371,8 @@ No
 Q: Are there any pre-requisites to attending this OpenHack?  
 A: Yes. Attendees should have completed all MS Learn modules for WAF and the Hands-On Labs for the individual pillars.
 
-Q:	Are there any OpenHacks that I should complete or would be considered advantageous to complete before participating in Microsoft Azure Well-Architected Framework OpenHack?  
-A:	Yes. While the following OpenHacks are not required, they could provide some fundamental understanding in many of the principles covered in the Microsoft Azure Well-Architected Framework OpenHack.
+Q: Are there any OpenHacks that I should complete or would be considered advantageous to complete before participating in Microsoft Azure Well-Architected Framework OpenHack?  
+A: Yes. While the following OpenHacks are not required, they could provide some fundamental understanding in many of the principles covered in the Microsoft Azure Well-Architected Framework OpenHack.
 
 * App Modernization with NoSQL
 * DevOps
