@@ -197,6 +197,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           cp ./source/docs/outline.md ./target/resources/one-pager.md
+          cp ./source/docs/one-pager.docx ./target/resources/one-pager.docx
 
       # Copy coach content to target
       - name: Copy coach content to target
