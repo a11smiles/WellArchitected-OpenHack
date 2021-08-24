@@ -55,14 +55,14 @@
         },
         {
           "Order": 8,
-          "Follows": 7,
+          "Follows": 6,
           "Title": "Challenge 8: Tightening database security",
           "Description": "Tightening database security",
           "Url": "Challenge8.html"
         },
         {
           "Order": 9,
-          "Follows": 8,
+          "Follows": 6,
           "Title": "Challenge 9: Capturing correlation data",
           "Description": "Capturing correlation data",
           "Url": "Challenge9.html"

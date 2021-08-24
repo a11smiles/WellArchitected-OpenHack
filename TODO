@@ -4,7 +4,7 @@ general:
   ☐ update k6 content description
 
 build:
-  ☐ copy tools/k6 to target
+  ✔ copy tools/k6 to target @done(21-08-17 14:37)
   ✔ lint tools folder @done(21-08-17 14:31)
 
 outline.md:
@@ -54,7 +54,7 @@ challenge 6 (coach's guide):
   ☐ proof content
 
 challenge 7:
-  ☐ write content
+  ☐ write content @started(21-08-24 11:50)
   ☐ proof content
 
 challenge 7 (coach's guide):
