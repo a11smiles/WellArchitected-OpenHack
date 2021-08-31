@@ -1,6 +1,6 @@
 # Overview
 
-During this OpenHack you will be tested on your understanding of the Microsoft Well-Architected Framework. You will demonstrate and practice a standardized process of conducting a Well-Architected assessment across all five of its pillars against a customer's workload.
+During this OpenHack you will be tested on your understanding of the Microsoft Azure Well-Architected Framework. You will demonstrate and practice a standardized process of conducting a Well-Architected assessment across all five of its pillars against a customer's workload.
 
 Any resemblance to actual scenarios, issues, or pain points that you are currently facing with customers is _not_ coincidental. The definitions of the challenges that will be presented to you during this event are inspired by real cases.
 
@@ -8,11 +8,11 @@ Any resemblance to actual scenarios, issues, or pain points that you are current
 
 ## Context
 
-Though it was once a very small community bank, Woodgrove Bank has experienced rapid growth throughout the past few decades. Their growth has resulted in launching market centers across multiple regions in the United States. Woodgrove Bank, because of its increased revenues and market reach, is now exploring expansion into other countries. In order to accomplish this goal, Woodgrove Bank realizes that some of the ways they conduct business today must change.
+Though it was once a very small community bank, Woodgrove Bank has experienced rapid growth over the past few decades. Their growth has resulted in launching market centers across multiple regions in the United States. Woodgrove Bank, because of its increased revenues and market reach, is now exploring expansion into other countries. In order to accomplish this goal, Woodgrove Bank realizes that some of the ways they conduct business today must change.
 
-Some of these new approaches rely on Woodgrove Bank transitioning their operations to the cloud. Originally, it was feasible&mdash;fiscally and operationally&mdash;to manage a hot-cold distribution of services across two data centers. But, as they grow, the overall cost-value ratio has decreased considerably. Woodgrove Bank is convinced that moving to the cloud can help reduce these costs while continuing to increase value to its customers and the business.
+Some of these new approaches rely on Woodgrove Bank transitioning their operations to the cloud. Originally, it was feasible&mdash;fiscally and operationally&mdash;to manage a hot-cold distribution of services across two data centers. Specifically, one data center remains operational at all times, receives all traffic, and generates scheduled backups. A secondary data center on "stand-by" does not currently receive regular deployments, but can restore any backups when necessary and can "go-live" with a few minutes of outage. But, as they grow, the overall cost-value ratio has decreased considerably. Woodgrove Bank is convinced that moving to the cloud can help reduce these costs while continuing to increase value to its customers and the business.
 
-Woodgrove Bank is also looking a refreshing their internally-built applications. Most of these applications were built when the bank first launch and have only experienced ad-hoc, piecemeal upgrades. Architecturally, the bank recognizes that these updates have had detrimental impacts to their applications over time. The applications seem to have degraded in performance, are more vulnerable to security threats, and they are less reliable and require much more time and effort from the SRE team.
+Woodgrove Bank is also looking at refreshing their internally-built applications. Most of these applications were built when the bank first launch and have only experienced ad-hoc, piecemeal upgrades. Architecturally, the bank recognizes that these updates have had detrimental impacts to their applications over time. The applications seem to have degraded in performance, are more vulnerable to security threats, and they are less reliable and require much more time and effort from the SRE team.
 
 The first application undergoing a rebuild is their primary customer portal and is owned by the _Customer Experience_ sector of the business. The customer portal traditionally has allowed customers to login and view balances, transfer money, pay bills, etc. The current redevelopment, however, is considered an MVP and only provides balance and transaction history. While some services may currently be unavailable in this release, Woodgrove Bank considers this acceptable as they wish to build correctly with a cloud-native approach against cloud services. They do not wish to build an on-premises architecture in a cloud environment. For the services that are lacking, customers may contact the bank directly. It is Woodgrove Bank's desire to quickly implement these features in their new application, but, again, they first want to ensure that they are adopting sound development practices.
 
@@ -22,7 +22,7 @@ Woodgrove Bank has a longstanding relationship with Microsoft and is a current e
 
 Members of Woodgrove Bank's IT team are very capable of running advanced workloads on-premises&mdash;they've done so successfully for years. However, cloud concepts and cloud-native development are very new to them. The team members recognize their lack of maturity in these areas and are looking to Microsoft to provide guidance in proven practices and solid cloud design patterns. They also know very little regarding DevOps and deploying environments in a secure, repeatable fashion as, currently, all infrastructure is commissioned manually from a Hyper-V host.
 
-Currently, on-premises, access to all resources are governed by a _least-privilege_ policy. Access to any resource must be manually granted to the appropriate users. Unfortunately, when Woodgrove Bank initiated this policy, access was granted by individual account at the resource level. This was manageable when Woodgrove Bank was a community bank who only employed a small number of IT administrators and software developers. Now, due to their explosive growth, including these teams, this practice is no longer feasible. Woodgrove Bank is asking your team to provide guidance in executing and maintaining security in the cloud. Given that they are a bank, Woodgrove Bank will need to be able to proactively monitor and report on its security posture.
+Currently, on-premises access to all resources are governed by a _least-privilege_ policy. Access to any resource must be manually granted to the appropriate users. Unfortunately, when Woodgrove Bank initiated this policy, access was granted by individual accounts at the resource level. This was manageable when Woodgrove Bank was a community bank who only employed a small number of IT administrators and software developers. Now, due to their explosive growth, including these teams, this practice is no longer feasible. Woodgrove Bank is asking your team to provide guidance in executing and maintaining security in the cloud. Given that they are a bank, Woodgrove Bank will need to be able to proactively monitor and report on its security posture.
 
 Finally, not only is security a major concern, Woodgrove Bank wants to ensure that their cloud spend is fiscally responsible. They recognize that their migrations will include a shift from CapEx to OpEx business models, but they want to make sure that all spend is optimal. They need Microsoft to accurately assess the current workload, validate that the underlying service SKUs are adequate, and make any necessary recommendations for improving costs without sacrificing reliability or performance.
 
@@ -34,7 +34,7 @@ Business drivers for this effort include:
 IT leadership's goals for Azure adoption include:
 
 * Reduce costs of hosting and operating current workloads. All VMs on-premises are based on predefined images. IT needs greater flexibility in VM sizing that better accommodates the hosted workload.
-* Current on-premises implementation is a hot-cold configuration. When the primary site goes down, there is some latency and necessary reconfiguration to bring the second data center online. IT wishes to streamline this process and implement a full-distributed hot-hot environment across multiple regions, if possible.
+* Current on-premises implementation is a hot-cold configuration. When the primary site goes down, there is some latency and necessary reconfiguration to bring the second data center online. IT wishes to streamline this process and implement a fully-distributed, hot-hot environment across multiple regions, if possible.
 * Security of resources is currently managed by individual Active Directory identities. IT needs to maintain the same least-privilege policy in the cloud, but needs a simpler way of managing access to services.
 * Current deployments of on-premises VMs, while generally a simple process, are manual, time-consuming, and error-prone due to the heavy demands of IT resources. IT team members are typically balancing multiple support tickets at any given time. IT wishes to automate deployments as much as possible to alleviate any potential bottlenecks or misconfigurations.
 
@@ -52,13 +52,13 @@ As workloads are being transitioned to Azure, Woodgrove Bank has expressed the i
 * Current load should support 10,000 users at any point in time.
 * Page load timing:
     * < 1 sec - Excellent
-    * 2-3 secs - Good
-    * 3-5 secs - Acceptable
+    * 2-3 secs - Good (This is Woodgrove Bank's _desired_ load time.)
+    * 3-5 secs - Acceptable (This is the _minimum_ load time that is accepted by the business.)
     * \> 5 secs - Unacceptable
-* Application uptime should meet or exceed 99.99%
+* Application uptime should meet or exceed 99.5%. The SLA allows Woodgrove Bank's IT and development teams to perform weekly maintenance with approximately 1 hour of acceptable downtime. 
 * Business Continuity/Disaster Recovery (BCDR):
     * Implement a hot-hot, multi-region deployment
-    * RPO - 10 minutes
+    * RPO - 30 minutes
     * RTO - 1 hour
 
 Woodgrove Bank is concerned that their current cloud architecture may not support this, which is one reason they have reached out to Microsoft for its help. Any architectural decisions going forward should revolve around the above KPIs and their SLAs.
@@ -67,7 +67,7 @@ Woodgrove Bank is concerned that their current cloud architecture may not suppor
 
 Woodgrove Bank leverages a pair of web servers to currently host their customer-facing web application. All customers login to this application to view their account balances. In the future, the application will support additional services. This is currently a _live_, production workload. So any faulty changes can break production and hurt the bank's reputation with its customers. Therefore, downtime must be minimized.
 
-**Your mission, should you accept it, is to re-architect the current deployment in accordance with the Microsoft Well-Architected Framework and meet the customer's goals while minimizing downtime to the application.**
+**Your mission, should you accept it, is to re-architect the current deployment in accordance with the Microsoft Azure Well-Architected Framework and meet the customer's goals while minimizing downtime to the application.**
 
 The success of your team depends on your ability to perform the necessary architectural changes, meet customer's goals and objectives, and minimize the downtime of the application.
 
@@ -75,11 +75,11 @@ The success of your team depends on your ability to perform the necessary archit
 
 The customer portal is comprised of a few web services, background services and a database. All services reside on their own, independent VMs and share the database. All web requests pass through an external load balancer, which is configured to listen on ports 80 and 443. Additionally, it is configured with session affinity based on client IP and protocol. This architecture was chosen as it most closely mimics what the customer currently has on-premises.
 
-The web application is a standard, 3-tier implementation that is comprised of a separate front-end and backend developed with .NET Core 3.0, and the application leverages SQL Server 2014 SP3 for its database. The front-end and backend services reside on independent Application Pools in IIS on each web server. The front-end and backend services are deployed to _both_ web servers.
+The web application is a standard, 3-tier implementation that is comprised of a separate front-end and backend developed with .NET Core 5.0, and the application leverages SQL Server 2014 SP3 for its database. The front-end and backend services reside on independent Application Pools in IIS on each web server. The front-end and backend services are deployed to _both_ web servers.
 
 There is an additional server that hosts some background jobs. These jobs are fired upon a given schedule. The jobs are designed to process batches of transactions. When these jobs are executed, any outstanding/pending bank transactions are updated in their respective accounts.
 
-> The current background job runs on a nightly schedule to process posted transactions. Normally, posted transactions would be gathered from a pending queue. For this OpenHack, the current background job simply creates between 1 and 15 random transactions (i.e. debit and/or credit) for each account, adds the transactions to the account's register, then updates the account's available balance.
+> A realistic background job runs on a nightly schedule to process posted transactions. Normally, posted transactions would be gathered from a pending queue. For this OpenHack, the current background job runs every 15 minutes and simply creates between 1 and 15 random transactions (i.e. debit and/or credit) for each account, adds the transactions to the account's register, then updates the account's available balance.
 
 The following diagram shows the application server architecture:
 
@@ -110,7 +110,10 @@ As you can see from the diagram above, all virtual machines have been attached t
 
 #### DNS Mappings
 
-External FQDNs must be globally unique. Therefore, all public DNS host names have a six-character alphanumeric code appended in the format below.
+External FQDNs must be globally unique. Therefore, all public DNS host names have a six-character alphanumeric code appended in the format below. 
+
+> NOTE: The appended code is generated randomly on initial deployment of the infrastructure into the OpenHack environment. The code is consistent for all resources within an individual team's Azure subscription. However, the code differs between teams.
+
 | DNS                     | Mapping |
 | ----------------------- | ------- |
 | woodgroveelb######      | External load balancer |
@@ -123,9 +126,7 @@ External FQDNs must be globally unique. Therefore, all public DNS host names hav
 
 ### Active Directory
 
-Woodgrove Bank currently has an existing Azure subscription and Azure Active Directory tenant. They have already configured AD Connect and synchronized users to the cloud. These users should be leveraged for securing cloud resources.
-
-**NOTE:** Active Directory will report that AD users are _cloud only_. However, you are to assume that these users were indeed synchronized from Woodgrove Bank's on-premises Active Directory.
+While Woodgrove Bank currently has an existing Azure subscription, they have yet to complete a migration of on-premises identities. While individual user accounts are not necessary for this OpenHack, you are to _assume_ that user identities will be added at a later date. Therefore, everything you implement around RBAC should allow Woodgrove Bank to add identities later, where appropriate.
 
 ## Cheat sheet
 
@@ -158,7 +159,7 @@ You can login to a fictitious customer's bank account using the following creden
 3. Search for the VM by its name listed in the table above.
 4. Use a Remote Desktop Connection (RDP) to connect to the server you choose by using its Public IP address.
 
-The _administrator_ credentials for the virtual machines are:
+The _administrator_  credentials (RDP) for all virtual machines are:
 
 * Username: **cloudadmin**
 * Password: **Pass@word1234!**
@@ -171,8 +172,10 @@ The database credentials are the following:
 
 | Username | Password | Description |
 | -------- | -------- | ----------- |
-| cloudsqladmin | (Pass@word)1234! | SQL Administrator |
+| cloudsqladmin | (Pass@word)1234! | SQL Administrator (This can log you into the _database server instance_, but not the virtual machine.) |
 | webapp   | S0m3R@ndomW0rd$  | Account used by web application |
+
+> NOTE: The virtual machine's administrator account can also access the SQL database server instance.
 
 ## References
 
