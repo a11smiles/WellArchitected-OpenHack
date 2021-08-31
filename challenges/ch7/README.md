@@ -29,7 +29,6 @@ As continuously stated, all changes must be conducted via Azure Bicep and result
 * You should identify the additional components that the API currently leverages, along with the components that leverage the API. In other words, what are the API's dependencies? What components have the API as a dependency? You will need to ensure that all items are updated, as necessary, in order to complete this challenge.
 * If you elect to leverage Azure Functions, it may be beneficial to leverage the <a href="https://docs.microsoft.com/azure/azure-functions/functions-run-local" target="_blank">Azure Core Tools</a> for creating a new Azure Functions application. Alternatively, you can use solution plugins for Visual Studio or Visual Studio Code (see _References_ below).
 
-
 ## Success criteria
 
 The success criteria is fairly simple.
