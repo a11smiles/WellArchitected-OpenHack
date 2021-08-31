@@ -33,6 +33,10 @@ At all times, remember to make no assumptions and always keep the customer's goa
 > * While Woodgrove Bank may consider multiple subscriptions at a later time for development, testing, staging, etc., you should assume that Woodgrove will only leverage a single subscription for the time being, and that this subscription will host all of its workloads&mdash;development, staging, and production.
 > * Woodgrove Bank uses a 3rd-party, globally-distributed DNS. The scope of this OpenHack exists _behind_ the DNS. You should assume that whatever you implement can be accessible upon a DNS update. For the OpenHack you should access the web application via its external load balancer, or with whatever you choose to replace the ELB. The only exception is that the resource **must** be configured to accept web requests via a properly-configured DNS record (A, CNAME, etc.).
 
+## Initial Assessment
+
+In preparation for their engagement with Microsoft, Woodgrove Bank has completed an initial Microsoft Azure Well-Architected Assessment. The questions have been answered to the best of their understanding and additional notes have been provided where they felt additional clarity was necessary. The results of that assessment, in a modified, readable format, are located under the _Resources_ tab in the OpenHack portal (_Woodgrove_Bank_Assessment_2021-08-31.pdf_).
+
 ## Customer requirements
 
 Woodgrove Bank has the following requirements which you should take into consideration:
