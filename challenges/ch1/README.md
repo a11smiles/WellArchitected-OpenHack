@@ -9,11 +9,11 @@ Time Length: **4-5 hours**
 
 ## Challenge
 
-Your challenge is to conduct an initial assessment of Woodgrove Bank's Azure implementation for their customer portal. Its implementation is a "first attempt" to deploy a workload and is based off of a standard configuration the bank's IT team uses on-premises. Remember, this is a first of many workloads, so the findings you uncover here and the practices you set forth will be followed by Woodgrove Bank as it moves additional workloads into Azure. This challenge has some, but very little, hands-on implementation. The majority of this challenge is about _discovery_ and creating a plan for moving forward.
+Your challenge is to conduct an initial assessment of Woodgrove Bank's Azure implementation for their customer portal. Its implementation is a "first attempt" to deploy a workload and is based off of a standard configuration the bank's IT team uses on-premises. Remember, this is the first of many workloads, so the findings you uncover here and the practices you set forth will be followed by Woodgrove Bank as it moves additional workloads into Azure. This challenge has some, but very little, hands-on implementation. The majority of this challenge is about _discovery_ and creating a plan for moving forward.
 
-It is imperative for Woodgrove Bank (and your future challenges) that you perform a solid assessment of their cloud application and its supporting infrastructure. As you do so, you will determine the process, tools, and technologies for future assessments and migrations/re-architecting as Woodgrove Bank attempts to build its applications as cloud-native for Azure. Equipped with your knowledge, and by following the Microsoft Well-Architected Framework's guidance, you and your team must work through the customer requirements while reviewing the current application environment and Woodgrove Bank's operations to provide sound guidance to the bank for improving its current and future workloads.
+It is imperative for Woodgrove Bank (and your future challenges) that you perform a solid assessment of their cloud application and its supporting infrastructure. As you do so, you will determine the process, tools, and technologies for future assessments and migrations/re-architecting as Woodgrove Bank attempts to build its applications as cloud-native for Azure. Equipped with your knowledge, and by following the Microsoft Azure Well-Architected Framework's guidance, you and your team must work through the customer requirements while reviewing the current application environment and Woodgrove Bank's operations to provide sound guidance to the bank for improving its current and future workloads.
 
-This time should should be spent on deeply familiarizing yourself with the Microsoft Well-Architected Framework, Cloud Design Patterns, and the customer's current implementation. Your team will be required to present an assessment of the application environment based on the pillars of the Well-Architected Framework. Consider the following questions for thought:
+This time should should be spent on deeply familiarizing yourself with the Microsoft Azure Well-Architected Framework, Cloud Design Patterns, and the customer's current implementation. Your team will be required to present an assessment of the application environment based on the pillars of the Microsoft Azure Well-Architected Framework. Consider the following questions for thought:
 
 * What resources are most expensive? Are there any ways to reduce costs without sacrificing the other pillars?
 * Is there a way to automate deployments of Woodgrove Bank's infrastructure and applications?
@@ -22,15 +22,15 @@ This time should should be spent on deeply familiarizing yourself with the Micro
 * What does Woodgrove Bank's BCDR landscape look like currently?
 * What areas of the application/environment are most likely to be breached? In what ways can you tighten security?
 * How much of what you've thought of in the previous questions can be accomplished without changing the current infrastructure?
-* What changes to the current infrastructure (and application, if necessary) would be required to improve the environment across all pillars of the Microsoft Well-Architected Framework? How will these changes affect overall costs?
+* What changes to the current infrastructure (and application, if necessary) would be required to improve the environment across all pillars of the Microsoft Azure Well-Architected Framework? How will these changes affect overall costs?
 
 As you answer the questions above, make sure you review the business drivers, goals, and SLAs that the business has identified in the _Overview_. These factors may require you to adjust your decisions.
 
-At all times, remember to make no assumptions and always keep the customer's goals in view. The customer's business drivers and goals must always be seen through the lenses of the Microsoft Well-Architected Framework. This is how you will succeed in this challenge and with the workloads of your real customers.
+At all times, remember to make no assumptions and always keep the customer's goals in view. The customer's business drivers and goals must always be seen through the lenses of the Microsoft Azure Well-Architected Framework. This is how you will succeed in this challenge and with the workloads of your real customers.
 
 > **NOTES:**
 >
-> * While Woodgrove Bank may consider multiple subscriptions at a later time for development, testing, staging, etc., you should assume that Woodgrove will only leverage a single subscription for the time being, and that this subscription will host all of its production workloads. Woodgrove will continue to use on-premises resources for development and quality assurance until its data center leases expire.
+> * While Woodgrove Bank may consider multiple subscriptions at a later time for development, testing, staging, etc., you should assume that Woodgrove will only leverage a single subscription for the time being, and that this subscription will host all of its workloads&mdash;development, staging, and production.
 > * Woodgrove Bank uses a 3rd-party, globally-distributed DNS. The scope of this OpenHack exists _behind_ the DNS. You should assume that whatever you implement can be accessible upon a DNS update. For the OpenHack you should access the web application via its external load balancer, or with whatever you choose to replace the ELB. The only exception is that the resource **must** be configured to accept web requests via a properly-configured DNS record (A, CNAME, etc.).
 
 ## Customer requirements
@@ -48,7 +48,7 @@ Woodgrove Bank has the following requirements which you should take into conside
 
 ### Network
 
-Woodgrove Bank has attempted to implement an infrastructure that is somewhat identical to their on-premises implementations for web applications while ensure that there is no CIDR overlap. All resources are on a single virtual network and exist in the same resource group.
+Woodgrove Bank has attempted to implement an infrastructure that is somewhat identical to their on-premises implementations for web applications while ensuring that there is no CIDR overlap. All resources are on a single virtual network and exist in the same resource group.
 
 * Resource Group: **webapp**
 * The virtual network called **vnet-webapp** has the following attributes:
@@ -60,11 +60,11 @@ Woodgrove Bank has attempted to implement an infrastructure that is somewhat ide
 
 ### Performance Tests
 
-To run performance tests, you can leverage <a href="https://k6.io" target="_blank">k6</a>. A heavily-documented sample script along with basic instructions can be found in the <a href="https://github.com/Azure/WellArchitected-Tools/tree/main/Perf/k6" target="_blank">Well-Architected Framework Tools</a> repo. All you need to do is update the URLs in the script and execute it against the Woodgrove Bank application endpoints.
+To run performance tests, you can leverage <a href="https://k6.io" target="_blank">k6</a>. A heavily-documented sample script along with basic instructions can be found in the OpenHack portal. All you will need to do is update the URLs in the script and execute it against the Woodgrove Bank application endpoints. You can follow the instructions included with the k6 script to configure it and execute it within your environment.
 
 Note that k6 is not required and you may use any other tool you prefer, but you must be able to demonstrate adequate knowledge of the test results.
 
-> **NOTE:** As you conduct performance tests for your customers, if you find they are not currently using any performance testing tools, you can point them to script in the Well-Architected Framework Tools repo. The repo is public and the script is designed to be easily modified based on the needs of the user.
+> **NOTE:** As you conduct performance tests for your customers, if you find they are not currently using any performance testing tools, you can point them to a sample k6 script in the <a href="https://github.com/Azure/WellArchitected-Tools" target="_blank"> Well-Architected Framework Tools</a> repo. The repo is public and the script is designed to be easily modified based on the needs of the user. This can be a great learning opportunity for your customer.
 
 ## Success criteria
 
@@ -72,14 +72,14 @@ In order to succeed in this challenge, you will need to present a number of item
 
 Be ready to present to your coach the following:
 
-* You will need to soundly communicate the goals and principles of each pillar of the Microsoft Well-Architected Framework. Before any actual re-architecting is conducted, assessment of the current workload should be performed via the individual _and_ collective lenses of the Microsoft Well-Architected Framework pillars.
+* You will need to soundly communicate the goals and principles of each pillar of the Microsoft Azure Well-Architected Framework. Before any actual re-architecting is conducted, assessment of the current workload should be performed via the individual _and_ collective lenses of the Microsoft Azure Well-Architected Framework pillars.
 * You will need to inventory all components in the current architecture. These components should include everything from the hardware to software layers. Additionally, you will need to be able to identify how these components are configured and how they operate with each other. (Simply reciting the architectural diagram from the overview will not be sufficient.)
 * What areas of the current architecture can be improved? As you present your inventory, be sure to highlight all concerns and areas for improvement. This areas could include, but are not limited to software, hardware, configuration, etc.
 * What are the current and future costs of the workload(s), and how can IT determine workloads owned by a given department in order to conduct chargebacks? Be prepared to show current overall costs of the subscription along with filtering the workloads by department. Additionally, be prepared to discuss ways in which Woodgrove Bank can determine costs for future workloads they migrate to the cloud.
 * What are the current performance baselines for the application? You will need to conduct a series of performance tests against the current application in order to determine current performance along with gauging performance changes as the cloud implementation changes. The performance tests should include load tests and stress tests, and they should be documented for future reference. Be prepared to describe load test stages and why you chose/configured the stages that you did. Also, be prepared to describe the thresholds you configured and why you chose/configured your particular thresholds. Finally, be able to explain the differences between performance, load, and stress testing.
-* Do you have any concerns regarding the business meeting its requirements or SLAs? If so, communicate them with your coach.
+* What is the current composite SLA? Do you have any concerns regarding the business meeting its requirements or SLAs? If so, communicate them with your coach.
 
-As an Azure architect, you may be accustomed to implementing solid workloads in the cloud. However, many customers are not. It is important that you are able to understand and _articulate_ the reasoning behind your decisions. Much of this challenge centers around your ability to clearly communicate your own understanding to the customer in regard to the Microsoft Well-Architected Framework and proven cloud practices.
+As an Azure architect, you may be accustomed to implementing solid workloads in the cloud. However, many customers are not. It is important that you are able to understand and _articulate_ the reasoning behind your decisions. Much of this challenge centers around your ability to clearly communicate your own understanding to the customer in regard to the Microsoft Azure Well-Architected Framework and proven cloud practices.
 
 ## References
 
