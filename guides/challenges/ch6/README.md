@@ -18,7 +18,7 @@ There is quite a bit that the team can accomplish when updating Woodgrove Bank's
 * Azure SQL is configured with automatic failover in Woodgrove Bank's secondary region.
 * Azure SQL is configured for SQL Always Encrypted.
 * In-transit data is secured by Azure private endpoints between the App Services, Azure Batch and Azure SQL.
-* Azure Batch is configured for processing the background jobs in parallel. (see [suggestions](#hintssuggestions) below)
+* Azure Batch is configured for processing the background jobs in parallel. (see _Hints/Suggestions_ below)
 * Performance has been maintained or improved.
 * Alerting has been updated.
 * Application should maintain uptime when "chaos" script is executed.

@@ -75,7 +75,7 @@ When instantiating VMs that will host applications deployed from Azure DevOps bu
 
 The simplest way is, once a new VM is instantiated, a DevOps engineer can RDP and deploy the agent manually. This process gives the DevOps engineer the best chance for success and greatest configurability. Because IaC, if done correctly, should only deploy a VM once, the engineer should only be required to deploy and configure the agent once.
 
-A better, middle-ground approach is using Bicep/ARM templates with desired state configuration (DSC) to deploy the _Azure Pipelines Agent_. By using DSC, the DevOps and systems engineers are able to work together in an IaC approach to provisioning target VMs. However, DSC is outside of scope for this OpenHack and, therefore, **RDP'ing into the deployed VMs for installation of the deployment agent is permissable**. The <a href="#references">References</a> section below provides some additional help, if needed.
+A better, middle-ground approach is using Bicep/ARM templates with desired state configuration (DSC) to deploy the _Azure Pipelines Agent_. By using DSC, the DevOps and systems engineers are able to work together in an IaC approach to provisioning target VMs. However, DSC is outside of scope for this OpenHack and, therefore, **RDP'ing into the deployed VMs for installation of the deployment agent is permissable**. The _References_ section below provides some additional help, if needed.
 
 ## Success criteria
 

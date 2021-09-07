@@ -2,7 +2,7 @@
     "Title": "OpenHack - Microsoft Azure Well-Architected Framework",
     "Description" : "OpenHack challenges for validating one's understanding of the Microsoft Azure Well--Architected Framework",
     "OverviewUrl" : "Challenge0.html",
-    "ContentVersion": "1.0",
+    "ContentVersion": "1.01",
     "ContentPackage": {
       "ContentItems": [
         {
@@ -55,14 +55,14 @@
         },
         {
           "Order": 8,
-          "Follows": 7,
+          "Follows": 6,
           "Title": "Challenge 8: Tightening database security",
           "Description": "Tightening database security",
           "Url": "Challenge8.html"
         },
         {
           "Order": 9,
-          "Follows": 8,
+          "Follows": 6,
           "Title": "Challenge 9: Capturing correlation data",
           "Description": "Capturing correlation data",
           "Url": "Challenge9.html"
