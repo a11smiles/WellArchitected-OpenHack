@@ -7,9 +7,9 @@ import { Rate, Trend } from "k6/metrics";
 //
 // Either enter the FQDN/IP address of your external load balancer, or the FQDN/IP address of one of the web servers
 // Also, supply one of the bank customer's credentials
-const woodgroveBankUrl = "http://woodgroveelb863231.eastus.cloudapp.azure.com";
-const username = "dmelamed3244";
-const password = "(Pass@word)1234!";
+const woodgroveBankUrl = "";
+const username = "";
+const password = "";
 
 //
 // Setup custom metrics
@@ -47,7 +47,7 @@ export const options = {
   //
   thresholds: {
     http_req_duration: ["max<10000", "p(90)<2000", "p(95)<5000"],
-    "failed requests": ["rate<0.1"],
+    http_req_failed: ["rate<0.1"],
   },
 };
 

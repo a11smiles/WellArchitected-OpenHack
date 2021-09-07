@@ -30,7 +30,13 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
    - [Challenge 7: Optimizing the API](guides/challenges/ch7)
 <!--   - [Challenge 8: Tightening database security](guides/challenges/ch8)
    - [Challenge 9: Capturing correlation data](guides/challenges/ch9) -->
-8. [Success Matrix](guides/successMatrix.xlsx) (Excel)
+8. Additional Artifacts
+   - Coaches
+     - [Sample Issues](guides/Sample_Issues.docx) (Word)
+     - [Success Matrix](guides/successMatrix.xlsx) (Excel)
+   - Participants
+     - [Architecture Assessment Template](tools/Architecture_Assessment.docx) (Word)
+     - [Woodgrove Bank Initial WAF Assessment](tools/Woodgrove_Bank_Assessment_2021-08-31.docx) (Word)
 9. PowerPoint Decks 
    - [Coach Standup Deck](<guides/ppt/OpenHack_Virtual_Coach Standup_WAF.pptx>)
    - [KBYG (Tech Lead) Deck](<guides/ppt/OpenHack_Virtual_KBYG.Coach Prep Deck_WAF.pptx>)
@@ -48,9 +54,10 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
 │       └── README.md           (content for specific challenge)
 ├── docs                        (project documentation)
 ├── guides                      (guides and PPT decks for coaches and tech leads)
-└── scripts                     (scripts for building out the OpenHack tenant)
-    ├── source                  (projects for Azure DevOps source control)
-    └── tools                   (miscellaneous build tools)    
+├── scripts                     (scripts for building out the OpenHack tenant)
+|   ├── source                  (projects for Azure DevOps source control)
+|   └── tools                   (miscellaneous build tools)    
+└── tools                       (additional tools to be used by participants during the OpenHack)
 ```
 
 ## Contributing

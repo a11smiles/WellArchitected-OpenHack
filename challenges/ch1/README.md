@@ -50,6 +50,10 @@ Woodgrove Bank has the following requirements which you should take into conside
 
 ## Cheat sheet
 
+### Assessment Worksheet
+
+Under the _Resources_ tab of the OpenHack portal, you will find a Microsoft Word document named _Architecture_Assessment.docx_. While using this document is not required for the OpenHack, your team may find it useful for capturing issues within the architecture and identifying necessary remediation steps.
+
 ### Network
 
 Woodgrove Bank has attempted to implement an infrastructure that is somewhat identical to their on-premises implementations for web applications while ensuring that there is no CIDR overlap. All resources are on a single virtual network and exist in the same resource group.

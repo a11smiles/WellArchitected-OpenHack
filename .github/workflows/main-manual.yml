@@ -53,7 +53,19 @@ jobs:
         run: |
           jsonlint ./challenges/lab-content-definition.json   
 
+      # Spellchecking all content
+      - name: 'Spellchecking Content'
+        run: |
+          npm install cspell -g
+          cspell ./**/*.md
 
+      # Check links
+      - name: 'Check Links'
+        uses: gaurav-nelson/github-action-markdown-link-check@1.0.13
+        with:
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'yes'
+          
 
   processor-test: 
     runs-on: ubuntu-latest
@@ -205,6 +217,7 @@ jobs:
           cd ${{ github.workspace }}
           mkdir -p ./target/resources/guides
           cp ./source/guides/challenges/ch1/README.md ./target/resources/guides/Challenge1.md
+          cp -R ./source/guides/challenges/ch1/images ./target/resources/guides
           cp ./source/guides/challenges/ch2/README.md ./target/resources/guides/Challenge2.md
           cp ./source/guides/challenges/ch3/README.md ./target/resources/guides/Challenge3.md
           cp ./source/guides/challenges/ch4/README.md ./target/resources/guides/Challenge4.md
@@ -225,6 +238,12 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           cp ./source/guides/successMatrix.xlsx ./target/resources
+
+      # Copy Sample_Issues.docx
+      - name: Copy Sample Issues
+        run: |
+          cd ${{ github.workspace }}
+          cp ./source/guides/Sample_Issues.docx ./target/resources
 
       # Copy tools folder to target
       - name: Copy participant tools

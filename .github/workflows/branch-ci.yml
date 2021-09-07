@@ -38,7 +38,6 @@ jobs:
           # files, directories, or globs
           files: ./guides/challenges/**/*.md
 
-
       # Lint additional docs 
       - name: 'Linting Resources'
         uses: nosborn/github-action-markdown-cli@v1.1.1
@@ -49,7 +48,7 @@ jobs:
           files:  ./docs
 
       # Lint your JSON files [mostly for content def]
-      - name: 'Install dependencies'
+      - name: 'Install Dependencies'
         run: npm install jsonlint -g
 
       # Make sure to lint any language-specific versions you've created(remove unnecessary/non-existent paths)
@@ -57,6 +56,18 @@ jobs:
         run: |
           jsonlint ./challenges/lab-content-definition.json        
 
+      # Spellchecking all content
+      - name: 'Spellchecking Content'
+        run: |
+          npm install cspell -g
+          cspell ./**/*.md
+
+      # Check links
+      - name: 'Check Links'
+        uses: gaurav-nelson/github-action-markdown-link-check@1.0.13
+        with:
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'yes'
 
 
   processor-test: 
