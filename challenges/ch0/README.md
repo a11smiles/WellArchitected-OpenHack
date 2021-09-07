@@ -55,7 +55,7 @@ As workloads are being transitioned to Azure, Woodgrove Bank has expressed the i
     * 2-3 secs - Good (This is Woodgrove Bank's _desired_ load time.)
     * 3-5 secs - Acceptable (This is the _minimum_ load time that is accepted by the business.)
     * \> 5 secs - Unacceptable
-* Application uptime should meet or exceed 99.5%. The SLA allows Woodgrove Bank's IT and development teams to perform weekly maintenance with approximately 1 hour of acceptable downtime. 
+* Application uptime should meet or exceed 99.5%. The SLA allows Woodgrove Bank's IT and development teams to perform weekly maintenance with approximately 1 hour of acceptable downtime.
 * Business Continuity/Disaster Recovery (BCDR):
     * Implement a hot-hot, multi-region deployment
     * RPO - 30 minutes
@@ -110,7 +110,7 @@ As you can see from the diagram above, all virtual machines have been attached t
 
 #### DNS Mappings
 
-External FQDNs must be globally unique. Therefore, all public DNS host names have a six-character alphanumeric code appended in the format below. 
+External FQDNs must be globally unique. Therefore, all public DNS host names have a six-character alphanumeric code appended in the format below.
 
 > NOTE: The appended code is generated randomly on initial deployment of the infrastructure into the OpenHack environment. The code is consistent for all resources within an individual team's Azure subscription. However, the code differs between teams.
 
