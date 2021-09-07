@@ -13,6 +13,7 @@
         "Operationalize",
         "RACI",
         "OWASP",
-        "autoscale"
+        "autoscale",
+        "loadimpact"
     ]
 }

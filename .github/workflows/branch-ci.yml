@@ -38,6 +38,15 @@ jobs:
           # files, directories, or globs
           files: ./guides/challenges/**/*.md
 
+      # Lint any content you have (any *.md files).
+      - name: 'Linting Tools'
+        uses: nosborn/github-action-markdown-cli@v1.1.1
+        with:
+          # configuration file (JSON or YAML)
+          config_file: .markdownlint.json
+          # files, directories, or globs
+          files:  ./tools
+
       # Lint additional docs 
       - name: 'Linting Resources'
         uses: nosborn/github-action-markdown-cli@v1.1.1
