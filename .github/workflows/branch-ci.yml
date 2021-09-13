@@ -79,6 +79,8 @@ jobs:
           #npx cspell ${{ github.workspace }}/guides/**/*.md -c ${{ github.workspace }}/cspell.json
           ##npx cspell ${{ github.workspace }}/scripts/**/*.md -c ${{ github.workspace }}/cspell.json
           #npx cspell ${{ github.workspace }}/tools/**/*.md -c ${{ github.workspace }}/cspell.json
+        with:
+          files: .
 
       # Check links
       - name: 'Check Links'
