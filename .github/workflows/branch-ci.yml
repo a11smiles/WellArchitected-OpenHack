@@ -74,7 +74,7 @@ jobs:
           npx cspell ${{ github.workspace }}/challenges/**/*.md -c ${{ github.workspace }}/cspell.json
           npx cspell ${{ github.workspace }}/docs/**/*.md -c ${{ github.workspace }}/cspell.json
           npx cspell ${{ github.workspace }}/guides/**/*.md -c ${{ github.workspace }}/cspell.json
-          #npx cspell ${{ github.workspace }}/scripts/**/*.md -c ${{ github.workspace }}/cspell.json
+          npx cspell ${{ github.workspace }}/scripts/**/*.md -c ${{ github.workspace }}/cspell.json
           #npx cspell ${{ github.workspace }}/tools/**/*.md -c ${{ github.workspace }}/cspell.json
 
       # Check links
