@@ -1,0 +1,17 @@
+{
+  "name": "waf-oh",
+  "description": "Microsoft Azure Well-Architected Framework OpenHack",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Azure/WellArchitected-OpenHack.git"
+  },
+  "author": "Joshua Davis <me@jdav.is>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Azure/WellArchitected-OpenHack/issues"
+  },
+  "homepage": "https://github.com/Azure/WellArchitected-OpenHack#readme",
+  "devDependencies": {
+    "cspell": "^5.9.1"
+  }
+}

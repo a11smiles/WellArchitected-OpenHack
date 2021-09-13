@@ -68,8 +68,8 @@ jobs:
       # Spellchecking all content
       - name: 'Spellchecking Content'
         run: |
-          npm install cspell -g
-          cspell ./**/*.md
+          npm install cspell
+          npx cspell ./**/*.md
 
       # Check links
       - name: 'Check Links'
