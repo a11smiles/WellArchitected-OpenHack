@@ -48,7 +48,8 @@
         "tniu",
         "ndom",
         "Nochange",
-        "Quickstart"
+        "Quickstart",
+        "APIM"
     ],
     "ignorePaths": [
         "node_modules/**",

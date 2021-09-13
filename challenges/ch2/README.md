@@ -66,7 +66,7 @@ The `drop` artifacts are as follows:
 * _processor_:
     * `Processor.zip` - a dotnet core self-contained executable of the background processor application
 * _web_:
-    * `Portal.Api.zip` - the dotnet core self-contained WebApi library for the website's backend
+    * `Portal.Api.zip` - the dotnet core self-contained Web Api library for the website's backend
     * `Portal.Web.zip` - the dotnet core MVC application for the website's front end
 
 ### Azure DevOps Deployment Agents
