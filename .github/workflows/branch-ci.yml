@@ -71,7 +71,7 @@ jobs:
         run: |
           npm install cspell -g
           pwd
-          #npx cspell ${{ github.workspace }}/challenges/**/*.md -c ${{ github.workspace }}/cspell.json
+          npx cspell ${{ github.workspace }}/challenges/**/*.md -c ${{ github.workspace }}/cspell.json
           npx cspell ${{ github.workspace }}/docs/**/*.md -c ${{ github.workspace }}/cspell.json
           #npx cspell ./guides/**/*.md
           #npx cspell ./scripts/**/*.md
