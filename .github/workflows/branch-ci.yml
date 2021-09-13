@@ -69,17 +69,19 @@ jobs:
       # Spellchecking all content
       - name: 'Spellchecking Content'
         run: |
+          shopt -s globstar
           npm install cspell -g
           pwd
-          find . -name '*.md'
-          npx cspell $(find . -name '*.md') -c ${{ github.workspace }}/cspell.json
+          ls ./**/*.md
+          npx cspell $(ls ./**/*.md) -c ${{ github.workspace }}/cspell.json
+          #find . -name '*.md'
+          #npx cspell $(find . -name '*.md') -c ${{ github.workspace }}/cspell.json
 
           #npx cspell ${{ github.workspace }}/challenges/**/*.md -c ${{ github.workspace }}/cspell.json
           #npx cspell ${{ github.workspace }}/docs/**/*.md -c ${{ github.workspace }}/cspell.json
           #npx cspell ${{ github.workspace }}/guides/**/*.md -c ${{ github.workspace }}/cspell.json
           ##npx cspell ${{ github.workspace }}/scripts/**/*.md -c ${{ github.workspace }}/cspell.json
           #npx cspell ${{ github.workspace }}/tools/**/*.md -c ${{ github.workspace }}/cspell.json
-        working-directory: ${{ github.workspace }}
 
       # Check links
       - name: 'Check Links'
