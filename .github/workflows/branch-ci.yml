@@ -69,11 +69,10 @@ jobs:
       # Spellchecking all content
       - name: 'Spellchecking Content'
         run: |
-          #cd ${{ github.workspace }}
           npm install cspell -g
-          npx cspell ${{ github.workspace }}/**/*.md
-          #npx cspell ./challenges/**/*.md
-          #npx cspell ./docs/**/*.md
+          pwd
+          #npx cspell ${{ github.workspace }}/challenges/**/*.md -c ${{ github.workspace }}/cspell.json
+          npx cspell ${{ github.workspace }}/docs/**/*.md -c ${{ github.workspace }}/cspell.json
           #npx cspell ./guides/**/*.md
           #npx cspell ./scripts/**/*.md
           #npx cspell ./tools/**/*.md
