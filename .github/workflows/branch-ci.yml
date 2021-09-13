@@ -73,9 +73,9 @@ jobs:
           pwd
           npx cspell ${{ github.workspace }}/challenges/**/*.md -c ${{ github.workspace }}/cspell.json
           npx cspell ${{ github.workspace }}/docs/**/*.md -c ${{ github.workspace }}/cspell.json
-          #npx cspell ./guides/**/*.md
-          #npx cspell ./scripts/**/*.md
-          #npx cspell ./tools/**/*.md
+          npx cspell ${{ github.workspace }}/guides/**/*.md -c ${{ github.workspace }}/cspell.json
+          #npx cspell ${{ github.workspace }}/scripts/**/*.md -c ${{ github.workspace }}/cspell.json
+          #npx cspell ${{ github.workspace }}/tools/**/*.md -c ${{ github.workspace }}/cspell.json
 
       # Check links
       - name: 'Check Links'
