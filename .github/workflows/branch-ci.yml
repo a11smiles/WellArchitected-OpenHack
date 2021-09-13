@@ -71,7 +71,11 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           npm install cspell
-          npx cspell ./**/*.md
+          npx cspell ./challenges/**/*.md
+          npx cspell ./docs/**/*.md
+          npx cspell ./guides/**/*.md
+          npx cspell ./scripts/**/*.md
+          npx cspell ./tools/**/*.md
 
       # Check links
       - name: 'Check Links'
