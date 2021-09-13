@@ -63,11 +63,13 @@ jobs:
       # Make sure to lint any language-specific versions you've created(remove unnecessary/non-existent paths)
       - name: 'Execute json linter lab-content-definitions'
         run: |
+          cd ${{ github.workspace }}
           jsonlint ./challenges/lab-content-definition.json        
 
       # Spellchecking all content
       - name: 'Spellchecking Content'
         run: |
+          cd ${{ github.workspace }}
           npm install cspell
           npx cspell ./**/*.md
 
