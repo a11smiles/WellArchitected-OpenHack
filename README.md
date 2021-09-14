@@ -3,6 +3,7 @@
 This project is the home of the OpenHack experience for the Well-Architected Framework. All training material which includes, but is not limited to, challenges, diagrams, coaching assistance, and environment materials (e.g. ARM templates, source code, etc.) will be kept in this repository. The exception to this rule will be the tools that participants will be trained upon and can use in customer engagements for conducting assessments. Those tools will be stored in the _public_ repo [Azure/WellArchitected-Tools](https://github.com/Azure/WellArchitected-Tools).
 
 ## Documentation
+
 1. [Build of Materials](docs/bom.md)
 2. [OpenHack Overview](docs/overview.md)
 3. [OpenHack "One-Pager" (.docx)](docs/one-pager.docx)
@@ -16,8 +17,8 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
    - [Challenge 5: Improve the environment](challenges/ch5)  
    - [Challenge 6: Leveraging PaaS services](challenges/ch6)
    - [Challenge 7: Optimizing the API](challenges/ch7)
-<!--   - [Challenge 8: Tightening database security](challenges/ch8)
-   - [Challenge 9: Capturing correlation data](challenges/ch9) -->
+   - [Challenge 8: Tightening database security](challenges/ch8)
+   - [Challenge 9: Capturing correlation data](challenges/ch9)
 6. Automation/Build Scripts
    - [Deployment Guide](docs/deployment.md)
 7. Coach's Guides
@@ -28,8 +29,8 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
    - [Challenge 5: Improve the environment](guides/challenges/ch5)  
    - [Challenge 6: Leveraging PaaS services](guides/challenges/ch6)
    - [Challenge 7: Optimizing the API](guides/challenges/ch7)
-<!--   - [Challenge 8: Tightening database security](guides/challenges/ch8)
-   - [Challenge 9: Capturing correlation data](guides/challenges/ch9) -->
+   - [Challenge 8: Tightening database security](guides/challenges/ch8)
+   - [Challenge 9: Capturing correlation data](guides/challenges/ch9)
 8. Additional Artifacts
    - Coaches
      - [Sample Issues](guides/Sample_Issues.docx) (Word)
@@ -37,14 +38,15 @@ This project is the home of the OpenHack experience for the Well-Architected Fra
    - Participants
      - [Architecture Assessment Template](tools/Architecture_Assessment.docx) (Word)
      - [Woodgrove Bank Initial WAF Assessment](tools/Woodgrove_Bank_Assessment_2021-08-31.docx) (Word)
-9. PowerPoint Decks 
+9. PowerPoint Decks
    - [Coach Standup Deck](<guides/ppt/OpenHack_Virtual_Coach Standup_WAF.pptx>)
    - [KBYG (Tech Lead) Deck](<guides/ppt/OpenHack_Virtual_KBYG.Coach Prep Deck_WAF.pptx>)
    - [Opening Deck](<guides/ppt/OpenHack_Virtual_Opening Deck_WAF.pptx>)
    - [Tech Scenario Coach/Attendee Deck](<guides/ppt/OpenHack_Tech Scenario_Attendee_Coach_Deck_WAF.pptx>)
 
 ## Directory Structure
-```
+
+```text
 .
 ├── assets                      (any assets that are "global" to the OpenHack, e.g. Visio diagrams)
 ├── challenges                  (OpenHack challenge content; this folder structure is the same for //guides content)
@@ -76,8 +78,6 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 ## Trademarks
 
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
-trademarks or logos is subject to and must follow 
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general).
+This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft trademarks or logos is subject to and must follow [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.
