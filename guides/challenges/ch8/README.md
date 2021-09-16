@@ -10,8 +10,13 @@ Like the previous challenge, this one should be clear in the objectives and its 
 
 ## Hints/Suggestions
 
-* Besides encrypting the database tables and columns, the application should connect to the database by performing one of the following:
-    * the connection string of the application should include the following keyword: `Column Encryption Setting=Enabled`, or
+* Besides encrypting the database tables and columns, the application should connect to the database by performing _one_ of the following:
+    * the connection string of the application should include the following keyword:
+
+    ```csharp
+    Column Encryption Setting=Enabled;
+    ```
+
     * using the `SqlConnectionStringBuilder`, the connection string encryption should be set via a property:
 
     ```csharp
