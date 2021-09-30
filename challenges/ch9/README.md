@@ -15,9 +15,22 @@ In this challenge, you will _discuss_ how to implement a strategy for capturing 
 
 ## Customer requirements
 
+Woodgrove Bank's development team is wishing to understand some best-practices for capturing errors across the various service layers. This should include some of the following concepts.
+
+* Identifying all components and correlating the life-cycle events of a single request.
+* What necessary data should be captured for troubleshooting.
+* How/where the data will be stored and queried. This must also take into account privacy and personal identifiable information (PII).
+* An approach to validating issues, capturing them in a backlog, and testing the success or failure of mitigation.
+
+There is nothing to _implement_ in this challenge, but you will need to present your ideas to your coach and be prepared to discuss pros and cons of your suggested approach.
+
 ## Cheat sheet
 
+There are many ways to accomplish this&mdash;some better than others. Take a look at the references below and determine which approach is best.
+
 ## Success criteria
+
+You must consider the customer's requirements above and present to your coach how you believe each requirement should be met. There may be other factors to consider. Your approach should cover some of these other potential factors and the pros and cons of your various approaches.
 
 ## References
 
