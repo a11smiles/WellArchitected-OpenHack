@@ -37,7 +37,7 @@ You must consider the customer's requirements above and present to your coach ho
 * Make sure you read the included references. They can help tremendously with determining a solid strategy.
 * Ensure you store the right amount of data. Too little data provides very little insight for bug remediation; too much data can slow down application performance and increase costs. Find the right mix.
 * Make sure you are not storing any type of PII. Your strategy, however, will need to include a way to correlate captured issues with the user(s) who experienced them.
-* Determine how you will ensure that the same bug isn’t encountered in a future regression.
+* Determine how you will ensure that the same bug isn't encountered in a future regression.
 
 ## References
 
