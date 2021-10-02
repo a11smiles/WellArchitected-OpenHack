@@ -88,6 +88,14 @@ For success in this challenge, you will need to perform the following:
 
 Remember, **NOW** is the time for you to practice the _ACHIEVE_ method (see above).
 
+## Success tips
+
+* Leverage the list you created in Challenge 1. It will help serve as a guidepost for possible improvements.
+* At this point, all infrastructure-focused team members should be familiar with Azure Bicep. Ideally, all team members should know how to use Azure Bicep. Implementation will require many hands-on contributors.
+* Strategically determine which changes you will make and how you will make them. Ideally, you would make small changes in a Staging environment and test often. However, given the time constraints of this OpenHack and re-deploying the infrastructure can take 15-20 minutes, you may not have that option.  Therefore, make appropriate changes in stages (probably 4-6 stages) and test the performance of those stages.
+* Prior to making any changes, discuss the pros and cons of those changes with your team and coach to determine the best route.
+* Non-infrastructure team members may focus on updating Azure DevOps pipelines and Grafana dashboards, as necessary.
+
 ## References
 
 * <a href="https://stackoverflow.com/questions/44124901/application-insight-monitor-doesnt-send-data-to-portal-due-to-insufficient-perm" target="_blank">Application Insights permissions</a>

@@ -41,6 +41,12 @@ The success criteria is fairly simple.
 * Azure DevOps pipelines should be updated to deploy the newly refactored application and its supporting architecture.
 * The new API endpoints should remain secure from outside intrusion.
 
+## Success tips
+
+* This challenge will primarily involve some application refactoring. You will need to move the current API endpoints to Azure Functions.
+* Perhaps the easiest thing to do is, first, identify the current endpoints. Then, determine how they will be arranged in the Azure Functions. Finally, copy and paste the API code to its respective HTTP Trigger function.
+* It could be very easy to attempt to over-architect this solution. Resist the urge. Remember, you (or Woodgrove Bank) can also add additional architecture later. What is the minimum configuration necessary to secure and optimize the API?
+
 ## References
 
 * <a href="https://docs.microsoft.com/azure/azure-functions/functions-run-local" target="_blank">Work with Azure Functions Core Tools</a>

@@ -32,6 +32,13 @@ There are many ways to accomplish this&mdash;some better than others. Take a loo
 
 You must consider the customer's requirements above and present to your coach how you believe each requirement should be met. There may be other factors to consider. Your approach should cover some of these other potential factors and the pros and cons of your various approaches.
 
+## Success tips
+
+* Make sure you read the included references. They can help tremendously with determining a solid strategy.
+* Ensure you store the right amount of data. Too little data provides very little insight for bug remediation; too much data can slow down application performance and increase costs. Find the right mix.
+* Make sure you are not storing any type of PII. Your strategy, however, will need to include a way to correlate captured issues with the user(s) who experienced them.
+* Determine how you will ensure that the same bug isn’t encountered in a future regression.
+
 ## References
 
 * <a href="https://docs.microsoft.com/azure/azure-monitor/app/asp-net-exceptions" target="_blank">Diagnose exceptions in web apps with Application Insights</a>
@@ -42,3 +49,4 @@ You must consider the customer's requirements above and present to your coach ho
 * <a href="https://github.com/yurishkuro/opentracing-tutorial/tree/master/csharp" target="_blank">OpenTracing Tutorial - C# (GitHub)</a>
 * <a href="https://opentelemetry.io/" target="_blank">OpenTelemetry</a>
 * <a href="https://github.com/Azure-Samples/application-insights-aspnet-sample-opentelemetry" target="_blank">Application Insights integration with OpenTelemetry (GitHub)</a>
+* <a href="https://docs.microsoft.com/azure/devops/test/?view=azure-devops" target="_blank">Azure Test Plans</a>

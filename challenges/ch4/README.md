@@ -58,6 +58,12 @@ Successfully completing this challenge requires that the following criteria be m
   > NOTE: Woodgrove Bank is currently utilizing a 3rd-party service for on-premises log aggregation. Your challenge does _not_ include accessing and displaying on-premises data. For this challenge, you should simply determine a reasonable approach for Woodgrove Bank to store it in a way that they can visualize it through Grafana.
 * Configure appropriate permissions to allow specific users to edit dashboards and other users to only view them.
 
+## Success tips
+
+* Leverage the metrics you listed in the previous challenge.
+* Before jumping into Grafana, construct a quick and simple Azure Metrics dashboard. This can help align the team (and the customer) on what is being presented along with validating the approach.
+* Consider the variations in views between different teams. Multiple teams could be interested in monitoring the same component, but different metrics for that component.
+
 ## References
 
 * <a href="https://azure.microsoft.com/blog/7-best-practices-for-continuous-monitoring-with-azure-monitor/" target="_blank">Best practices for Continuous Monitoring with Azure Monitor</a>

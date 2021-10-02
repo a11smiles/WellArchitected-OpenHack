@@ -72,6 +72,16 @@ In order to succeed in this challenge, you will need to accomplish the following
 * The determined BCDR architecture must be deployed to Azure using automation.
 * A RACI chart needs to be created that identifies the alerting and issue escalation process. It should include events, activities, deliverables, and individuals necessary for remediation.
 
+## Success tips
+
+* Some of the implementation "to-do's" of this challenge can be quickly delegated to individual team members and can be accomplished quite quickly and in parallel.
+* Leverage the list of components you identified in Challenge 1 and determine what types of alerts can be created and identify the conditions that generate those alerts.
+* Additionally, identify important metrics that should be monitored for each component.
+* This is a document-heavy challenge. Don't attempt to "shortcut" the process.
+* Consider Woodgrove Bank's industry and their compliance requirements. How does that affect log storage?
+* Ensure everyone knows what a RACI chart is and its importance in determining response for technical conditions that have critical business impact.
+* Create a shared document for your BCDR and RACI documentation. Then, identify important sections/technologies/etc. Finally, attempt to take a paired approach to completing these documents where groups are responsible for completing sections and reviewing others' work.
+
 ## References
 
 * <a href="https://docs.microsoft.com/azure/azure-monitor/alerts/alerts-overview" target="_blank">Alerting Overview</a>

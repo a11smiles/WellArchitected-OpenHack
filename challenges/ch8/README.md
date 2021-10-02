@@ -11,7 +11,7 @@ Time Length: **1 hour**
 
 Woodgrove Bank continues to see improvements with their application and its underlying infrastructure. Your team has helped train and empower them to deploy solutions that are very well architected. However, there are still additional improvements that can be made.
 
-In terms of security, the backend, like traditional applications, is still connecting the database using a SQL identity. According to the Microsoft Azure Well-Architected Framework, the best policy is for applications to connect to SQL using a _service principal_. Additionally, data should always be encrypted, whether in transit or at rest.
+In terms of security, the backend, like traditional applications, is still connecting the database using a SQL identity. According to the Microsoft Azure Well-Architected Framework, the best policy is for applications to connect to SQL using a _service or managed principal_. Additionally, data should always be encrypted, whether in transit or at rest.
 
 In this challenge, you will accomplish both of the above tasks to tighten security. You will need to ensure that the data is encrypted and that the application is using a managed principle for connectivity.
 
@@ -38,6 +38,11 @@ The success criteria consists of the following two requirements:
 
 * The application must connect to the database using a managed principal.
 * The appropriate tables and columns should be encrypted per Woodgrove Bank's requirements.
+
+## Success tips
+
+* Don't try to overcomplicate things and do more work than necessary. This challenge is pretty straightforward and should not take you long to complete.
+* Make sure you have configured an AD-based database administrator. This is required prior to using any type of AD-managed identity for connectivity.
 
 ## References
 

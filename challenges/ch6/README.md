@@ -23,7 +23,7 @@ As stated above, Woodgrove Bank is very anxious about moving to PaaS services. T
 * The business stakeholders and the IT team want to ensure that costs are managed efficiently. With VMs, including reserved instances, budgets were slightly more predictable, but they do not know how to prepare budgets for PaaS. Woodgrove Bank cannot allow costs to grow without restraint and need instruction on how to adequately calculate PaaS costs.
 * For virtual machines, IT could limit access to specific users. However, the IT and security teams are concerned with configuration values (e.g. database connection strings, API tokens, etc.) being accessible to all users.
 * Within a network, database and information access during transit could be contained. However, the IT and security teams are now concerned that moving to PaaS would expose their data as it passes through the public Internet.
-* The security teams want to ensure that all PaaS services are leveraging the latest security standards. Any communication with the applications should follow the most recent security practices. Additionally, if App Services are used for hosting the application's components, access to the application files should be limited to SCM only.
+* The security teams want to ensure that all PaaS services are leveraging the latest security standards. Any communication with the applications should follow the most recent security practices. Additionally, if App Services are used for hosting the application's components, access to the application files should be limited to the SCM host (web management) only.
 * The IT team only wishes to be involved in the change management where necessary. Therefore, automation should be leveraged for configuration of the infrastructure _and_ the application as much as possible.
 * Woodgrove Bank's IT team needs Microsoft to ensure that the delivered solution maintains RPO/RTO requirements and that it is highly-available at all times.
 * Woodgrove Bank's development team requires that the application does not experience a degradation in performance due to the transition from IaaS to PaaS.
@@ -51,6 +51,16 @@ To succeed in this challenge, you must address the customer requirements listed 
 * How will you secure data between the application and the database?
 * What alerts are necessary and should you configure for the above services?
 * What metrics should you configure for the above services?
+
+## Success tips
+
+* As with other challenges, it may be best to discuss with the team first, then delegate responsibilities. Much of the work can be accomplished in parallel.
+* The application must remain operational during the transition. Can the application be migrated in stages? Can it run simultaneously on IaaS and PaaS?
+* Determine the best way to predict scale and resulting costs when deploying (or migrating) a workload to PaaS.
+* Security strategies for IaaS and PaaS are similar in some areas, different in others. What ways are they similar? What ways are they different? Make sure any PaaS solution that you introduce is highly secured. This includes the infrastructure and application components.
+* Determine the changes that you will need to make to automate the deployments of the infrastructure and the application.
+* To maintain performance, think about proactive scale configurations. How can you scale the application proactively to maintain performance without sacrificing costs (too much)? Also, remember to configure “scale in” settings.
+* For dashboards, start by attempting to "translate" the performance counters you were reporting for IaaS to PaaS. Which performance counters can be re-used (just updating the resource in Grafana from VM to App Service)? Where performance counters need to be dropped, or are no longer available? What additional data is available from PaaS services that was not available with IaaS?
 
 ## References
 
