@@ -120,4 +120,4 @@ docker run -it wafopenhack -u <email> -p <password> -s <subscriptionId> -t <tena
 
 ## Assistance
 
-This deployment script, the artifacts within the repo, and any other content contained herein are provided with little assistance. Should you have questions or have issues, please open an _Issue_ in this repository. 
+This deployment script, the artifacts within the repo, and any other content contained herein are provided with little assistance. Should you have questions or have issues, please open an _Issue_ in this repository.
