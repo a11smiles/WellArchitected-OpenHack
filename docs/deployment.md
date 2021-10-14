@@ -28,7 +28,7 @@ Unless you are the IT manager of your company or attempting to deploy the OpenHa
 
 In a semi-automated deployment, only a single service principal is created with RBAC privileges in the Azure tenant. You will be required to create a PAT in Azure DevOps during the deployment process.
 
-A semi-automated deployment will be the necessary appraoch for most users, _including Microsoft employees_ wishing to deploy the OpenHack into their AIRS subscription.
+A semi-automated deployment will be the necessary approach for most users, _including Microsoft employees_ wishing to deploy the OpenHack into their AIRS subscription.
 
 ### Stages of deployment
 
@@ -108,7 +108,7 @@ This approach is used for Azure AD tenants _requiring_ MFA authentication.
 docker run -it wafopenhack -u <email> -p <password> -s <subscriptionId> -t <tenantId> -m
 ```
 
-As stated above, after your Azure DevOps tenant has been created, you will propmted to manually enter a PAT. Follow the requirements stated above for creating a PAT with the necessary permissions. Once, you've created the PAT, enter it at the prompt (copy and paste), then the deployment will continue.
+As stated above, after your Azure DevOps tenant has been created, you will prompted to manually enter a PAT. Follow the requirements stated above for creating a PAT with the necessary permissions. Once, you've created the PAT, enter it at the prompt (copy and paste), then the deployment will continue.
 
 #### Microsoft AIRS subscriptions (for Microsoft employees)
 

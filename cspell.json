@@ -50,7 +50,8 @@
         "woodgroveelb",
         "woodgrovesqlsvr",
         "woodgroveweb",
-        "woodgroveworker"
+        "woodgroveworker",
+        "wafopenhack"
     ],
     "ignorePaths": [
         "node_modules/**",
