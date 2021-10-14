@@ -11,13 +11,13 @@ Time Length: **2-3 hours**
 
 With the migration of the web application and some of its infrastructure to PaaS services, Woodgrove Bank's IT and development teams are excited about the future possibilities of their applications. They are already looking into additional use-cases. One item that has piqued their interest in particular is serverless. This has led team to wonder if, given the current "minimal" state of the web application, now would be an ideal time to refactor the API for a serverless architecture.
 
-This challenge requires you to refactor the existing WebAPI backend for a serverless architecture and update the necessary components to leverage the newly-created functions. While the _coding_ requirements for this challenge should be fairly straight-forward and accomplishable with relatively little effort, you should remember all of the additional components that must be updated in order to succeed.
+This challenge requires you to refactor the existing Web API backend for a serverless architecture and update the necessary components to leverage the newly-created functions. While the _coding_ requirements for this challenge should be fairly straight-forward and accomplishable with relatively little effort, you should remember all of the additional components that must be updated in order to succeed.
 
 ## Customer requirements
 
 As continuously stated, all changes must be conducted via Azure Bicep and result in minimal, if any, downtime.
 
-* The development team requires that the WebAPI application be refactored and moved to a serverless environment.
+* The development team requires that the Web API application be refactored and moved to a serverless environment.
 * The IT and development teams require that all infrastructure and code pipelines in Azure DevOps be updated to deploy and leverage the new/updated infrastructure.
 * The IT and operations teams want to ensure that the resulting architecture will not compromise availability or performance. The final architecture should be designed in such a way that, if the front end becomes inoperable at any time, the backend still remains functional and vice versa. This will allow Woodgrove Bank to leverage the APIs for possible future components, such as mobile applications.
 * The security team needs assurance that the API remains fully protected from outside intrusion along with all secure configuration components remaining in the Azure Key Vault previously deployed.
@@ -25,7 +25,7 @@ As continuously stated, all changes must be conducted via Azure Bicep and result
 
 ## Cheat sheet
 
-* As you may have identified, there are only five controllers in the WebAPI application. Additionally, each controller only has a single endpoint that conducts a query. Consider how you will organize these endpoints in your resulting serverless solution.
+* As you may have identified, there are only five controllers in the Web API application. Additionally, each controller only has a single endpoint that conducts a query. Consider how you will organize these endpoints in your resulting serverless solution.
 * You should identify the additional components that the API currently leverages, along with the components that leverage the API. In other words, what are the API's dependencies? What components have the API as a dependency? You will need to ensure that all items are updated, as necessary, in order to complete this challenge.
 * If you elect to leverage Azure Functions, it may be beneficial to leverage the <a href="https://docs.microsoft.com/azure/azure-functions/functions-run-local" target="_blank">Azure Core Tools</a> for creating a new Azure Functions application. Alternatively, you can use solution plugins for Visual Studio or Visual Studio Code (see _References_ below).
 
@@ -40,6 +40,12 @@ The success criteria is fairly simple.
 * The operational dashboards should be updated to report the metrics of the new architecture.
 * Azure DevOps pipelines should be updated to deploy the newly refactored application and its supporting architecture.
 * The new API endpoints should remain secure from outside intrusion.
+
+## Success tips
+
+* This challenge will primarily involve some application refactoring. You will need to move the current API endpoints to Azure Functions.
+* Perhaps the easiest thing to do is, first, identify the current endpoints. Then, determine how they will be arranged in the Azure Functions. Finally, copy and paste the API code to its respective HTTP Trigger function.
+* It could be very easy to attempt to over-architect this solution. Resist the urge. Remember, you (or Woodgrove Bank) can also add additional architecture later. What is the minimum configuration necessary to secure and optimize the API?
 
 ## References
 

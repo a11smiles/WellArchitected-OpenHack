@@ -66,7 +66,7 @@ The `drop` artifacts are as follows:
 * _processor_:
     * `Processor.zip` - a dotnet core self-contained executable of the background processor application
 * _web_:
-    * `Portal.Api.zip` - the dotnet core self-contained WebApi library for the website's backend
+    * `Portal.Api.zip` - the dotnet core self-contained Web Api library for the website's backend
     * `Portal.Web.zip` - the dotnet core MVC application for the website's front end
 
 ### Azure DevOps Deployment Agents
@@ -113,7 +113,7 @@ To succeed in this challenge, you must have the following implemented under the 
   ```
 
 * If your team is not familiar with Azure Bicep and feels more comfortable working with standard ARM Templates, it is acceptable to build the Azure Bicep definition locally, then leverage the ARM template for your deployments going forward. The goal is not to learn Azure Bicep, but to become familiar with infrastructure as code (IaC) and automated deployments. (Using Terraform is also acceptable, but doing so may be a waste of valuable time.)
-* When testing deployments with `what-if`, you will receive a series of false-positives for changes in the external load balancer’s backend pools. See the warnings below for an example (your warnings may be slightly different based on the subscription and resource group). This is a documented bug in the ELB’s REST API.
+* When testing deployments with `what-if`, you will receive a series of false-positives for changes in the external load balancer’s backend pools. See the warnings below for an example (your warnings may be slightly different based on the subscription and resource group). This is a documented bug in the REST API of the external load balancer.
 
   ```bash
   Note: The result may contain false positive predictions (noise).

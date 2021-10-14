@@ -7,3 +7,6 @@ Thumbs.db
 # generated ARM templates
 scripts/source/bicep/**/*.json
 !scripts/source/bicep/**/deploymentParameters.json
+
+# node tools
+node_modules

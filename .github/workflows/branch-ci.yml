@@ -56,20 +56,25 @@ jobs:
           # files, directories, or globs
           files:  ./docs
 
-      # Lint your JSON files [mostly for content def]
+      # Install node dependencies
       - name: 'Install Dependencies'
-        run: npm install jsonlint -g
+        run: |
+          npm install jsonlint -g
+          npm install cspell -g
 
       # Make sure to lint any language-specific versions you've created(remove unnecessary/non-existent paths)
       - name: 'Execute json linter lab-content-definitions'
         run: |
+          shopt -s globstar
           jsonlint ./challenges/lab-content-definition.json        
+        working-directory: ${{ github.workspace }}
 
       # Spellchecking all content
       - name: 'Spellchecking Content'
         run: |
-          npm install cspell -g
-          cspell ./**/*.md
+          shopt -s globstar
+          cspell $(ls ./**/*.md) -c ${{ github.workspace }}/cspell.json
+        working-directory: ${{ github.workspace }}
 
       # Check links
       - name: 'Check Links'
