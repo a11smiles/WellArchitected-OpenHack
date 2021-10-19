@@ -33,7 +33,7 @@ Of course, design by itself isn't worth much. Being as such, you will also need 
 
 ### Business Continuity/Disaster Recovery (BCDR)
 
-In accordance with Woodgrove Bank's SLAs, the final element of this challenge is to _document_ and _implement_ a BCDR strategy. Your strategy should not only meet or excel Woodgrove Bank's composite SLAs, but each applicable service within the environment should also meet or excel the goal on its own. Being that Woodgrove is a financial institution, any outage of a single service is considered an outage to the environment overall as it will impact the customer experience, regardless of whether data is lost or not.
+In accordance with Woodgrove Bank's SLAs, the final element of this challenge is to _document_ and _implement_ a BCDR strategy. Your strategy should not only meet or excel Woodgrove Bank's composite SLAs, but each applicable service within the environment should also meet or exceed the goal on its own. Being that Woodgrove is a financial institution, any outage of a single service is considered an outage to the environment overall as it will impact the customer experience, regardless of whether data is lost or not.
 
 You will need to demonstrate to your coach that your application remains operational even when various components fail unexpectedly. Your coach will conduct a level of chaos testing against your environment.
 
