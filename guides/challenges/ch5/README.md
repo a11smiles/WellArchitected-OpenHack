@@ -36,3 +36,17 @@ There are many ways the team can improve Woodgrove Bank's environment. The below
 ## References
 
 _None._
+
+## Step-By-Step
+
+### Infrastructure
+
+#### Organizing the Architecture
+
+As you can see from the diagram below, all resources for production are currently deployed to a single Resource Group (e.g., `webapp`). This, of course, is not ideal for many reasons.
+
+![Initial Architecture](./images/initialArch.png)
+
+In order to prepare Woodgrove Bank for future cloud growth, a better approach would be a hub-spoke topology. Woodgrove Bank's goal is to eventually be completely in the cloud and, besides the three subnets, the current deployment provides little separation and security from other resources. Consider the following.
+
+![Proposed Architecture]

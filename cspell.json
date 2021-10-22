@@ -22,6 +22,7 @@
         "Grafana",
         "KBYG",
         "loadimpact",
+        "markdownlint",
         "microservices",
         "MSRC",
         "ndom",
@@ -33,6 +34,7 @@
         "OWASP",
         "Quickstart",
         "RACI",
+        "RDP'ed",
         "Remoting",
         "repos",
         "Repos",
@@ -46,12 +48,12 @@
         "TSDB",
         "Visio",
         "vnet",
+        "wafopenhack",
         "Woodgrove",
         "woodgroveelb",
         "woodgrovesqlsvr",
         "woodgroveweb",
-        "woodgroveworker",
-        "wafopenhack"
+        "woodgroveworker"
     ],
     "ignorePaths": [
         "node_modules/**",

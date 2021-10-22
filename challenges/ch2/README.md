@@ -41,6 +41,7 @@ Using automated deployments for building their cloud infrastructure creates a gr
 * The development teams want to have the ability to introduce changes in the production workload to incrementally. This ability does not need to be implemented in _this_ challenge, but it is, nonetheless, a requirement of the development teams and will need to be implemented in future challenges.
 * The business requires that any changes will _not_ affect the availability of the application.
 * Currently, there is a single environment in Azure, and it is used for production. The operations and development teams want two separate environments&mdash;one for development and another for production.
+* With the deployment of a second environment for development, IT and finance teams will need the ability to quickly determine separate costs for production and development environments.
 
 ## Cheat sheet
 
