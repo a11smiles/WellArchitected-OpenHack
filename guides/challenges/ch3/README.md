@@ -22,10 +22,6 @@
 
 * In addition to injecting logs into the Log Analytics workspace, the team should have logs being stored in _cold_ storage for no time period less than 7 years. (Azure Log Analytics only stores logs for up to 2 years. Additionally, cold storage will minimize costs.)
 * Deploying Azure Sentinel with Bicep/ARM is quite simply a naming convention used by ARM. See the links below for additional assistance.
-* Possible queries to consider for Azure Sentinel:
-    * TBD
-    * TBD
-    * TBD
 * While duplicating a second region should be a fairly simple process of copy/paste, the team will still need to be aware (and maintain) naming conventions along with ensuring that all deployed resources are indeed deployed to the correct regions. Other items to be aware of are:
     * Ensuring that the VMs are _not_ using the same storage account in either region.
     * Attaching a new storage device to the VM and moving data _off_ of the ephemeral storage (D:) onto the new drive.
@@ -35,3 +31,31 @@
 
 * <a href="https://azsec.azurewebsites.net/2019/12/31/azure-sentinel-arm-template/" target="_blank">Deploying Azure Sentinel with ARM</a>
 * <a href="https://medium.com/threat-hunters-forge/it-is-biceps-day-flexing-an-arm-template-to-deploy-azure-sentinel-d4709a3aa947" target="_blank">Deploying Azure Sentinel with Bicep</a>
+
+## Tech Guidance
+
+1. Ensure that the teams have configured moving Log Analytics logs to cold storage for compliance. This <a href="https://techcommunity.microsoft.com/t5/azure-sentinel/move-your-azure-sentinel-logs-to-long-term-storage-with-ease/ba-p/1407153" target="_top">link</a> can provide assistance.
+
+2. The infrastructure will need to be improved for high-availability. See the section below for more details and suggestions.
+
+3. Besides high-availability, the environment has no backup or data retention. The application layer isn't too concerning as the application is stateless and, if a VM goes down, the application can simply be redeployed. However, the database needs to be backed up according to Woodgrove Bank's RPO/RTO goals.
+
+4. The team will need to configure alerts based on certain conditions. These conditions may include, but are not limited to a virtual machine going down, an endpoint within the ELB becoming unresponsive, SQL being unavailable, or even when an RDP connection is made to a VM. The team will need to determine which alerts they wish to configure and then demonstrate these to the coach. The coach should attempt to test an alert (by taking a VM offline, for example), if possible.
+
+5. Alerts should also be configured for consumption costs. Budgets should be configured for the subscription and the team should be notified based on thresholds of the budget being reached.
+
+6. Teams should consider _all_ pillars of the Microsoft Azure Well-Architected Framework when configuring alerts. Challenge them to think about what type of alerts are applicable to each pillar.
+
+7. RACI documentation should identify all components and responsibilities. This includes not only _technical_, but also areas such as security threats, costs/budgets, etc. The team should consider the types of alerts that they've configured.
+
+### Infrastructure
+
+#### Configuring the Architecture for High-Availability
+
+As you can see from the diagram below, all resources for production are currently deployed to a single Resource Group (e.g., originally `webapp`, but you may have changed this in the previous challenge). This, of course, is not ideal for many reasons.
+
+![Initial Architecture](./images/initialArch.png)
+
+In order to prepare Woodgrove Bank for future cloud growth, a better approach would be a hub-spoke topology. Woodgrove Bank's goal is to eventually be completely in the cloud and, besides the three subnets, the current deployment provides little separation and security from other resources. Consider the following.
+
+![Proposed Architecture]

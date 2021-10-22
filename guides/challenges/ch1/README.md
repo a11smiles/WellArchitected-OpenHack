@@ -39,7 +39,7 @@
 * <a href="https://www.blazemeter.com/blog/performance-testing-vs-load-testing-vs-stress-testing" target="_blank">Performance Testing vs. Load Testing vs. Stress Testing</a>
 * <a href="https://docs.microsoft.com/azure/active-directory/enterprise-users/users-restrict-guest-permissions" target="_blank">Prevent inviting guests to AD tenant</a>
 
-## Step-By-Step
+## Tech Guidance
 
 ### Included Resources
 

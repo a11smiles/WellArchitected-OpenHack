@@ -21,7 +21,7 @@
 * <a href="https://docs.microsoft.com/azure/azure-resource-manager/templates/deployment-modes" target="_blank">ARM deployment modes</a>
 * <a href="https://docs.microsoft.com/azure/azure-resource-manager/templates/bicep-tutorial-add-parameters?tabs=azure-powershell#customize-by-environment" target="_blank">Using `@allowed` in Azure Bicep parameters</a>
 
-## Technical Guidance
+## Tech Guidance
 
 > **IMPORTANT:** Currently, the Azure Bicep scripts will redeploy a _saved_ version of the applications to the virtual machines via Desired State Configuration (DSC). However, when the VMs are redeployed, the team will need to "reconnect" them to their Azure DevOps tenant in order to deploy application builds from Azure DevOps to the machines. The process is detailed below.
 
