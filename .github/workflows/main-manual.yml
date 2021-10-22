@@ -298,8 +298,10 @@ jobs:
       - name: Copy source folder to target
         run: |
           cd ${{ github.workspace }} 
-          xcopy /e /y .\source\scripts\source .\target\byos\waf\scripts\source\
-
+          xcopy /e /y .\source\scripts\source\bicep .\target\byos\waf\scripts\source\
+          xcopy /e /y .\source\scripts\source\portal .\target\byos\waf\scripts\source\
+          xcopy /e /y .\source\scripts\source\dsc .\target\byos\waf\source\
+          
       # Copy deployment tool to target
       - name: Copy deployment tool to target
         run: |
