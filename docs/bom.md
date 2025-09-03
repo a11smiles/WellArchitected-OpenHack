@@ -4,7 +4,7 @@
 - [x] Overall Outcome(s)
 - [x] Challenge Outline
 - [x] Architecture Diagram
-- [x] Challenge Content (TBD)
+- [x] Challenge Content
 - [x] Automation/Build Scripts
 - [x] Tooling
 - [x] Coach's Deck
