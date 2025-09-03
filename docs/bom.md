@@ -2,11 +2,11 @@
 
 - [x] Overall Abstract
 - [x] Overall Outcome(s)
-- [ ] Challenge Outline
-- [ ] Architecture Diagram
-- [ ] Challenge Content (TBD)
-- [ ] Automation/Build Scripts
-- [ ] Tooling
-- [ ] Coach's Deck
-- [ ] Coach's Guide
-- [ ] Tech Lead Deck
+- [x] Challenge Outline
+- [x] Architecture Diagram
+- [x] Challenge Content (TBD)
+- [x] Automation/Build Scripts
+- [x] Tooling
+- [x] Coach's Deck
+- [x] Coach's Guide
+- [x] Tech Lead Deck
